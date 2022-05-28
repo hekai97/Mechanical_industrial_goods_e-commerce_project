@@ -1,6 +1,7 @@
 @charset "utf-8";
 body{position: relative;min-width: 1200px;background: #ffffff;}
 .content_box{width: 1100px;margin: 0 auto;overflow: hidden;}
+/*头部导航栏*/
 .header_outbox{
     background-color: #f3f3f3;
     height: 36px;
@@ -30,7 +31,6 @@ body{position: relative;min-width: 1200px;background: #ffffff;}
 .header_inbox,.loginbox{
     color: #41b6e7;
 }
-
 .my_action,.my_action li{
     float: right;
     list-style:none
@@ -45,4 +45,73 @@ body{position: relative;min-width: 1200px;background: #ffffff;}
 }
 .my_action img{
     margin-top: 0px;
+}
+
+
+/*头部搜索栏*/
+.action_search_box{
+    padding-top: 18px;
+}
+.logo{
+    background-image: url(../images/common/logo.png);
+    background-repeat:no-repeat;
+    display: block;
+    width: 199px;
+    height: 61px;
+    float: left;
+    margin-right: 132px;
+}
+.inputbox{
+    float:left;
+    height: 58px;
+    padding-top: 2px;
+    width: 540px;
+    line-height: 58px;
+}
+.inputbox input{
+    line-height: 35px;
+    width: 438px;
+    height: 30px;
+    border: #41b6e7 2px solid;
+    font-size: 14px;
+    color: #333333;
+    padding-left: 4px;
+    outline: none;
+    float: left;
+    border-top-left-radius: 20px;
+    border-top-right-radius:20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+.searchbtn{
+    width: 84px;
+    background-color: #41b6e7;
+    height: 35px;
+    font-size: 16px;
+    display: block;
+    line-height: 35px;
+    float: left;
+    text-align: center;
+    text-decoration:none;
+    border-top-left-radius: 15px;
+    border-top-right-radius:15px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+.hotword{
+    float: none;
+    line-height: 19px;
+    clear: both;
+    color: #999999;
+    width: 524px;
+    padding-top: 4px;
+}
+.hotword a{
+    color: #999999;
+    border-right: 1px #c2c1c1 solid;
+    text-decoration:none;
+}
+.telephotonumber{
+    margin-left: 45px;
+    float: left;
 }

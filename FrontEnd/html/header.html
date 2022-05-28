@@ -3,8 +3,8 @@
     <head lang="en">
         <meta charset="UTF-8">
         <title></title>
-            <link rel="stylesheet" type="text/css" href="css/reset.css">
-            <link rel="stylesheet" type="text/css" href="css/common.css">
+            <link rel="stylesheet" type="text/css" href="../css/reset.css">
+            <link rel="stylesheet" type="text/css" href="../css/common.css">
     </head>
     <body>
         <header class="header_outbox">
@@ -14,12 +14,12 @@
                     <a href="#" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[访问官网]</a>
                     <span id="register_info">
                         <a href="#" class="login">&nbsp;&nbsp;&nbsp;登录&nbsp;&nbsp;</a>
-                        <img src="images/common/header_line.jpg">
+                        <img src="../images/common/header_line.jpg">
                         <a href="#" class="login">&nbsp;&nbsp;免费注册&nbsp;&nbsp;&nbsp;&nbsp;</a>
                     </span>
                     <span id="login_info" style="display: none;">
                         <a href="#" id="headerUsername" class="login"></a>
-                        <img src="images/common/header_line.jpg">
+                        <img src="../images/common/header_line.jpg">
                         <a href="#" id="headerLogout" class="login">&nbsp;&nbsp;退出</a>
                     </span>
                 </div>
@@ -28,7 +28,7 @@
                         <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我的关注</a>
                     </li>
                     <li>
-                        <img src="images/common/mix_car.png">
+                        <img src="../images/common/mix_car.png">
                         <a href="#">购物车<span id="cartQuantity">[0]</span></a>
                     </li>
                     <li>
@@ -39,18 +39,17 @@
         </header>
 
 
-        <div class="content_box">
-            <a>
-
+        <div class="content_box action_search_box">
+            <a class="logo" href="../index.html">
             </a>
-            <div>
-                <input type="text" id="keyword" name="keyword" value="油漆" placeholder="请输入您感兴趣的内容">
-                <a href="javescript:search();">搜&nbsp;索</a>
-                <div >热销：
+            <div class="inputbox">
+                <input type="text" id="keyword" name="keyword" placeholder="请输入您感兴趣的内容">
+                <a class="searchbtn" href="javescript:search();">搜&nbsp;索</a>
+                <div class="hotword">热销：
                     <a href="#" target="_blank">&nbsp;&nbsp;&nbsp;油漆&nbsp;&nbsp;&nbsp;</a>
                 </div>
             </div>
-            <img src="images/common/telephone_number.jpg">
+            <img class="telephotonumber" src="../images/common/telephone_number.jpg">
         </div>
     </body>
 </html>
