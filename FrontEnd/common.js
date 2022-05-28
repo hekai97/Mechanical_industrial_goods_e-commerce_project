@@ -4,7 +4,7 @@ define(function(){
         //构建一个含有参数的正则表达式
         var reg=new RegExp("(^|&)"+name+"=([^&]*)(&|$)");
     }
-    
+        //匹配参数
     return{
 
     };
