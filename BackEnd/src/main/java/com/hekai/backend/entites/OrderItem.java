@@ -11,7 +11,7 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "orderitem", schema = "mydatabase")
-public class Orderitem {
+public class OrderItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
@@ -139,7 +139,7 @@ public class Orderitem {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Orderitem orderitem = (Orderitem) o;
+        OrderItem orderitem = (OrderItem) o;
         return id == orderitem.id && uid == orderitem.uid && orderId == orderitem.orderId && goodsId == orderitem.goodsId && quantity == orderitem.quantity && totalPrice == orderitem.totalPrice && Objects.equals(goodsName, orderitem.goodsName) && Objects.equals(iconUrl, orderitem.iconUrl) && Objects.equals(price, orderitem.price) && Objects.equals(created, orderitem.created) && Objects.equals(updated, orderitem.updated);
     }
 
