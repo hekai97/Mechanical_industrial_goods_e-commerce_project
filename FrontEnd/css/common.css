@@ -1,0 +1,48 @@
+@charset "utf-8";
+body{position: relative;min-width: 1200px;background: #ffffff;}
+.content_box{width: 1100px;margin: 0 auto;overflow: hidden;}
+.header_outbox{
+    background-color: #f3f3f3;
+    height: 36px;
+    border-bottom: 1px solid #dcdcdc;
+    color: #666666;
+    font-size: 13px;
+}
+.header_inbox{
+    width: 1100px;
+    margin: 0 auto;
+}
+.header_inbox p{
+    float: left;
+    line-height: 12px;
+    color: #666666;
+}
+.header_inbox a{
+    float: left;
+    line-height: 36px;
+    color: #666666;
+    text-decoration:none
+}
+.header_inbox img{
+    float: left;
+    margin-top: 11px;
+}
+.header_inbox,.loginbox{
+    color: #41b6e7;
+}
+
+.my_action,.my_action li{
+    float: right;
+    list-style:none
+}
+.my_action li img{
+    margin-left: 15px;
+    margin-right: 5px;
+}
+.my_action a{
+    text-align: center;
+    line-height: 12px;
+}
+.my_action img{
+    margin-top: 0px;
+}
