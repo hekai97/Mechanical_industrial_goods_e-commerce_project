@@ -54,7 +54,7 @@ public class Order {
     private Timestamp created;
     @Basic
     @Column(name = "updated")
-    private Integer updated;
+    private Timestamp updated;
 
     public int getId() {
         return id;
@@ -160,11 +160,11 @@ public class Order {
         this.created = created;
     }
 
-    public Integer getUpdated() {
+    public Timestamp getUpdated() {
         return updated;
     }
 
-    public void setUpdated(Integer updated) {
+    public void setUpdated(Timestamp updated) {
         this.updated = updated;
     }
 

@@ -39,7 +39,7 @@ public class OrderItem {
     private int quantity;
     @Basic
     @Column(name = "total_price")
-    private int totalPrice;
+    private BigDecimal totalPrice;
     @Basic
     @Column(name = "created")
     private Timestamp created;
@@ -111,11 +111,11 @@ public class OrderItem {
         this.quantity = quantity;
     }
 
-    public int getTotalPrice() {
+    public BigDecimal getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(int totalPrice) {
+    public void setTotalPrice(BigDecimal totalPrice) {
         this.totalPrice = totalPrice;
     }
 
@@ -140,7 +140,7 @@ public class OrderItem {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         OrderItem orderitem = (OrderItem) o;
-        return id == orderitem.id && uid == orderitem.uid && orderId == orderitem.orderId && goodsId == orderitem.goodsId && quantity == orderitem.quantity && totalPrice == orderitem.totalPrice && Objects.equals(goodsName, orderitem.goodsName) && Objects.equals(iconUrl, orderitem.iconUrl) && Objects.equals(price, orderitem.price) && Objects.equals(created, orderitem.created) && Objects.equals(updated, orderitem.updated);
+        return id == orderitem.id && uid == orderitem.uid && orderId == orderitem.orderId && goodsId == orderitem.goodsId && quantity == orderitem.quantity && Objects.equals(totalPrice, orderitem.totalPrice) && Objects.equals(goodsName, orderitem.goodsName) && Objects.equals(iconUrl, orderitem.iconUrl) && Objects.equals(price, orderitem.price) && Objects.equals(created, orderitem.created) && Objects.equals(updated, orderitem.updated);
     }
 
     @Override
