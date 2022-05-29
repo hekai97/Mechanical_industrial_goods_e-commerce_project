@@ -2,7 +2,7 @@ var baseUrl="http://localhost:8080/Mechanical_industrial_goods_e-commerce_projec
 define(function(){
     //获取url中的参数
     function getParam (name){
-        //构建一个含有参数的正则表达式
+        //构建一个含有参数的正则表达式对象
         var reg=new RegExp("(^|&)"+name+"=([^&]*)(&|$)");
         //匹配目标参数
         var r=window.location.search.substring(1).match(reg);
@@ -31,6 +31,22 @@ define(function(){
             }
         });
     }
+
+     //获取用户购物车数量
+     function getCartCount(){
+        $.ajax({
+            url:baseUrl+"cart/getcartcount",
+            xhrFields:{withCredential:true},   //允许跨域请求时携带cookie属性
+            crossDomain:true,           //允许跨域请求
+            success:function*(user){
+                //判断是否成功
+               if(rs.status==0){
+                    //插入数据
+                    $("#cartQuantity").html("["+rs.data+"]");
+               }
+            }
+        });
+     }
     
     return{
 
