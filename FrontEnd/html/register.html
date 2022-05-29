@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>用户注册</title>
+            <link rel="stylesheet" type="text/css" href="../css/reset.css">
+            <link rel="stylesheet" type="text/css" href="../css/common.css">
+            <link rel="stylesheet" type="text/css" href="../css/register.css">
+        </head>
+<body>
+    <div class="content_box action_search_box">
+        <a class="logo" href="../index.html">
+        </a>
+    </div>
+    <hr style="width: 100%;color: whitesmoke;">
+
+    
+    <!--中间注册部分-->
+    <form id="registerForm" action="#" method="post" novalidate="novalidate">
+        <div class="login_box">
+            <h1>注册账号，玩转商城所有服务！</h1>
+            <div>
+                <div>用户名：</div>
+                <input  type="text" id="username" name="username" maxlength="25" placeholder="3-16个英文字母">
+                <div class="error_tip" id="usernameError">请输入用户名</div>
+            </div>
+            <div>
+                <div>密码：</div>
+                <input type="password" id="password" name="password" maxlength="20" autocomplete="off">
+                <div class="error_tip">请输入密码</div>
+            </div>
+            <div>
+                <div>手机：</div>
+                <input type="text" id="phone" name="phone" maxlength="11">
+                <div class="error_tip" id="phoneError">请输入手机</div>
+            </div>
+            <div>
+                <div>邮箱：</div>
+                <input type="email" id="email" name="email">
+                <div class="error_tip">请输入邮箱</div>
+            </div>
+            <div>
+                <div>密码提示问题：</div>
+                <input type="text" id="question" name="question">
+                <div class="error_tip" id="usernameError">请输入密码提示问题</div>
+            </div>
+            <div>
+                <div>密码提示答案：</div>
+                <input type="text" id="answer" name="answer">
+                <div class="error_tip" id="usernameError">请输入密码提示答案</div>
+            </div>
+            <div>
+                <input type="checkbox" checked="checked" id="protocol" name="protocol">
+                <div>我已经看过并同意《<a href="#1" target="_blank" style="text-decoration: none;">网络服务协议</a>》</div>
+                <div class="error_tip"></div>
+            </div>
+            <input type="submit" class="register_btn" value="立即注册">
+            <a href="#">已注册，找回密码</a>
+        </div>
+    </form>
+
+
+    <div class="content_box" id="product_service">
+        <ul>
+            <li class="item">
+                <p class="item_icon icon1"></p>
+                <div class="item_text">
+                    <p class="text_tit">真实货源</p>
+                    <p class="text_info">一手货源&nbsp;真实存在</p>
+                </div>
+            </li>
+            <li class="item">
+                <p class="item_icon icon2"></p>
+                <div class="item_text">
+                    <p class="text_tit">品质保障</p>
+                    <p class="text_info">垂直专业&nbsp;优选厂商</p>
+                </div>
+            </li>
+            <li class="item l">
+                <p class="item_icon icon3"></p>
+                <div class="item_text l">
+                    <p class="text_tit">服务保障</p>
+                    <p class="text_info">专业服务团队</p>
+                </div>
+            </li>
+            <li class="item">
+                <p class="item_icon icon4"></p>
+                <div class="item_text">
+                    <p class="text_tit">交通透明</p>
+                    <p class="text_info">买卖双方面谈价格</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+        <div class="copyright_bgcolor">
+            <div class="copyright">
+                Copyright © 2022 516数字科技有限公司 版权所有 保留一切权力 鲁ICP备XXXXXXXX号-X
+            </div>
+        </div>
+    </div>
+</body>
+</html>
