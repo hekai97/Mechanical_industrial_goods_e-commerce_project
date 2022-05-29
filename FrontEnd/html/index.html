@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>516配件商城</title>
+            <link rel="stylesheet" type="text/css" href="../css/reset.css">
+            <link rel="stylesheet" type="text/css" href="../css/common.css">
+            <link rel="stylesheet" type="text/css" href="../css/index.css">
+            <script type="text/javascript" src="../js/jquery-1.6.2.min.js"></script>
+            <script type="text/javascript" src="../js/jquery.SuperSlide.2.1.1.js"></script>
+            <script type="text/javascript" src="../js/index.js"></script>
+            <script type="text/javascript" src="../js/common.js"></script>
+        </head>
+    <body>
+        <!--头部导航栏+头部搜索栏-->
+        <header class="header_outbox">
+            <div class="header_inbox">
+                <div class="loginbox">
+                    <p>欢迎光临516配件商城</p>
+                    <a href="#" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[访问官网]</a>
+                    <span id="register_info">
+                        <a href="#" class="login">&nbsp;&nbsp;&nbsp;登录&nbsp;&nbsp;</a>
+                        <img src="../images/common/header_line.jpg">
+                        <a href="#" class="login">&nbsp;&nbsp;免费注册&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                    </span>
+                    <span id="login_info" style="display: none;">
+                        <a href="#" id="headerUsername" class="login"></a>
+                        <img src="../images/common/header_line.jpg">
+                        <a href="#" id="headerLogout" class="login">&nbsp;&nbsp;退出</a>
+                    </span>
+                </div>
+                <ul class="my_action">
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我的关注</a>
+                    </li>
+                    <li>
+                        <img src="../images/common/mix_car.png">
+                        <a href="#">购物车<span id="cartQuantity">[0]</span></a>
+                    </li>
+                    <li>
+                        <a href="#">我的商城</a>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <!--头部导航栏结束-->
+        <!--头部搜索栏-->
+        <div class="content_box action_search_box">
+            <a class="logo" href="../index.html">
+            </a>
+            <div class="inputbox">
+                <input type="text" id="keyword" name="keyword" placeholder="请输入您感兴趣的内容">
+                <a class="searchbtn" href="javescript:search();">搜&nbsp;索</a>
+                <div class="hotword">热销：
+                    <a href="#" target="_blank">&nbsp;&nbsp;&nbsp;油漆&nbsp;&nbsp;&nbsp;</a>
+                </div>
+            </div>
+            <img class="telephotonumber" src="../images/common/telephone_number.jpg">
+        </div>
+        <!--头部搜索栏结束-->
+
+        <!--头部主导航开始-->
+        <div id="mallNav">
+            <div class="wrapper_box">
+                <nav class="mall_nav_main nall_hid" id="NavJson">
+                    <ul>
+                        <li style="background-color: #41b6e7;"><a href="#" target="_self">配件商城</a></li>
+                        <li><a href="#" target="_self">金融服务</a></li>
+                        <li><a href="#" target="_self">销售/服务网络</a></li>
+                        <li><a href="#" target="_self">积分商城</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!--头部主导航结束-->
+
+
+        <div>
+            <!--主体内容开始-->
+            <div id="content">
+                <!--导航加轮播-->
+                <div class="wrapper_box">
+                    <!--中间部分-->
+                    <div class="top_screen">
+                        <!--左边分类导航-->
+                        <div class="mall_left">
+                            <h2 class="category_title">全部配件分类</h2>
+                            <!--分类菜单-->
+                            <div class="menu">
+                                <ul>
+                                    <li class="iten" sty>
+                                        <h3 class="item_hd">
+                                            <a href="#">混凝土机械</a>
+                                            <span class="left_nav_arrow"></span>
+                                        </h3>
+
+                                        <div class="sub_category">
+                                            <div class="sub_view">
+                                                <div class="next_menu">
+                                                    <div class="next_menu_box">
+                                                        <a href="#" class="menu01">
+                                                            <strong>泵送搅拌系统</strong>&nbsp;&nbsp;&gt;&nbsp;&nbsp;
+                                                        </a>
+                                                        <div class="menu02_box">
+                                                            <a href="product_search.html" class="menu02">管阀类</a>
+                                                            <a href="#" class="menu02">易损件类</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="menu_greyline"></div>
+                                                    
+                                                    <div class="next_nenu_box">
+                                                        <a href="#" class="menu01">
+                                                            <strong>油品</strong>&nbsp;&nbsp;&gt;&nbsp;&nbsp;
+                                                        </a>
+
+                                                        <div class="menu02_box">
+                                                            <a href="#" class="menu02">防冻液</a>
+                                                            <a href="#" class="menu02">齿轮油</a>
+                                                            <a href="#" class="menu02">润滑油</a>
+                                                            <a href="#" class="menu02">液压油</a>
+                                                            <a href="#" class="menu02">锂基酯</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="menu_greyline"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li></li>
+                                    <li></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--产品服务+底部-->
+        <div class="content_box" id="product_service">
+            <ul>
+                <li class="item">
+                    <p class="item_icon icon1"></p>
+                    <div class="item_text">
+                        <p class="text_tit">真实货源</p>
+                        <p class="text_info">一手货源&nbsp;真实存在</p>
+                    </div>
+                </li>
+                <li class="item">
+                    <p class="item_icon icon2"></p>
+                    <div class="item_text">
+                        <p class="text_tit">品质保障</p>
+                        <p class="text_info">垂直专业&nbsp;优选厂商</p>
+                    </div>
+                </li>
+                <li class="item l">
+                    <p class="item_icon icon3"></p>
+                    <div class="item_text l">
+                        <p class="text_tit">服务保障</p>
+                        <p class="text_info">专业服务团队</p>
+                    </div>
+                </li>
+                <li class="item">
+                    <p class="item_icon icon4"></p>
+                    <div class="item_text">
+                        <p class="text_tit">交通透明</p>
+                        <p class="text_info">买卖双方面谈价格</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!--产品服务结束-->
+        <!--底部开始-->
+        <div class="footerbox">
+            <div class="footer">
+                <div class="content_box clearfix">
+                    <div class="footerinside">
+                        <h1>新手指南</h1>
+                        <a href="#" target="_blank">免费注册</a>
+                        <a href="#" target="_blank">个人资料及密码</a>
+                        <a href="#" target="_blank">商品关注</a>
+                        <a href="#" target="_blank">查询订单</a>
+                        <a href="#" target="_blank">购物流程</a>
+                    </div>
+                    <div class="footerinside">
+                        <h1>付款/退款</h1>
+                        <a href="#" target="_blank">在线支付</a>
+                        <a href="#" target="_blank">银行转账</a>
+                        <a href="#" target="_blank">发票办理</a>
+                    </div>
+                    <div class="footerinside">
+                        <h1>配送方式</h1>
+                        <a href="#" target=" _blank">快递配送</a>
+                        <a href="#" target="_blank">零担物流</a>
+                    </div>
+                    <div class="footerinside">
+                        <h1>售后服务</h1>
+                        <a href="#" target="_blank">退货流程</a>
+                        <a href="#" target="_blank">退货政策</a>
+                    </div>
+                    <div id="currentfooterInside" class="footerinside">
+                        <h1>帮助中心</h1>
+                        <a href="#" target="_blank">常见热点问题</a>
+                        <a href="#" target="_blank">联系我们</a>
+                        <a href="#" target="_blank">投诉与建议</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright_bgcolor">
+                <div class="copyright">
+                    Copyright © 2022 516数字科技有限公司 版权所有 保留一切权力 鲁ICP备XXXXXXXX号-X
+                </div>
+            </div>
+        </div>
+        <!--底部结束-->
+    </body>
