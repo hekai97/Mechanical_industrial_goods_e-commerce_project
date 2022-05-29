@@ -2,6 +2,7 @@ package com.hekai.backend.entites;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -113,4 +114,15 @@ public class ProductTypes {
     public int hashCode() {
         return Objects.hash(id, parentId, name, sortOrder, status, level, created, update);
     }
+
+    public List<ProductTypes> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<ProductTypes> children) {
+        this.children = children;
+    }
+
+    @Transient
+    private List<ProductTypes> children;
 }
