@@ -1,10 +1,10 @@
 package com.hekai.backend.controller.frontendcontriller;
 
-import com.hekai.backend.entites.Product;
-import com.hekai.backend.entites.reconstruction.Floor;
-import com.hekai.backend.entites.reconstruction.PageBean;
-import com.hekai.backend.entites.reconstruction.ProductDetail;
-import com.hekai.backend.entites.reconstruction.Result;
+import com.hekai.backend.entites.sourceEntites.Product;
+import com.hekai.backend.entites.reConstruction.compositeEntities.Floor;
+import com.hekai.backend.entites.reConstruction.compositeEntities.PageBean;
+import com.hekai.backend.entites.reConstruction.singleEntites.ProductDetail;
+import com.hekai.backend.entites.reConstruction.compositeEntities.Result;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

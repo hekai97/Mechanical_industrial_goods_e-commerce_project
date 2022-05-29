@@ -1,13 +1,14 @@
 package com.hekai.backend.serviceImp;
 
-import com.hekai.backend.entites.reconstruction.Result;
-import com.hekai.backend.entites.User;
-import com.hekai.backend.entites.reconstruction.SimplifyUser;
+import com.hekai.backend.entites.reConstruction.compositeEntities.Result;
+import com.hekai.backend.entites.sourceEntites.User;
+import com.hekai.backend.entites.reConstruction.singleEntites.SimplifyUser;
 import com.hekai.backend.repository.UserRepository;
 import com.hekai.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,6 +17,8 @@ import java.util.List;
  */
 @Service
 public class UserServiceImp implements UserService {
+    private static final int NormalRole=1;
+    private static final int AdminRole=2;
     @Autowired
     private UserRepository userRepository;
 
@@ -30,8 +33,8 @@ public class UserServiceImp implements UserService {
         foundUser.setSex(user.getSex());
         userRepository.save(foundUser);
         Result<User> result=new Result<>();
-        result.setStatus(0);
-        result.setMessage("用户信息修改成功");
+        result.setStatus(Result.Normal);
+        result.setMessage("用户信息修改成功！");
         result.setData(userRepository.findUsersById(user.getId()));
         return result;
     }
@@ -41,11 +44,11 @@ public class UserServiceImp implements UserService {
         User user=userRepository.findUsersById(id);
         Result<SimplifyUser> result=new Result<>();
         if(user==null){
-            result.setStatus(1);
+            result.setStatus(Result.Error);
             result.setData(null);
-            result.setMessage("获取用户数据失败");
+            result.setMessage("获取用户数据失败！");
         }else{
-            result.setStatus(0);
+            result.setStatus(Result.Normal);
             result.setData(new SimplifyUser().ConvertFromUser(user));
             result.setMessage("获取成功");
         }
@@ -56,12 +59,42 @@ public class UserServiceImp implements UserService {
     public Result<User> deleteUserById(Integer id) {
         userRepository.deleteById(id);
         Result<User> result=new Result<>();
-        result.setStatus(0);
+        result.setStatus(Result.Normal);
         return result;
     }
 
     @Override
-    public Result<List<User>> findUserList() {
-        return null;
+    public Result<List<SimplifyUser>> findUserList() {
+        List<User> allUsers=userRepository.findAll();
+        List<SimplifyUser> allSimplifyUser=new ArrayList<>();
+        for (User u:allUsers) {
+            allSimplifyUser.add(new SimplifyUser().ConvertFromUser(u));
+        }
+        Result<List<SimplifyUser>> result=new Result<>();
+        result.setStatus(Result.Normal);
+        result.setData(allSimplifyUser);
+        return result;
+    }
+
+    @Override
+    public Result<User> getLoginAdmin(String account, String password) {
+        User user= userRepository.findUsersByRoleAndAccount(AdminRole,account);
+        Result<User> result=new Result<>();
+        if(user!=null){
+            if(password.equals(user.getPassword())){
+                result.setStatus(Result.Normal);
+                user.setPassword("");
+                result.setData(user);
+                result.setMessage("登录成功！");
+            }
+            else{
+                result.setStatus(Result.Error);
+                result.setMessage("密码错误！");
+            }
+        }else{
+            result.setStatus(Result.Error);
+            result.setMessage("不是管理员，无法登录！");
+        }
+        return result;
     }
 }

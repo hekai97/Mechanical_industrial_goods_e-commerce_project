@@ -1,15 +1,14 @@
 package com.hekai.backend.controller.backendcontroller;
 
-import com.hekai.backend.entites.Order;
-import com.hekai.backend.entites.reconstruction.OrderAndOrderItemList;
-import com.hekai.backend.entites.reconstruction.PageBean;
-import com.hekai.backend.entites.reconstruction.Result;
+import com.hekai.backend.entites.reConstruction.compositeEntities.OrderAndOrderItemList;
+import com.hekai.backend.entites.reConstruction.compositeEntities.PageBean;
+import com.hekai.backend.entites.reConstruction.compositeEntities.Result;
+import com.hekai.backend.serviceImp.OrderServiceImp;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 /**
  * @author: hekai
@@ -19,10 +18,12 @@ import java.util.List;
 @RequestMapping("/mgr/order")
 public class OrderControllerBackend {
 
-    @RequestMapping(value = "/findorders_nopages")
-    public Result<List<Order>> findOrdersNoPages(@RequestBody @Nullable Long orderNo){
+    @Autowired
+    private OrderServiceImp orderServiceImp;
 
-        return null;
+    @RequestMapping(value = "/findorders_nopages")
+    public Result<OrderAndOrderItemList> findOrdersNoPages(@RequestBody @Nullable Long orderNo){
+        return orderServiceImp.findOrderNoPages(orderNo);
     }
 
     @RequestMapping(value = "/search")

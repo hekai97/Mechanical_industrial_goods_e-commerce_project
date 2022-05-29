@@ -1,8 +1,8 @@
 package com.hekai.backend.service;
 
-import com.hekai.backend.entites.reconstruction.Result;
-import com.hekai.backend.entites.User;
-import com.hekai.backend.entites.reconstruction.SimplifyUser;
+import com.hekai.backend.entites.reConstruction.compositeEntities.Result;
+import com.hekai.backend.entites.sourceEntites.User;
+import com.hekai.backend.entites.reConstruction.singleEntites.SimplifyUser;
 
 import java.util.List;
 
@@ -17,5 +17,8 @@ public interface UserService {
 
     Result<User> deleteUserById(Integer id);
 
-    Result<List<User>> findUserList();
+    Result<List<SimplifyUser>> findUserList();
+
+    Result<User> getLoginAdmin(String account, String password);
+
 }

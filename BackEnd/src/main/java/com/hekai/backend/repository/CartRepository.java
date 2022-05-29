@@ -1,6 +1,6 @@
 package com.hekai.backend.repository;
 
-import com.hekai.backend.entites.Cart;
+import com.hekai.backend.entites.sourceEntites.Cart;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

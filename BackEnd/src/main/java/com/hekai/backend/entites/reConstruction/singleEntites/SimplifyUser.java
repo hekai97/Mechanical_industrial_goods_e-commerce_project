@@ -1,6 +1,6 @@
-package com.hekai.backend.entites.reconstruction;
+package com.hekai.backend.entites.reConstruction.singleEntites;
 
-import com.hekai.backend.entites.User;
+import com.hekai.backend.entites.sourceEntites.User;
 
 /**
  * @author: hekai

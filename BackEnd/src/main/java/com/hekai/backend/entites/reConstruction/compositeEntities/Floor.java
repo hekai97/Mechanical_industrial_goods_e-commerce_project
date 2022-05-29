@@ -1,6 +1,6 @@
-package com.hekai.backend.entites.reconstruction;
+package com.hekai.backend.entites.reConstruction.compositeEntities;
 
-import com.hekai.backend.entites.Product;
+import com.hekai.backend.entites.sourceEntites.Product;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package com.hekai.backend.controller.frontendcontriller;
 
-import com.hekai.backend.entites.User;
-import com.hekai.backend.entites.reconstruction.Result;
+import com.hekai.backend.entites.sourceEntites.User;
+import com.hekai.backend.entites.reConstruction.compositeEntities.Result;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

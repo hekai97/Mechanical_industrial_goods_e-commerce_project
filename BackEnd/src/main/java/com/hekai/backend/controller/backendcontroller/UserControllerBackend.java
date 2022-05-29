@@ -1,8 +1,8 @@
 package com.hekai.backend.controller.backendcontroller;
 
-import com.hekai.backend.entites.reconstruction.Result;
-import com.hekai.backend.entites.User;
-import com.hekai.backend.entites.reconstruction.SimplifyUser;
+import com.hekai.backend.entites.reConstruction.compositeEntities.Result;
+import com.hekai.backend.entites.sourceEntites.User;
+import com.hekai.backend.entites.reConstruction.singleEntites.SimplifyUser;
 import com.hekai.backend.serviceImp.UserServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -38,13 +38,13 @@ public class UserControllerBackend {
     }
 
     @RequestMapping(value = "/finduserlist")
-    public Result<List<User>> findUserList(){
+    public Result<List<SimplifyUser>> findUserList(){
         return userServiceImp.findUserList();
     }
 
     @RequestMapping(value = "/login")
-    public Result<User> loginAdmin(){
-        return null;
+    public Result<User> loginAdmin(@RequestBody String account,@RequestBody String password){
+        return userServiceImp.getLoginAdmin(account,password);
     }
 
 
