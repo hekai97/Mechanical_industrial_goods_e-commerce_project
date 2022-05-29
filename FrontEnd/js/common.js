@@ -38,7 +38,7 @@ define(function(){
             url:baseUrl+"cart/getcartcount",
             xhrFields:{withCredential:true},   //允许跨域请求时携带cookie属性
             crossDomain:true,           //允许跨域请求
-            success:function*(user){
+            success:function*(rs){
                 //判断是否成功
                if(rs.status==0){
                     //插入数据
@@ -48,7 +48,35 @@ define(function(){
         });
      }
     
-    return{
+     //用户登出
+     function loginout(){
+         //给退出按钮挂上单击事件
+         $("#headerLogout").click(function(){
+             //向服务器请求数据
+             $.ajax({
+                url:baseUrl+"user/do_logout",
+                xhrFields:{withCredential:true},   //允许跨域请求时携带cookie属性
+                crossDomain:true,           //允许跨域请求
+                success:function*(rs){
+                    //判断是否成功
+                   if(rs.status==0)
+                   {
+                    //显示登录时的span标签
+                    $("#register_info").css({display:"block"});
+                    //隐藏登陆后span标签
+                    $("#login_info").css({display:"none"});
+                    //清空购物车数量
+                    $("#cartQuantity").html("[]");
+                   }
+                }
+            });
+         });
+     }
 
+    return{
+        getParam:getParam,
+        getUserInfo:getUserInfo,
+        getCartCount:getCartCount,
+        loginout:loginout
     };
 });
