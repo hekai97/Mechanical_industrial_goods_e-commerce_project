@@ -1,12 +1,10 @@
-package com.hekai.backend.controller;
+package com.hekai.backend.controller.backendcontroller;
 
-import com.hekai.backend.entites.Order;
 import com.hekai.backend.entites.ProductTypes;
 import com.hekai.backend.entites.reconstruction.Result;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -16,7 +14,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping(value = "mgr/param")
-public class ProductTypesController {
+public class ProductTypesControllerBackend {
 
     @RequestMapping(value = "delparam")
     public Result<ProductTypes> delParam(@RequestBody int id){

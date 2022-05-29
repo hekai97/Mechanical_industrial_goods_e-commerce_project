@@ -1,4 +1,4 @@
-package com.hekai.backend.controller;
+package com.hekai.backend.controller.backendcontroller;
 
 import com.hekai.backend.entites.reconstruction.Result;
 import com.hekai.backend.entites.User;
@@ -16,7 +16,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/mgr/user")
-public class UserController {
+public class UserControllerBackend {
     //后台部分
     @Autowired
     private UserServiceImp userServiceImp;

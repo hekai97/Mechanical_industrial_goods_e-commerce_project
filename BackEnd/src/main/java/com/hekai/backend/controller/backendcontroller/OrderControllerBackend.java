@@ -1,10 +1,9 @@
-package com.hekai.backend.controller;
+package com.hekai.backend.controller.backendcontroller;
 
 import com.hekai.backend.entites.Order;
-import com.hekai.backend.entites.reconstruction.OrderAndOrderItem;
+import com.hekai.backend.entites.reconstruction.OrderAndOrderItemList;
 import com.hekai.backend.entites.reconstruction.PageBean;
 import com.hekai.backend.entites.reconstruction.Result;
-import org.springframework.data.domain.Page;
 import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +17,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/mgr/order")
-public class OrderController {
+public class OrderControllerBackend {
 
     @RequestMapping(value = "/findorders_nopages")
     public Result<List<Order>> findOrdersNoPages(@RequestBody @Nullable Long orderNo){
@@ -27,19 +26,20 @@ public class OrderController {
     }
 
     @RequestMapping(value = "/search")
-    public Result<PageBean<OrderAndOrderItem>> searchOrderAndItem(@RequestBody Long orderNo,@RequestBody int pageNum,@RequestBody int pageSize){
+    public Result<PageBean<OrderAndOrderItemList>> searchOrderAndItem(@RequestBody Long orderNo, @RequestBody int pageNum, @RequestBody int pageSize){
         return null;
     }
 
-    @RequestMapping(value = "findorders")
-    public Result<PageBean<OrderAndOrderItem>> findOrders(@RequestBody int pageNum,@RequestBody int pageSize){
+    @RequestMapping(value = "/findorders")
+    public Result<PageBean<OrderAndOrderItemList>> findOrders(@RequestBody int pageNum, @RequestBody int pageSize){
 
         return null;
     }
 
-    @RequestMapping(value = "getdetail")
-    public Result<OrderAndOrderItem> getDetail(@RequestBody Long orderNo){
+    @RequestMapping(value = "/getdetail")
+    public Result<OrderAndOrderItemList> getDetail(@RequestBody Long orderNo){
         return null;
     }
+
 
 }

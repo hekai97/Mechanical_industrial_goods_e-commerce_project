@@ -1,11 +1,9 @@
-package com.hekai.backend.controller;
+package com.hekai.backend.controller.backendcontroller;
 
 import com.hekai.backend.entites.Product;
 import com.hekai.backend.entites.reconstruction.PageBean;
 import com.hekai.backend.entites.reconstruction.Result;
-import org.springframework.data.domain.Page;
 import org.springframework.lang.Nullable;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +18,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping(value = "mgr/product")
-public class ProductController {
+public class ProductControllerBackend {
 
     @RequestMapping(value = "pic_upload")
     public boolean picUpload(@RequestBody MultipartFile file){
@@ -59,7 +57,7 @@ public class ProductController {
                                        @RequestBody int productId,
                                        @RequestBody int partsId,
                                        @RequestBody String detail,
-                                       @RequestBody String sepcParam,
+                                       @RequestBody String specParam,
                                        @RequestBody BigDecimal price,
                                        @RequestBody int stock,
                                        @RequestBody String subImages){

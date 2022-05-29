@@ -10,7 +10,7 @@ import java.util.List;
  * @author: hekai
  * @Date: 2022/5/29
  */
-public class OrderAndOrderItem {
+public class OrderAndOrderItemList {
     public Order getOrder() {
         return order;
     }

@@ -1,4 +1,4 @@
-package com.hekai.backend.controller;
+package com.hekai.backend.controller.backendcontroller;
 
 import org.springframework.stereotype.Controller;
 
@@ -7,5 +7,5 @@ import org.springframework.stereotype.Controller;
  * @Date: 2022/5/29
  */
 @Controller
-public class OrderItemController {
+public class OrderItemControllerBackend {
 }
