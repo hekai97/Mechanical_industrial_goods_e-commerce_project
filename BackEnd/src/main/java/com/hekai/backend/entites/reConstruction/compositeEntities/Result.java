@@ -1,4 +1,4 @@
-package com.hekai.backend.entites.reconstruction;
+package com.hekai.backend.entites.reConstruction.compositeEntities;
 
 /**
  * @author: hekai
@@ -6,6 +6,12 @@ package com.hekai.backend.entites.reconstruction;
  */
 //包装结果
 public class Result <T>{
+    public static final int Normal=0;
+    public static final int Error=1;
+    private int status;
+    private String message;
+    private T data;
+
     public int getStatus() {
         return status;
     }
@@ -30,8 +36,5 @@ public class Result <T>{
         this.data = data;
     }
 
-    private int status;
-    private String message;
-    private T data;
 
 }

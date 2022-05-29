@@ -1,8 +1,8 @@
 package com.hekai.backend.controller.backendcontroller;
 
-import com.hekai.backend.entites.Product;
-import com.hekai.backend.entites.reconstruction.PageBean;
-import com.hekai.backend.entites.reconstruction.Result;
+import com.hekai.backend.entites.sourceEntites.Product;
+import com.hekai.backend.entites.reConstruction.compositeEntities.PageBean;
+import com.hekai.backend.entites.reConstruction.compositeEntities.Result;
 import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,8 +1,8 @@
-package com.hekai.backend.entites.reconstruction;
+package com.hekai.backend.entites.reConstruction.compositeEntities;
 
-import com.hekai.backend.entites.Address;
-import com.hekai.backend.entites.Order;
-import com.hekai.backend.entites.OrderItem;
+import com.hekai.backend.entites.sourceEntites.Address;
+import com.hekai.backend.entites.sourceEntites.Order;
+import com.hekai.backend.entites.sourceEntites.OrderItem;
 
 import java.util.List;
 
