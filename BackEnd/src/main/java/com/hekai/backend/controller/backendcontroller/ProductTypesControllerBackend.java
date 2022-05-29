@@ -1,7 +1,7 @@
 package com.hekai.backend.controller.backendcontroller;
 
-import com.hekai.backend.entites.ProductTypes;
-import com.hekai.backend.entites.reconstruction.Result;
+import com.hekai.backend.entites.sourceEntites.ProductTypes;
+import com.hekai.backend.entites.reConstruction.compositeEntities.Result;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

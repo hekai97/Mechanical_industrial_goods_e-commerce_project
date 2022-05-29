@@ -1,4 +1,4 @@
-package com.hekai.backend.entites;
+package com.hekai.backend.entites.sourceEntites;
 
 import javax.persistence.*;
 import java.sql.Timestamp;

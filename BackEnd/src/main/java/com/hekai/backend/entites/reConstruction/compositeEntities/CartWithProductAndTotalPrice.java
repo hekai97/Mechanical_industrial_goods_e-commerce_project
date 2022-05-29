@@ -1,4 +1,6 @@
-package com.hekai.backend.entites.reconstruction;
+package com.hekai.backend.entites.reConstruction.compositeEntities;
+
+import com.hekai.backend.entites.reConstruction.compositeEntities.CartWithProduct;
 
 import java.math.BigDecimal;
 import java.util.List;
