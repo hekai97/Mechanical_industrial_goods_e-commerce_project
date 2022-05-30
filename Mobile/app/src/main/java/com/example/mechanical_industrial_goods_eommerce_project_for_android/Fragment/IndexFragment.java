@@ -11,21 +11,27 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.VirtualLayoutManager;
 import com.alibaba.android.vlayout.layout.GridLayoutHelper;
+import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.R;
+import com.example.mechanical_industrial_goods_eommerce_project_for_android.adapters.IndexActAdapter;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.adapters.IndexBannerAdapter;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.adapters.IndexBannerAndParamAdapter;
+import com.example.mechanical_industrial_goods_eommerce_project_for_android.adapters.IndexHotProductAdapter;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.config.Constant;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.databinding.FragmentIndexBinding;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.IndexBannerBean;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.Param;
+import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.Product;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.ResponseCode;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.SverResponse;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.utils.JsonUtils;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.utils.getScreenParams;
+import com.google.gson.FieldAttributes;
 import com.google.gson.reflect.TypeToken;
 import com.youth.banner.Banner;
 import com.youth.banner.indicator.CircleIndicator;
@@ -56,11 +62,15 @@ public class IndexFragment extends Fragment {
     private String mParam2;
     private FragmentIndexBinding binding;
 
+
+
     private IndexBannerAndParamAdapter indexBannerAndParamAdapter;
+    private IndexHotProductAdapter indexHotProductAdapter;
     private DelegateAdapter delegateAdapter;//定义代理适配器
 
     Banner banner;
-    List<Param> categoryData; //产品类型
+    private List<Param> categoryData; //产品类型
+    private List<Product> productData; //热销商品
 
     private final int PARAM_ROW_COL = 3;
 
@@ -106,6 +116,7 @@ public class IndexFragment extends Fragment {
         View view = binding.getRoot();
         initView(view);
         loadParams();
+        loadHotProducts();
         return view;
 
     }
@@ -131,8 +142,9 @@ public class IndexFragment extends Fragment {
     public void initView(View view){
 
         recyclerView = binding.rv;
-
+        //产品分类参数
         categoryData = new ArrayList<>();
+        productData = new ArrayList<>();
 
         VirtualLayoutManager layoutManager = new VirtualLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
@@ -164,7 +176,17 @@ public class IndexFragment extends Fragment {
 
         /*活动区*/
 
+        LinearLayoutHelper linearLayoutHelper = new LinearLayoutHelper();
+        linearLayoutHelper.setMarginBottom(com.example.mechanical_industrial_goods_eommerce_project_for_android.utils.DpToPx.dpTopx(getActivity(),20));
+        adapters.add(new IndexActAdapter(getActivity(),linearLayoutHelper));
+
         /*Hot*/
+
+        LinearLayoutHelper hotLayoutHelper = new LinearLayoutHelper();
+        indexHotProductAdapter = new IndexHotProductAdapter(productData,getActivity(),hotLayoutHelper);
+        adapters.add(indexHotProductAdapter);
+        //点击热销产品，要跳转到详情页面
+
 
 
         delegateAdapter = new DelegateAdapter(layoutManager);
@@ -212,4 +234,30 @@ public class IndexFragment extends Fragment {
 
     }
 
+
+    private void loadHotProducts(){
+
+        OkHttpUtils.get()
+                .url(Constant.API.HOT_PRODUCT_URL)
+                .addParams("num","10")
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        final Type type = new TypeToken<SverResponse<List<Product>>>(){}.getType();
+                        SverResponse<List<Product>> result = JsonUtils.fromJson(response,type);
+                        if (result.getStatus()==ResponseCode.SUCCESS.getCode()){
+                            if (result.getData()!=null){
+                                productData.addAll(result.getData());
+                                indexHotProductAdapter.notifyDataSetChanged();
+                            }
+                        }
+                    }
+                });
+    }
 }
