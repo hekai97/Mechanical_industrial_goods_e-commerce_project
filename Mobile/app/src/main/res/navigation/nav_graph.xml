@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/indexFragment">
+
+    <fragment
+        android:id="@+id/indexFragment"
+        android:name="com.example.mechanical_industrial_goods_eommerce_project_for_android.Fragment.IndexFragment"
+        android:label="fragment_index"
+        tools:layout="@layout/fragment_index" />
+    <fragment
+        android:id="@+id/personalFragment"
+        android:name="com.example.mechanical_industrial_goods_eommerce_project_for_android.Fragment.PersonalFragment"
+        android:label="fragment_personal"
+        tools:layout="@layout/fragment_personal" />
+    <fragment
+        android:id="@+id/categoriesFragment"
+        android:name="com.example.mechanical_industrial_goods_eommerce_project_for_android.Fragment.CategoriesFragment"
+        android:label="fragment_categories"
+        tools:layout="@layout/fragment_categories" />
+    <fragment
+        android:id="@+id/shoppingcartFragment"
+        android:name="com.example.mechanical_industrial_goods_eommerce_project_for_android.Fragment.ShoppingcartFragment"
+        android:label="fragment_shoppingcart"
+        tools:layout="@layout/fragment_shoppingcart" />
+</navigation>
