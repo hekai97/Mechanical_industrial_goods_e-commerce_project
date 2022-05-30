@@ -1,4 +1,4 @@
-package com.example.mechanical_industrial_goods_eommerce_project_for_android.Utils;
+package com.example.mechanical_industrial_goods_eommerce_project_for_android.utils;
 
 import android.util.Log;
 

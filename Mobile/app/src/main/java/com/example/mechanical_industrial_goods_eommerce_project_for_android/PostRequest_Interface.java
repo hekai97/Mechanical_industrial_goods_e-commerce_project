@@ -6,7 +6,7 @@ import retrofit2.http.Path;
 
 public interface PostRequest_Interface {
     //@POST("v2.5/smIu725wcAknFPq5/{address}/realtime.json")
-    @POST("v2.5/smIu725wcAknFPq5/{coordinate}/weather.json?alert=true")
-    Call<WeatherForecastResponse> getCall(@Path("coordinate") String coordinate);
+    /*@POST("v2.5/smIu725wcAknFPq5/{coordinate}/weather.json?alert=true")
+    Call<String> getCall(@Path("coordinate") String coordinate);*/
 
 }
