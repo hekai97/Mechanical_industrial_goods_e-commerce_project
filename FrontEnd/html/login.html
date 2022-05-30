@@ -6,6 +6,7 @@
             <link rel="stylesheet" type="text/css" href="../css/reset.css">
             <link rel="stylesheet" type="text/css" href="../css/common.css">
             <link rel="stylesheet" type="text/css" href="../css/login.css">
+            <script src="../js/require.js" defer async="true" data-main="../js/login_main"></script>
         </head>
 <body>
     <div class="content_box action_search_box">
@@ -26,12 +27,12 @@
                         <div class="login_name_icon"></div>
                         <input type="text" id="username" name="username" class="loginname" maxlength="25" tabindex="1" placeholder="用户名/已验证的手机号码">
                     </div>
-                    <div class="check_code_tip" style="display: none;"></div>
+                    <div class="check_code_tip" id="usernameError" style="display: none;"></div>
                     <div class="login_code_box">
                         <div class="login_code_icon"></div>
                         <input type="password" id="password" name="password" class="logincode" maxlength="20" tabindex="2" autocomplete="off" placeholder="密码">
                     </div>
-                    <div class="check_code_tip" style="display: none;"></div>
+                    <div class="check_code_tip" id="passwordError" style="display: none;"></div>
                     <div class="forg_code_box">
                         <input type="checkbox" id="isRememberUsername" name="isRememberUsername" value="true" tabindex="4">
                         <span>&nbsp;&nbsp;&nbsp;记住用户名</span>
