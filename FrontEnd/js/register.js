@@ -272,7 +272,7 @@ define(['jquery','common'],function(jquery,common){
                           email:$("#email").val(),
                           phone:$("#phone").val(),
                           question:$("#question").val(),
-                          asw:$("#answer").val()
+                          asw:$("#asw").val()
                 };
             //请求服务器
             $.ajax({
