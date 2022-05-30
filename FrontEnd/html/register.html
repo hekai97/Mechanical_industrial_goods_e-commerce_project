@@ -6,6 +6,7 @@
             <link rel="stylesheet" type="text/css" href="../css/reset.css">
             <link rel="stylesheet" type="text/css" href="../css/common.css">
             <link rel="stylesheet" type="text/css" href="../css/register.css">
+            <script src="../js/require.js" defer async="true" data-main="../js/register_main"></script>
         </head>
 <body>
     <div class="content_box action_search_box">
@@ -27,7 +28,12 @@
             <div>
                 <div>密码：</div>
                 <input type="password" id="password" name="password" maxlength="20" autocomplete="off">
-                <div class="error_tip">请输入密码</div>
+                <div class="error_tip" id="userpasswordError">请输入密码</div>
+            </div>
+            <div>
+                <div>确认密码：</div>
+                <input type="password" id="rePassword" name="rePassword" maxlength="20" autocomplete="off">
+                <div class="error_tip" id="repasswordError">请确认密码</div>
             </div>
             <div>
                 <div>手机：</div>
@@ -37,17 +43,17 @@
             <div>
                 <div>邮箱：</div>
                 <input type="email" id="email" name="email">
-                <div class="error_tip">请输入邮箱</div>
+                <div class="error_tip" id="emailError">请输入邮箱</div>
             </div>
             <div>
                 <div>密码提示问题：</div>
                 <input type="text" id="question" name="question">
-                <div class="error_tip" id="usernameError">请输入密码提示问题</div>
+                <div class="error_tip" id="questionError">请输入密码提示问题</div>
             </div>
             <div>
                 <div>密码提示答案：</div>
                 <input type="text" id="answer" name="answer">
-                <div class="error_tip" id="usernameError">请输入密码提示答案</div>
+                <div class="error_tip" id="answerError">请输入密码提示答案</div>
             </div>
             <div>
                 <input type="checkbox" checked="checked" id="protocol" name="protocol">
