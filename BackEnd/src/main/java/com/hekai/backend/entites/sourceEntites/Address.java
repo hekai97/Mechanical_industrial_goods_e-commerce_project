@@ -46,7 +46,7 @@ public class Address {
     @Column(name = "dfault")
     private Byte dfault;
     @Basic
-    @Column(name = "isDel")
+    @Column(name = "is_del")
     private byte isDel;
     @Basic
     @Column(name = "created")

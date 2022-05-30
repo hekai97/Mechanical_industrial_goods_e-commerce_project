@@ -1,6 +1,7 @@
 package com.hekai.backend.entites.sourceEntites;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Objects;
 
@@ -38,7 +39,7 @@ public class Product {
     private String specParam;
     @Basic
     @Column(name = "price")
-    private int price;
+    private BigDecimal price;
     @Basic
     @Column(name = "stock")
     private int stock;
@@ -119,11 +120,11 @@ public class Product {
         this.specParam = specParam;
     }
 
-    public int getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

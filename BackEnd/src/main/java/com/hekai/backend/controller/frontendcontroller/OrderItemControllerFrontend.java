@@ -1,4 +1,4 @@
-package com.hekai.backend.controller.frontendcontriller;
+package com.hekai.backend.controller.frontendcontroller;
 
 import org.springframework.web.bind.annotation.RestController;
 

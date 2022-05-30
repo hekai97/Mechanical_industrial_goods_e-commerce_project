@@ -1,11 +1,13 @@
 package com.hekai.backend.entites.reConstruction.compositeEntities;
 
+import java.io.Serializable;
+
 /**
  * @author: hekai
  * @Date: 2022/5/29
  */
 //包装结果
-public class Result <T>{
+public class Result <T> {
     public static final int Normal=0;
     public static final int Error=1;
     private int status;
