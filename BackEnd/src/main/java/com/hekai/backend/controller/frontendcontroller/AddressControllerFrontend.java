@@ -1,4 +1,4 @@
-package com.hekai.backend.controller.frontendcontriller;
+package com.hekai.backend.controller.frontendcontroller;
 
 import com.hekai.backend.entites.sourceEntites.Address;
 import com.hekai.backend.entites.reConstruction.compositeEntities.Result;

@@ -2,6 +2,8 @@ package com.hekai.backend.controller.backendcontroller;
 
 import com.hekai.backend.entites.sourceEntites.ProductTypes;
 import com.hekai.backend.entites.reConstruction.compositeEntities.Result;
+import com.hekai.backend.serviceImp.ProductTypesServiceImp;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,9 +18,12 @@ import java.util.List;
 @RequestMapping(value = "mgr/param")
 public class ProductTypesControllerBackend {
 
+    @Autowired
+    private ProductTypesServiceImp productTypesServiceImp;
+
     @RequestMapping(value = "delparam")
     public Result<ProductTypes> delParam(@RequestBody int id){
-        return null;
+        return productTypesServiceImp.delParam(id);
     }
 
     /**
@@ -27,30 +32,28 @@ public class ProductTypesControllerBackend {
      * */
 
     @RequestMapping(value = "findpartstype")
-    public Result<ProductTypes> findPartStyle(@RequestBody int productTypeId){
-
-        return null;
+    public Result<List<ProductTypes>> findPartStyle(@RequestBody int productTypeId){
+        return productTypesServiceImp.findPartStyle(productTypeId);
     }
 
     @RequestMapping(value = "findptype")
     public Result<List<ProductTypes>> findPtype(){
-
-        return null;
+        return productTypesServiceImp.findPType();
     }
 
     @RequestMapping(value = "findchildren")
     public Result<List<ProductTypes>> findChildren(@RequestBody int id){
-        return null;
+        return productTypesServiceImp.findChildren(id);
     }
 
     @RequestMapping(value = "updateparam")
     public Result<ProductTypes> updateParam(@RequestBody String name,@RequestBody int id){
-        return null;
+        return productTypesServiceImp.updateParam(name,id);
     }
 
     @RequestMapping(value = "saveparam")
     public Result<ProductTypes> saveParam(@RequestBody String name,@RequestBody int parent_id){
-        return null;
+        return productTypesServiceImp.saveParam(name,parent_id);
     }
 
 }

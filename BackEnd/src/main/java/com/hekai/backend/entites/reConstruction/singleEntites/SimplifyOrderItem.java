@@ -19,6 +19,16 @@ public class SimplifyOrderItem {
     private BigDecimal totalPrice;
     private Timestamp created;
 
+    public SimplifyOrderItem(Long orderNoParam,OrderItem orderItem){
+        this.orderNo=orderNoParam;
+        this.goodsId=orderItem.getGoodsId();
+        this.goodsName=orderItem.getGoodsName();
+        this.iconUrl=orderItem.getIconUrl();
+        this.curPrice=orderItem.getPrice();
+        this.quantity=orderItem.getQuantity();
+        this.totalPrice=orderItem.getTotalPrice();
+        this.created=orderItem.getCreated();
+    }
     public Long getOrderNo() {
         return orderNo;
     }
@@ -82,15 +92,15 @@ public class SimplifyOrderItem {
     public void setCreated(Timestamp created) {
         this.created = created;
     }
-    public SimplifyOrderItem convertFromOrderItem(Long orderNoParam,OrderItem orderItem){
-        setOrderNo(orderNoParam);
-        setGoodsId(orderItem.getGoodsId());
-        setGoodsName(orderItem.getGoodsName());
-        setIconUrl(orderItem.getIconUrl());
-        setCurPrice(orderItem.getPrice());
-        setQuantity(orderItem.getQuantity());
-        setTotalPrice(orderItem.getTotalPrice());
-        setCreated(orderItem.getCreated());
-        return this;
-    }
+//    public SimplifyOrderItem convertFromOrderItem(Long orderNoParam,OrderItem orderItem){
+//        setOrderNo(orderNoParam);
+//        setGoodsId(orderItem.getGoodsId());
+//        setGoodsName(orderItem.getGoodsName());
+//        setIconUrl(orderItem.getIconUrl());
+//        setCurPrice(orderItem.getPrice());
+//        setQuantity(orderItem.getQuantity());
+//        setTotalPrice(orderItem.getTotalPrice());
+//        setCreated(orderItem.getCreated());
+//        return this;
+//    }
 }

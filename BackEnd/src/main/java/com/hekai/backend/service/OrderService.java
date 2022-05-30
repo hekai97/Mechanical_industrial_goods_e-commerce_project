@@ -1,8 +1,8 @@
 package com.hekai.backend.service;
 
-import com.hekai.backend.entites.reConstruction.compositeEntities.OrderAndOrderItemList;
+import com.hekai.backend.entites.reConstruction.compositeEntities.PageBean;
 import com.hekai.backend.entites.reConstruction.compositeEntities.Result;
-import com.hekai.backend.entites.reConstruction.singleEntites.OrderWithOrderItemList;
+import com.hekai.backend.entites.reConstruction.compositeEntities.OrderWithOrderItemList;
 
 import java.util.List;
 
@@ -12,4 +12,10 @@ import java.util.List;
  */
 public interface OrderService {
     Result<List<OrderWithOrderItemList>> findOrderNoPages(Long orderNo);
+
+    Result<PageBean<OrderWithOrderItemList>> searchOrderAndItem(Long orderNo, int pageNum, int pageSize);
+
+    Result<PageBean<List<OrderWithOrderItemList>>> findOrders(int pageNum, int pageSize);
+
+    Result<OrderWithOrderItemList> getDetail(Long orderNo);
 }

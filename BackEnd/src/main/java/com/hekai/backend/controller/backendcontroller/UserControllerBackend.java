@@ -1,14 +1,16 @@
 package com.hekai.backend.controller.backendcontroller;
 
 import com.hekai.backend.entites.reConstruction.compositeEntities.Result;
-import com.hekai.backend.entites.sourceEntites.User;
 import com.hekai.backend.entites.reConstruction.singleEntites.SimplifyUser;
+import com.hekai.backend.entites.sourceEntites.User;
 import com.hekai.backend.serviceImp.UserServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -21,6 +23,20 @@ public class UserControllerBackend {
     //后台部分
     @Autowired
     private UserServiceImp userServiceImp;
+
+    @RequestMapping(value = "test")
+    @ResponseBody
+    public Result<User> test(HttpSession session, @RequestBody Integer t){
+        Result<User> result=new Result<>();
+        User user=new User();
+        user.setAccount("贺凯");
+        user.setEmail(String.valueOf(session.getCreationTime()));
+        user.setAge(t);
+        result.setData(user);
+        result.setStatus(Result.Normal);
+        result.setMessage("查看成功");
+        return result;
+    }
 
     @RequestMapping(value = "/updateuser")
     public Result<User> updateUser(@RequestBody User user){
