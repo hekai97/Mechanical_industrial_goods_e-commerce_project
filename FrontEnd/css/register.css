@@ -1,0 +1,74 @@
+.login_box{
+    width: 500px;
+    margin: 0 auto;
+    margin-top: 42px;
+    margin-bottom: 42px;
+    overflow: hidden;
+}
+.login_box h1{
+    font-size: 23px;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 25px;
+}
+.login_box>div{
+    overflow: hidden;
+    margin-top: 18px;
+}
+.login_box>div>div:nth-child(1){
+    width: 115px;
+    height: 30px;
+    float: left;
+    line-height: 38px;
+    text-align: right;
+    margin-right: 10px;
+}
+.login_box>div input{
+    width: 284px;
+    height: 28px;
+    outline: none;
+    padding-left: 16px;
+    line-height: 36px;
+    border: 1px solid #bdbdbd;
+    float: left;
+    display: block;
+}
+#protocol_tip a{
+    color: #41b6e7;
+}
+#protocol{
+    width: 15px;
+    height: 15px;
+    margin-top: 4px;
+    margin-left: 125px;
+}
+.register_btn{
+    width: 170px;
+    float: left;
+    display: block;
+    text-align: center;
+    font-size: 20px;
+    color: #4c4c4c;
+    background-color: #41b6e7;
+    line-height: 40px;
+    font-weight: bold;
+    margin-top: 15px;
+    width: 170px;
+    height: 40px;
+    margin-left: 125px;
+    cursor: pointer;
+    border: none;
+}
+.login_box>a{
+    line-height: 70px;
+    margin-left: 20px;
+    text-decoration: none;
+    color:#4c4c4c;
+}
+.error_tip{
+    float: left;
+    line-height: 26px;
+    color: #ff0101;
+    margin-left: 121px;
+    display: none;
+}
