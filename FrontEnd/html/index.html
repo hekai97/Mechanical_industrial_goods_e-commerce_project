@@ -8,8 +8,10 @@
             <link rel="stylesheet" type="text/css" href="../css/index.css">
             <script type="text/javascript" src="../js/jquery-1.6.2.min.js"></script>
             <script type="text/javascript" src="../js/jquery.SuperSlide.2.1.1.js"></script>
-            <script type="text/javascript" src="../js/index.js"></script>
+            <script type="text/javascript" src="../js/home_main.js"></script>
             <script type="text/javascript" src="../js/common.js"></script>
+            <script type="text/javascript" src="../js/require.js" defer async="true" data-main="../js/home_main.js"></script>
+
         </head>
     <body>
         <!--头部导航栏+头部搜索栏-->
@@ -72,21 +74,19 @@
                 </nav>
             </div>
         </div>
-        <div style="margin-top: 68px; width: 100%;background-color: #41b6e7;color:#41b6e7;height:2px;"></div>
+        <hr style="margin-top: 68px; width: 100%;background-color: #41b6e7;color:#41b6e7;height:2px;">
         <!--头部主导航结束-->
 
 
  <div>
             <!--主体内容开始-->
-	<div id="content">
+	<div id="content" >
 		<!--导航+轮播-->
-		<div class="wrapper_box" style="margin-left: 200px;margin-top: 30px;">
-			<div class="top_screen clearfix">
+		<div class="wrapper_box" style="margin-left: 200px;">
+			<div class="top_screen clearfix" style="margin-top: 28px;">
 				<div class="mall_left">
 					<div class="category_container">
 						<h2 class="category_title">全部配件分类</h2>
-                        <div class="left_nav_arrow"></div>
-
 						<div class="menu" style="margin-top:-30px ;">
 							<ul id="paramContainer">
 								
@@ -101,21 +101,21 @@
 				    <div class="bd ts_slide" style="margin-left:-40px;">
 				    	<ul class="ts_slide_list">
 				            <li>
-								<img  src="../images/products/banner.png">
+								<img id="ppt"  src="../images/products/banner01.jpg">
 				            </li>
 				             <li>
 								<img src="../images/products/banner02.jpg">
 				            </li>
 				            <li>
-								<img src="../images/products/banner02.jpg">
+								<img src="../images/products/banner03.jpg">
 				            </li>
 				        </ul>
 				    </div>
                     <div class="hd btn" style="margin-right: 20px; margin-top: -200px;float: right;">
                         <ul>
-                            <li>1</li>
-                            <li>2</li>
-                            <li>3</li>
+                            <li id="first">1</li>
+                            <li id="second">2</li>
+                            <li id="third">3</li>
                         </ul>
                 </div>
 				</div>
@@ -142,7 +142,7 @@
    			<div id="floor-one">
    				<div class="floor_nav_box clearfix">
 				    <div class="floor_number">&nbsp;F1</div>
-				    <h1>混凝土机械</h1>
+				    <h1 style="margin-top: 5px;">混凝土机械</h1>
 				    <a class="current_a" href="product_search.html?parentId=10023">查看更多 &gt;&gt;</a>
 				</div>
 				<div class="wrapper_box clearfix">
@@ -159,7 +159,7 @@
    			<div id="floor-two">
    				<div class="floor_nav_box">
 				    <div class="floor_number">&nbsp;F2</div>
-				    <h1>建筑起重机械</h1>
+				    <h1 style="margin-top: 5px;">建筑起重机械</h1>
 				    <a class="current_a" href="product_search.html?parentId=10024">查看更多 &gt;&gt;</a>
 				</div>
 				<div class="wrapper_box clearfix" >
@@ -177,7 +177,7 @@
    			<div id="floor-three">
    				<div class="floor_nav_box">
 				    <div class="floor_number">&nbsp;F3</div>
-				    <h1>路面机械</h1>
+				    <h1 style="margin-top: 5px;">路面机械</h1>
 				    <a class="current_a" href="product_search.html?parentId=10022">查看更多 &gt;&gt;</a>
 				</div>
 				<div class="wrapper_box clearfix">
@@ -194,7 +194,7 @@
    			<div id="floor-four">
    				<div class="floor_nav_box">
 				    <div class="floor_number">&nbsp;F4</div>
-				    <h1>土方机械</h1>
+				    <h1 style="margin-top: 5px;">土方机械</h1>
 				    <a class="current_a" href="product_search.html?parentId=10025">查看更多 &gt;&gt;</a>
 				</div>
 				<div class="wrapper_box clearfix">
@@ -288,3 +288,110 @@
         </div>
         <!--底部结束-->
     </body>
+
+
+    <!--ppt切换-->
+    <script type="text/javascript">
+        var first=document.getElementById('first');
+        var second=document.getElementById('second');
+        var third=document.getElementById('third');
+        var ppt=document.getElementById('ppt');
+        first.onclick=function(){
+            ppt.src="../images/products/banner01.jpg";
+        }
+        second.onclick=function(){
+            ppt.src="../images/products/banner02.jpg";
+        }
+        third.onclick=function(){
+            ppt.src="../images/products/banner03.jpg";
+        }
+    </script>
+
+    <!--ppt轮播-->
+    <script>
+        var i=1;//表示当前图片所在位置
+        var time = setTimeout("showImg()", 5000);//启动时钟事件刷新时间 1000==1秒
+        function showImg() {
+            i++;
+            if(i == 4) {
+                i = 1;
+            }
+            document.getElementById("ppt").src = "../images/products/banner0" + i + ".jpg";
+            //通过id获取标签并修改背景样式
+            time = setTimeout("showImg()", 5000);//启动时钟事件刷新时间 1000==1秒
+        }
+    </script>
+
+
+    <!--类型模板-->
+<script id="param_tpl" type="text/x-handlebars-template">
+	{{#each this}}
+		<li class="iten" style="display: block; margin-top: 0px;">
+		    <h3 class="item_hd">
+		        <a href="#">{{name}}</a>
+		        <span class="left_nav_arrow"></span>
+		    </h3>				    
+		    <div class="sub_category" >
+		        <div class="sub_view">
+		            <div class="next_menu">
+		            	{{#each children}}
+		                <div class="next_menu_box">
+		                    <a href="product_search.html?parentId={{../id}}" class="menu01">
+		                        <strong>{{name}}</strong>&nbsp;&nbsp;&gt;&nbsp;&nbsp;
+		                    </a>
+			                    <div class="menu02_box">
+			                    	{{#each children}}
+			                        <a href="product_search.html?parentId={{../../id}}&partsId={{id}}" class="menu02">{{name}}</a>
+			                       	{{/each}}
+			                    </div>
+		                </div>
+		                <div class="menu_greyline"></div>
+		                {{/each}}
+		            </div>
+		        </div>
+		    </div>
+		</li>
+	{{/each}}
+</script>
+
+<!--热销商品模板-->
+<script id="hot_tpl" type="text/x-handlebars-template">
+	{{#each this}}
+		<li >
+	        <p class="flow_ovnt flow_ovnt_name">
+	            <span class="prdcname">
+	                <a href="product_detail.html?pid={{id}}" target="_blank">{{name}}</a>
+	            </span>
+	        </p>
+	        <p class="flow_ovnt nopadding flow_ovnt_price">
+	            <span class="yuan"></span>
+	            <span class="price">${{price}}</span>
+	        </p>
+	        <p class="image">
+	            <a href="product_detail.html?pid={{id}}" target="_blank">
+	            	<img  src="{{iconUrl}}" >
+	            </a>
+	        </p>
+	        <img src="images/common/hot_icon.png" class="hot_icon" alt="">
+	    </li>
+    {{/each}}
+</script>
+
+<!--楼右部-->
+<script id="floor_odd_top" type="text/x-handlebars-template">
+{{#each this}}
+	<div class="floor_middle_box01">
+		<a href="product_detail.html?pid={{id}}" class="fore01 pr">
+		    <img src="{{iconUrl}}" alt="">
+			<div class="product_info_container">    
+				<div class="product_name">
+		            {{name}}
+		        </div>
+		        <div class="product_price">
+		             ${{price}}
+		        </div>
+		    </div>
+		</a>
+	</div>
+{{/each}}
+</script>

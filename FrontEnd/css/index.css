@@ -351,11 +351,14 @@ a{
     text-align: center;
     width: 20px;
 }
-.slide_box .btn li.on{
+.slide_box .btn li:hover{
     color:white;
-    background:url(../images/common/circle1.png) no-repeat;
+    background:url(../images/common/circle1.png);
     background-size: 100% 100%;
 }
+/* #first,#second,#third:hover{
+    
+} */
 
 /*首页幻灯结束*/
 
