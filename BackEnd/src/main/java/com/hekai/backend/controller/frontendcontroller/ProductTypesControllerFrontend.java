@@ -5,6 +5,7 @@ import com.hekai.backend.entites.reConstruction.compositeEntities.Result;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -16,7 +17,7 @@ import java.util.List;
 public class ProductTypesControllerFrontend {
 
     @RequestMapping(value = "findallparams")
-    public Result<List<ProductTypes>> findAllParams(){
+    public Result<List<ProductTypes>> findAllParams(HttpSession httpSession){
 
         return null;
     }

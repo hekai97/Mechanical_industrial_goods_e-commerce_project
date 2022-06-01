@@ -1,5 +1,6 @@
 package com.hekai.backend.entites.reConstruction.compositeEntities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
@@ -37,6 +38,10 @@ public class Result <T>{
         this.data = data;
     }
 
+    @JsonIgnore
+    public boolean isSuccess() {
+        return this.status==StatusCode.SUCCESS.getCode();
+    }
     public int getStatus() {
         return status;
     }

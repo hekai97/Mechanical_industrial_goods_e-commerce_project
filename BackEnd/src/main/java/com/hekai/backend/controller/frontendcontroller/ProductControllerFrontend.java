@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -19,22 +20,23 @@ import java.util.List;
 @RequestMapping(value = "/product")
 public class ProductControllerFrontend {
     @RequestMapping(value = "/findfloors")
-    public Result<List<Floor>> findFloors(){
+    public Result<List<Floor>> findFloors(HttpSession httpSession){
         return null;
     }
 
     @RequestMapping(value = "/findhotproducts")
-    public Result<List<Product>> findHotProducts(@RequestBody int num){
+    public Result<List<Product>> findHotProducts(HttpSession httpSession,@RequestBody int num){
         return null;
     }
 
     @RequestMapping(value = "/getdetail")
-    public Result<Product> getDetail(@RequestBody String productId){
+    public Result<Product> getDetail(HttpSession httpSession,@RequestBody String productId){
         return null;
     }
 
     @RequestMapping(value = "/findproducts")
-    public Result<PageBean<List<ProductDetail>>> findProducts(@RequestBody int productTypeId,
+    public Result<PageBean<List<ProductDetail>>> findProducts(HttpSession httpSession,
+                                                              @RequestBody int productTypeId,
                                                               @RequestBody int partsId,
                                                               @RequestBody int pageNum,
                                                               @RequestBody int pageSize,

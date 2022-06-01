@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 
 /**
@@ -19,27 +20,27 @@ import java.math.BigDecimal;
 public class OrderControllerFrontend {
 
     @RequestMapping(value = "/confirmreceipt")
-    public Result<Order> confirmReceipt(@RequestBody BigDecimal orderNo){
+    public Result<Order> confirmReceipt(HttpSession httpSession, @RequestBody BigDecimal orderNo){
         return null;
     }
 
     @RequestMapping(value = "/getdetail")
-    public Result<OrderAndOrderItemList> getDetail(@RequestBody BigDecimal orderNo){
+    public Result<OrderAndOrderItemList> getDetail(HttpSession httpSession,@RequestBody BigDecimal orderNo){
         return null;
     }
 
     @RequestMapping(value = "/cancelorder")
-    public Result<Order> cancelOrder(@RequestBody BigDecimal orderNo){
+    public Result<Order> cancelOrder(HttpSession httpSession,@RequestBody BigDecimal orderNo){
         return null;
     }
 
     @RequestMapping(value = "/getlist")
-    public Result<PageBean<OrderAndOrderItemList>> getList(@RequestBody int pageNo,@RequestBody int pageSize,@RequestBody int status){
+    public Result<PageBean<OrderAndOrderItemList>> getList(HttpSession httpSession,@RequestBody int pageNo,@RequestBody int pageSize,@RequestBody int status){
         return null;
     }
 
     @RequestMapping(value = "/createorder")
-    public Result<OrderAndOrderItemList> createOrder(@RequestBody int addrId){
+    public Result<OrderAndOrderItemList> createOrder(HttpSession httpSession,@RequestBody int addrId){
 
         return null;
     }
