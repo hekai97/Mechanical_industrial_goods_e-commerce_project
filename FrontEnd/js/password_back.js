@@ -1,3 +1,4 @@
+var baseUrl="http://localhost:8080/Mechanical_industrial_goods_e-commerce_project/";
 define(['jquery'],function(jquery){
 	var flag = true;//"下一步"按钮标志，true：输入用户名  ，false：输入问题
 	var userId; //用户Id
@@ -90,7 +91,7 @@ define(['jquery'],function(jquery){
 			}
 			//验证用户名是否正确，展示输入问题部分
 			$.ajax({
-				url:baseUrl+"user/getUserByAccount.do",
+				url:baseUrl+"user/getUserByAccount",
 				xhrFields:{withCredentials:true},
 				crossDomain:true,
 				type:"post",
@@ -114,7 +115,7 @@ define(['jquery'],function(jquery){
 		}else{
 			//答案提交
 			$.ajax({
-				url:baseUrl+"user/checkuserasw.do",
+				url:baseUrl+"user/checkuserasw",
 				xhrFields:{withCredentials:true},
 				crossDomain:true,
 				type:"post",
