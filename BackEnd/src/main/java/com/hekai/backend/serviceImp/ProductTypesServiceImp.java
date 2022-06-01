@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -37,10 +36,10 @@ public class ProductTypesServiceImp implements ProductTypesService {
         Result<ProductTypes> result=new Result<>();
         if(!childrenProductTypes.isEmpty()){
             result.setStatus(Result.Error);
-            result.setMessage("请先删除子类型！");
+            result.setMsg("请先删除子类型！");
         }else if(!products.isEmpty()){
             result.setStatus(Result.Error);
-            result.setMessage("不能删除有商品的类型！");
+            result.setMsg("不能删除有商品的类型！");
         }else{
             productTypesRepository.delete(productTypes);
             result.setStatus(Result.Normal);
@@ -86,10 +85,10 @@ public class ProductTypesServiceImp implements ProductTypesService {
         Result<ProductTypes> result=new Result<>();
         if(res.getName().equals(name)){
             result.setStatus(Result.Normal);
-            result.setMessage("产品参数修改成功！");
+            result.setMsg("产品参数修改成功！");
         }else{
             result.setStatus(Result.Error);
-            result.setMessage("产品参数修改失败！");
+            result.setMsg("产品参数修改失败！");
         }
         return result;
     }
@@ -104,10 +103,10 @@ public class ProductTypesServiceImp implements ProductTypesService {
         ProductTypes res=productTypesRepository.save(productTypes);
         if(res.getName().equals(name)){
             result.setStatus(Result.Normal);
-            result.setMessage("产品参数修改成功！");
+            result.setMsg("产品参数修改成功！");
         }else{
             result.setStatus(Result.Error);
-            result.setMessage("产品参数修改失败！");
+            result.setMsg("产品参数修改失败！");
         }
         return result;
     }

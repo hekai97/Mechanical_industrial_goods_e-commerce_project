@@ -34,7 +34,7 @@ public class UserServiceImp implements UserService {
         userRepository.save(foundUser);
         Result<User> result=new Result<>();
         result.setStatus(Result.Normal);
-        result.setMessage("用户信息修改成功！");
+        result.setMsg("用户信息修改成功！");
         result.setData(userRepository.findUsersById(user.getId()));
         return result;
     }
@@ -46,11 +46,11 @@ public class UserServiceImp implements UserService {
         if(user==null){
             result.setStatus(Result.Error);
             result.setData(null);
-            result.setMessage("获取用户数据失败！");
+            result.setMsg("获取用户数据失败！");
         }else{
             result.setStatus(Result.Normal);
             result.setData(new SimplifyUser().ConvertFromUser(user));
-            result.setMessage("获取成功");
+            result.setMsg("获取成功");
         }
         return result;
     }
@@ -85,15 +85,15 @@ public class UserServiceImp implements UserService {
                 result.setStatus(Result.Normal);
                 user.setPassword("");
                 result.setData(user);
-                result.setMessage("登录成功！");
+                result.setMsg("登录成功！");
             }
             else{
                 result.setStatus(Result.Error);
-                result.setMessage("密码错误！");
+                result.setMsg("密码错误！");
             }
         }else{
             result.setStatus(Result.Error);
-            result.setMessage("不是管理员，无法登录！");
+            result.setMsg("不是管理员，无法登录！");
         }
         return result;
     }

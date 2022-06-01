@@ -21,7 +21,7 @@ public class ProductTypesControllerBackend {
     @Autowired
     private ProductTypesServiceImp productTypesServiceImp;
 
-    @RequestMapping(value = "delparam")
+    @RequestMapping(value = "/delparam")
     public Result<ProductTypes> delParam(@RequestBody int id){
         return productTypesServiceImp.delParam(id);
     }
@@ -31,27 +31,27 @@ public class ProductTypesControllerBackend {
      * 未实现
      * */
 
-    @RequestMapping(value = "findpartstype")
+    @RequestMapping(value = "/findpartstype")
     public Result<List<ProductTypes>> findPartStyle(@RequestBody int productTypeId){
         return productTypesServiceImp.findPartStyle(productTypeId);
     }
 
-    @RequestMapping(value = "findptype")
+    @RequestMapping(value = "/findptype")
     public Result<List<ProductTypes>> findPtype(){
         return productTypesServiceImp.findPType();
     }
 
-    @RequestMapping(value = "findchildren")
+    @RequestMapping(value = "/findchildren")
     public Result<List<ProductTypes>> findChildren(@RequestBody int id){
         return productTypesServiceImp.findChildren(id);
     }
 
-    @RequestMapping(value = "updateparam")
+    @RequestMapping(value = "/updateparam")
     public Result<ProductTypes> updateParam(@RequestBody String name,@RequestBody int id){
         return productTypesServiceImp.updateParam(name,id);
     }
 
-    @RequestMapping(value = "saveparam")
+    @RequestMapping(value = "/saveparam")
     public Result<ProductTypes> saveParam(@RequestBody String name,@RequestBody int parent_id){
         return productTypesServiceImp.saveParam(name,parent_id);
     }

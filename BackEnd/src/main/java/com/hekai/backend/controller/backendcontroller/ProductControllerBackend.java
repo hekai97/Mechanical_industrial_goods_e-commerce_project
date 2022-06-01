@@ -26,7 +26,7 @@ public class ProductControllerBackend {
     @Autowired
     private ProductServiceImp productServiceImp;
     //TODO 商品图片上传模块，这块暂时先不做
-    @RequestMapping(value = "pic_upload")
+    @RequestMapping(value = "/pic_upload")
     public boolean picUpload(@RequestBody MultipartFile file){
 
         return true;
@@ -38,12 +38,12 @@ public class ProductControllerBackend {
     }
 
     //TODO 过段时间写
-    @RequestMapping(value = "upload")
+    @RequestMapping(value = "/upload")
     public boolean upload(@RequestBody MultipartFile file){
         return true;
     }
 
-    @RequestMapping(value = "searchproducts")
+    @RequestMapping(value = "/searchproducts")
     public Result<PageBean<List<ProductWithDescAndHot>>> searchProducts(@RequestBody @Nullable Integer pageNum, @RequestBody @Nullable Integer pageSize, @RequestBody @Nullable Integer id, @RequestBody String name){
         if(pageNum==null)pageNum=1;
         if(pageSize==null)pageSize=10;
@@ -52,17 +52,17 @@ public class ProductControllerBackend {
         return productServiceImp.searchProducts(pageNum,pageSize,id,name);
     }
 
-    @RequestMapping(value = "getdetail")
+    @RequestMapping(value = "/getdetail")
     public Result<Product> getDetail(@RequestBody int productId){
         return null;
     }
 
-    @RequestMapping(value = "setstatus")
+    @RequestMapping(value = "/setstatus")
     public Result<Product> setStatus(@RequestBody int productId,@RequestBody int status,@RequestBody int hot){
         return null;
     }
 
-    @RequestMapping(value = "saveproduct")
+    @RequestMapping(value = "/saveproduct")
     public Result<Product> saveProduct(@RequestBody String name,
                                        @RequestBody int productId,
                                        @RequestBody int partsId,
