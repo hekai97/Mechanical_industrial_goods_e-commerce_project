@@ -1,7 +1,9 @@
 package com.hekai.backend.service;
 
+import com.hekai.backend.entites.reConstruction.compositeEntities.Floor;
 import com.hekai.backend.entites.reConstruction.compositeEntities.PageBean;
 import com.hekai.backend.entites.reConstruction.compositeEntities.Result;
+import com.hekai.backend.entites.reConstruction.singleEntites.ProductDetail;
 import com.hekai.backend.entites.reConstruction.singleEntites.ProductWithDesc;
 import com.hekai.backend.entites.reConstruction.singleEntites.ProductWithDescAndHot;
 import com.hekai.backend.entites.sourceEntites.Product;
@@ -19,4 +21,11 @@ public interface ProductService {
 
     Result<PageBean<List<ProductWithDescAndHot>>> searchProducts(Integer pageNum, Integer pageSize, Integer id, String name);
 
+    Result<List<Product>> findHotProducts(Integer num);
+
+    Result<Product> getDetailByProductId(Integer productId);
+
+    Result<PageBean<List<ProductWithDescAndHot>>> findProducts(Integer productTypeId, Integer partsId, int pageNum, int pageSize, String name);
+
+    Result<List<Floor>> findFloors();
 }

@@ -43,7 +43,7 @@ public class IndexHotProductAdapter extends DelegateAdapter.Adapter<IndexHotProd
     @Override
     public HotProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(context).inflate(R.layout.fragment_home_act_list_item,null,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.fragment_home_hot_list_item,null,false);
         return new HotProductViewHolder(view);
     }
 
@@ -85,7 +85,8 @@ public class IndexHotProductAdapter extends DelegateAdapter.Adapter<IndexHotProd
             titleContainer = (RelativeLayout) itemView.findViewById(R.id.title_container);
             contentContainer = (RelativeLayout) itemView.findViewById(R.id.content);
             name = (TextView) itemView.findViewById(R.id.name);
-            stock = (TextView) itemView.findViewById(R.id.price);
+            price = (TextView) itemView.findViewById(R.id.price);
+            stock = (TextView) itemView.findViewById(R.id.stock);
             icon_URL = (ImageView) itemView.findViewById(R.id.icon_url);
             btn_more = (TextView) itemView.findViewById(R.id.btn_more);
 

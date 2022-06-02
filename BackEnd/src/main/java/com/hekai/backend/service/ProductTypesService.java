@@ -21,4 +21,6 @@ public interface ProductTypesService {
     Result<ProductTypes> updateParam(String name, int id);
 
     Result<ProductTypes> saveParam(String name, int parent_id);
+
+    Result<List<ProductTypes>> findAllParams();
 }

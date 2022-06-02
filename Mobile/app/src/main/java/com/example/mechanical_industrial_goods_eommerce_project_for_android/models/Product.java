@@ -1,6 +1,6 @@
 package com.example.mechanical_industrial_goods_eommerce_project_for_android.models;
 
-import android.icu.math.BigDecimal;
+import java.math.BigDecimal;
 
 public class Product {
     private Integer id;

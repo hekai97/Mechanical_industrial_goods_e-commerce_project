@@ -7,11 +7,11 @@ public class Param {
     /**
      * id
      */
-    private int id;
+    private Integer id;
     /**
      * parent_id
      */
-    private int parent_id;
+    private Integer parent_id;
     /**
      * name
      */
@@ -23,25 +23,27 @@ public class Param {
     /**
      * sort_order
      */
-    private int sort_order;
+    private Integer sort_order;
     /**
      * level
      */
-    private int level;
+    private Integer level;
     /**
      * created
      */
-    private long created;
+    private String created;
     /**
      * updated
      */
-    private long updated;
+    private String updated;
     /**
      * children
      */
     private List<?> children;
 
-    public int getId() {
+    private boolean pressed = false;
+
+    public Integer getId() {
         return id;
     }
 
@@ -49,7 +51,7 @@ public class Param {
         this.id = id;
     }
 
-    public int getParent_id() {
+    public Integer getParent_id() {
         return parent_id;
     }
 
@@ -73,7 +75,7 @@ public class Param {
         this.status = status;
     }
 
-    public int getSort_order() {
+    public Integer getSort_order() {
         return sort_order;
     }
 
@@ -81,7 +83,7 @@ public class Param {
         this.sort_order = sort_order;
     }
 
-    public int getLevel() {
+    public Integer getLevel() {
         return level;
     }
 
@@ -89,19 +91,19 @@ public class Param {
         this.level = level;
     }
 
-    public long getCreated() {
+    public String getCreated() {
         return created;
     }
 
-    public void setCreated(long created) {
+    public void setCreated(String created) {
         this.created = created;
     }
 
-    public long getUpdated() {
+    public String getUpdated() {
         return updated;
     }
 
-    public void setUpdated(long updated) {
+    public void setUpdated(String updated) {
         this.updated = updated;
     }
 
@@ -111,5 +113,13 @@ public class Param {
 
     public void setChildren(List<?> children) {
         this.children = children;
+    }
+
+    public boolean isPressed() {
+        return pressed;
+    }
+
+    public void setPressed(boolean pressed) {
+        this.pressed = pressed;
     }
 }

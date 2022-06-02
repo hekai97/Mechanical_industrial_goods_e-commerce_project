@@ -21,4 +21,19 @@ public interface UserService {
 
     Result<User> getLoginAdmin(String account, String password);
 
+    Result<User> doLogin(String account, String password);
+
+    Result<User> doRegister(User user);
+
+    Result<User> findUserByAccount(String account);
+
+    Result<String> getUserQuestion(String account);
+
+    Result<String> checkUserAnswer(String account, String question, String asw);
+
+    Result<String> resetPassword(String newpwd, Integer userid);
+
+    Result<String> updatePassword(User curUser, String newpwd, String oldpwd);
+
+    Result<User> doCheckInfo(String info, String type);
 }

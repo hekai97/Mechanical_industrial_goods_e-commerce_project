@@ -3,4 +3,6 @@
     <dimen name="bigger_font">20sp</dimen>
     <dimen name="normal_font">16sp</dimen>
     <dimen name="big_font">18sp</dimen>
+
+    <dimen name="category_left_width">100dp</dimen>
 </resources>

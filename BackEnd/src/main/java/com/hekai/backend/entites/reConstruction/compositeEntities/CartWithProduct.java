@@ -1,5 +1,9 @@
 package com.hekai.backend.entites.reConstruction.compositeEntities;
 
+import com.hekai.backend.entites.sourceEntites.Cart;
+import com.hekai.backend.entites.sourceEntites.Product;
+import com.hekai.backend.entites.sourceEntites.User;
+
 import java.math.BigDecimal;
 
 /**
@@ -7,6 +11,32 @@ import java.math.BigDecimal;
  * @Date: 2022/5/29
  */
 public class CartWithProduct {
+
+    private int id;
+    private int userId;
+    private int productId;
+    private String name;
+    private int quantity;
+    private BigDecimal price;
+    private int status;
+    private BigDecimal totalPrice;
+    private int stock;
+    private String iconUrl;
+    private int checked;
+
+    public CartWithProduct(Cart cart, User user, Product product,int check){
+        this.id=cart.getId();
+        this.userId=user.getId();
+        this.productId= cart.getProductId();
+        this.name=product.getName();
+        this.quantity=cart.getQuantity();
+        this.price=product.getPrice();
+        this.status=product.getStatus();
+        this.totalPrice=BigDecimal.valueOf(price.doubleValue()*quantity);
+        this.stock=product.getStock();
+        this.iconUrl= product.getIconUrl();
+        this.checked=check;
+    }
     public int getId() {
         return id;
     }
@@ -87,23 +117,12 @@ public class CartWithProduct {
         this.iconUrl = iconUrl;
     }
 
-    public boolean isChecked() {
+    public int isChecked() {
         return checked;
     }
 
-    public void setChecked(boolean checked) {
+    public void setChecked(int checked) {
         this.checked = checked;
     }
 
-    private int id;
-    private int userId;
-    private int productId;
-    private String name;
-    private int quantity;
-    private BigDecimal price;
-    private int status;
-    private BigDecimal totalPrice;
-    private int stock;
-    private String iconUrl;
-    private boolean checked;
 }
