@@ -14,7 +14,12 @@
         <entry key="..\:/GitFile/Mechanical_industrial_goods_e-commerce_project/Mobile/app/src/main/res/drawable/icon_home.xml" value="0.2212962962962963" />
         <entry key="..\:/GitFile/Mechanical_industrial_goods_e-commerce_project/Mobile/app/src/main/res/drawable/menu_icon_home.xml" value="0.2212962962962963" />
         <entry key="..\:/GitFile/Mechanical_industrial_goods_e-commerce_project/Mobile/app/src/main/res/drawable/menu_item_selected.xml" value="0.2212962962962963" />
+        <entry key="..\:/GitFile/Mechanical_industrial_goods_e-commerce_project/Mobile/app/src/main/res/drawable/tool_bar_searchview_background.xml" value="0.24722222222222223" />
         <entry key="..\:/GitFile/Mechanical_industrial_goods_e-commerce_project/Mobile/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/GitFile/Mechanical_industrial_goods_e-commerce_project/Mobile/app/src/main/res/layout/fragment_categories.xml" value="0.1" />
+        <entry key="..\:/GitFile/Mechanical_industrial_goods_e-commerce_project/Mobile/app/src/main/res/layout/fragment_category1.xml" value="0.14791666666666667" />
+        <entry key="..\:/GitFile/Mechanical_industrial_goods_e-commerce_project/Mobile/app/src/main/res/layout/fragment_category_left_list_item.xml" value="0.24947916666666667" />
+        <entry key="..\:/GitFile/Mechanical_industrial_goods_e-commerce_project/Mobile/app/src/main/res/layout/fragment_category_right_list_item.xml" value="0.23489583333333333" />
         <entry key="..\:/GitFile/Mechanical_industrial_goods_e-commerce_project/Mobile/app/src/main/res/layout/fragment_home_act_list_item.xml" value="0.24947916666666667" />
         <entry key="..\:/GitFile/Mechanical_industrial_goods_e-commerce_project/Mobile/app/src/main/res/layout/fragment_home_hot_list_item.xml" value="0.24947916666666667" />
         <entry key="..\:/GitFile/Mechanical_industrial_goods_e-commerce_project/Mobile/app/src/main/res/layout/fragment_index.xml" value="0.152" />
