@@ -18,6 +18,7 @@ public class ProductDetail {
     private int hot;
     private String hotStatus;
 
+
     public int getId() {
         return id;
     }

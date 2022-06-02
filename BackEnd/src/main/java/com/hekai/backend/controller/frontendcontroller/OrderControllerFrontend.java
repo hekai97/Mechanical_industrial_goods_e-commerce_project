@@ -1,15 +1,20 @@
 package com.hekai.backend.controller.frontendcontroller;
 
-import com.hekai.backend.entites.sourceEntites.Order;
+import com.hekai.backend.entites.reConstruction.compositeEntities.OrderWithOrderItemList;
 import com.hekai.backend.entites.reConstruction.compositeEntities.OrderAndOrderItemList;
 import com.hekai.backend.entites.reConstruction.compositeEntities.PageBean;
 import com.hekai.backend.entites.reConstruction.compositeEntities.Result;
+import com.hekai.backend.entites.sourceEntites.User;
+import com.hekai.backend.service.OrderService;
+import com.hekai.backend.utils.ConstUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
-import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * @author: hekai
@@ -19,29 +24,53 @@ import java.math.BigDecimal;
 @RequestMapping(value = "/order")
 public class OrderControllerFrontend {
 
+    @Autowired
+    private OrderService orderService;
+
     @RequestMapping(value = "/confirmreceipt")
-    public Result<Order> confirmReceipt(HttpSession httpSession, @RequestBody BigDecimal orderNo){
-        return null;
+    public Result<String> confirmReceipt(HttpSession httpSession, Long orderNo){
+        User user=(User) httpSession.getAttribute(ConstUtil.CUR_USER);
+        if(user==null){
+            return Result.createByErrorMessage("请登陆后再操作");
+        }
+        return orderService.confirmReceipt(user,orderNo);
     }
 
     @RequestMapping(value = "/getdetail")
-    public Result<OrderAndOrderItemList> getDetail(HttpSession httpSession,@RequestBody BigDecimal orderNo){
-        return null;
+    public Result<OrderWithOrderItemList> getDetail(HttpSession httpSession,Long orderNo){
+        User user=(User) httpSession.getAttribute(ConstUtil.CUR_USER);
+        if(user==null){
+            return Result.createByErrorMessage("请登陆后再操作");
+        }
+        return orderService.getDetail(orderNo);
     }
 
     @RequestMapping(value = "/cancelorder")
-    public Result<Order> cancelOrder(HttpSession httpSession,@RequestBody BigDecimal orderNo){
-        return null;
+    public Result<String> cancelOrder(HttpSession httpSession,Long orderNo){
+        User user=(User) httpSession.getAttribute(ConstUtil.CUR_USER);
+        if(user==null){
+            return Result.createByErrorMessage("请登陆后再操作");
+        }
+        return orderService.cancelOrder(user,orderNo);
     }
 
     @RequestMapping(value = "/getlist")
-    public Result<PageBean<OrderAndOrderItemList>> getList(HttpSession httpSession,@RequestBody int pageNo,@RequestBody int pageSize,@RequestBody int status){
-        return null;
+    public Result<PageBean<List<OrderWithOrderItemList>>> getList(HttpSession httpSession, Integer status,
+                                                                  @RequestParam(value="pageNum",defaultValue="1") int pageNum,
+                                                                  @RequestParam(value="pageSize",defaultValue="10") int pageSize){
+        User user=(User) httpSession.getAttribute(ConstUtil.CUR_USER);
+        if(user==null){
+            return Result.createByErrorMessage("请登陆后再操作");
+        }
+        return orderService.getOrderLists(user,status,pageNum,pageSize);
     }
 
     @RequestMapping(value = "/createorder")
-    public Result<OrderAndOrderItemList> createOrder(HttpSession httpSession,@RequestBody int addrId){
-
-        return null;
+    public Result<OrderAndOrderItemList> createOrder(HttpSession httpSession,Integer addrId){
+        User user=(User) httpSession.getAttribute(ConstUtil.CUR_USER);
+        if(user==null){
+            return Result.createByErrorMessage("请登陆后再操作");
+        }
+        return orderService.creatOrder(user,addrId);
     }
 }

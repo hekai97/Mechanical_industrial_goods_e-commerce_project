@@ -111,4 +111,21 @@ public class ProductTypesServiceImp implements ProductTypesService {
         return result;
     }
 
+    @Override
+    public Result<List<ProductTypes>> findAllParams() {
+        List<ProductTypes> parentList=productTypesRepository.findAllByParentId(0);
+        for (ProductTypes productTypes:parentList){
+            //递归获取产品数据
+            findChildrenToParent(productTypes);
+        }
+        return Result.createRespBySuccess(parentList);
+    }
+
+    private void findChildrenToParent(ProductTypes productTypes) {
+        List<ProductTypes> parentList=productTypesRepository.findAllByParentId(productTypes.getId());
+        for(ProductTypes p:parentList){
+            findChildrenToParent(p);
+        }
+    }
+
 }

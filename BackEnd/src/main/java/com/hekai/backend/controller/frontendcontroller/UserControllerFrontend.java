@@ -1,8 +1,7 @@
 package com.hekai.backend.controller.frontendcontroller;
 
-import com.hekai.backend.entites.sourceEntites.User;
 import com.hekai.backend.entites.reConstruction.compositeEntities.Result;
-import com.hekai.backend.repository.UserRepository;
+import com.hekai.backend.entites.sourceEntites.User;
 import com.hekai.backend.service.UserService;
 import com.hekai.backend.utils.ConstUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,22 +81,28 @@ public class UserControllerFrontend {
     public Result<User> getUserInfo(HttpSession httpSession){
         User curUser = (User) httpSession.getAttribute(ConstUtil.CUR_USER);
         if(curUser == null) {
+            System.out.println("此时用户为空"+"sessionId="+httpSession.getId());
             return Result.createByErrorMessage("用户尚未登陆!");
         }
+        System.out.println("此时用户为"+curUser.getAccount()+"sessionId="+httpSession.getId());
         return userService.findUserByAccount(curUser.getAccount());
     }
 
     @RequestMapping(value = "/do_register")
     public Result<User> doRegister(User user){
-        return userService.doRegister(user);
+        Result<User> result=userService.doRegister(user);
+        System.out.println(result.getStatus());
+        System.out.println(result.getMsg());
+        return result;
     }
 
     @RequestMapping(value = "/do_login")
-    public Result<User> doLogin(HttpSession httpSession,@RequestBody String account,@RequestBody String password){
+    public Result<User> doLogin(HttpSession httpSession,String account,String password){
         Result<User> user=userService.doLogin(account,password);
         if(user.isSuccess()){
             httpSession.setAttribute(ConstUtil.CUR_USER,user);
         }
+        System.out.println("调用了dologin，account="+account+"密码"+password+"sessionId="+httpSession.getId());
         return user;
     }
 

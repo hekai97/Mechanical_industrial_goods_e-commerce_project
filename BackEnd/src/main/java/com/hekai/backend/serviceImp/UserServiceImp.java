@@ -121,6 +121,7 @@ public class UserServiceImp implements UserService {
 
     @Override
     public Result<User> doRegister(User user) {
+        System.out.println("正在调用register");
         if((userRepository.findUserByAccount(user.getAccount()))!=null){
             return Result.createByErrorMessage("用户已存在！");
         }
@@ -203,6 +204,7 @@ public class UserServiceImp implements UserService {
 
     @Override
     public Result<User> doCheckInfo(String info, String type) {
+        System.out.println("正在调用check");
         if (ConstUtil.TYPE_ACCOUNT.equals(type)) {
             User user = userRepository.findUserByAccount(info);
             if (user!=null) {
