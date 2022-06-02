@@ -1,0 +1,93 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:background="@drawable/detail_product_top_background"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context=".Fragment.ShoppingcartFragment">
+
+    <CheckBox
+        android:layout_alignParentLeft="true"
+        android:gravity="center"
+        android:id="@+id/btn_checked"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textColor="@color/font_color" />
+    <ImageView
+        android:layout_toRightOf="@+id/btn_checked"
+        android:id="@+id/icon_url"
+        android:layout_width="100dp"
+        android:layout_height="80dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@id/icon_url"
+        android:paddingLeft="10dp">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
+            android:textSize="@dimen/normal_font" />
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/name"
+            android:layout_marginTop="5dp"
+            android:gravity="right"
+
+            android:textColor="@color/font_color_red"
+            android:textSize="14sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@id/price">
+
+            <TextView
+                android:id="@+id/btn_jian"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/detail_product_num_j_background"
+                android:gravity="center"
+                android:text="-" />
+
+            <EditText
+                android:id="@+id/edit_num"
+                android:layout_width="40dp"
+                android:layout_height="30dp"
+                android:layout_toRightOf="@id/btn_jian"
+                android:background="@drawable/detail_product_num_background"
+                android:gravity="center"
+                android:inputType="number"
+                android:text="1" />
+
+            <TextView
+                android:id="@+id/btn_jia"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:layout_toRightOf="@id/edit_num"
+                android:background="@drawable/detail_product_num_a_background"
+                android:gravity="center"
+                android:text="+" />
+
+            <TextView
+                android:id="@+id/btn_del"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/detail_product_del_background"
+                android:gravity="center"
+                android:text="删除" />
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

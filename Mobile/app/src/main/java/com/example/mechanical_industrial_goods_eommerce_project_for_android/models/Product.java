@@ -1,6 +1,6 @@
 package com.example.mechanical_industrial_goods_eommerce_project_for_android.models;
 
-import android.icu.math.BigDecimal;
+import java.math.BigDecimal;
 
 public class Product {
     private Integer id;
@@ -11,7 +11,7 @@ public class Product {
     private String subImages;
     private String detail;
     private String specParam;
-    private Double price;
+    private BigDecimal price;
     private Integer stock;
     private Integer status;
     private Integer hot;
@@ -82,11 +82,11 @@ public class Product {
         this.specParam = specParam;
     }
 
-    public Double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

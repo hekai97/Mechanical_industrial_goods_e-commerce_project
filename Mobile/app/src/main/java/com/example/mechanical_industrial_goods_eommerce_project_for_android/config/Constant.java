@@ -16,6 +16,16 @@ public class Constant {
         //获取商品列表信息
 //        public static final String CATEGORY_PRODUCT_URL = BASE_URL + "product/findproducts";
         public static final String CATEGORY_PRODUCT_URL = BASE_URL + "findproducts";
+        //购物车列表
+        public static final String  CART_LIST_URL = BASE_URL+"cart/findallcarts";
+        //加入购物车
+        public static final String CART_ADD_URL = BASE_URL+"cart/savecart";
+        //更新购物中商品的数量
+        public static final String CART_UPDATE_URL = BASE_URL+"cart/updatecarts";
+        //删除购物车中商品
+        public static final String CART_DEL_URL = BASE_URL+"cart/delcarts";
+        //删除购物车中商品
+        public static final String USER_INFO_URL = BASE_URL+"user/getuserinfo.do";
 
     }
 
