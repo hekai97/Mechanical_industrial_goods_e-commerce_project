@@ -1,14 +1,18 @@
 package com.example.mechanical_industrial_goods_eommerce_project_for_android.adapters;
 
+import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.ConcatAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.LayoutHelper;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.gif.GifBitmapProvider;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.IndexBannerBean;
 import com.youth.banner.adapter.BannerAdapter;
 
@@ -16,9 +20,12 @@ import java.util.List;
 
 public class IndexBannerAdapter extends BannerAdapter<IndexBannerBean, IndexBannerAdapter.ImageHolder> {
 
-    public IndexBannerAdapter(List<IndexBannerBean> mDatas) {
+    private Context context;
+
+    public IndexBannerAdapter(List<IndexBannerBean> mDatas,Context context) {
         //设置数据，也可以调用banner提供的方法,或者自己在adapter中实现
         super(mDatas);
+        this.context = context;
     }
 
     //更新数据
@@ -45,7 +52,8 @@ public class IndexBannerAdapter extends BannerAdapter<IndexBannerBean, IndexBann
 
     @Override
     public void onBindView(ImageHolder holder, IndexBannerBean data, int position, int size) {
-        holder.imageView.setImageResource(data.imageRes);
+        //holder.imageView.setImageResource(data.imageRes);
+        Glide.with(context).load(data.imageUrl).into(holder.imageView);
     }
 
 

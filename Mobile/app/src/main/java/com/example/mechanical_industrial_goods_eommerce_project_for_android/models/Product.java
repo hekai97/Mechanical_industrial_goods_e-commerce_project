@@ -11,7 +11,7 @@ public class Product {
     private String subImages;
     private String detail;
     private String specParam;
-    private BigDecimal price;
+    private Double price;
     private Integer stock;
     private Integer status;
     private Integer hot;
@@ -82,11 +82,11 @@ public class Product {
         this.specParam = specParam;
     }
 
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

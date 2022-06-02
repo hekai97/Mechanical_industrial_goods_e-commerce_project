@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.ConcatAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import com.alibaba.android.vlayout.VirtualLayoutManager;
 import com.alibaba.android.vlayout.layout.GridLayoutHelper;
 import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.R;
+import com.example.mechanical_industrial_goods_eommerce_project_for_android.Utils.DpToPx;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.adapters.IndexActAdapter;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.adapters.IndexBannerAdapter;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.adapters.IndexBannerAndParamAdapter;
@@ -29,8 +31,8 @@ import com.example.mechanical_industrial_goods_eommerce_project_for_android.mode
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.Product;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.ResponseCode;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.SverResponse;
-import com.example.mechanical_industrial_goods_eommerce_project_for_android.utils.JsonUtils;
-import com.example.mechanical_industrial_goods_eommerce_project_for_android.utils.getScreenParams;
+import com.example.mechanical_industrial_goods_eommerce_project_for_android.Utils.JsonUtils;
+import com.example.mechanical_industrial_goods_eommerce_project_for_android.Utils.getScreenParams;
 import com.google.gson.FieldAttributes;
 import com.google.gson.reflect.TypeToken;
 import com.youth.banner.Banner;
@@ -177,7 +179,7 @@ public class IndexFragment extends Fragment {
         /*活动区*/
 
         LinearLayoutHelper linearLayoutHelper = new LinearLayoutHelper();
-        linearLayoutHelper.setMarginBottom(com.example.mechanical_industrial_goods_eommerce_project_for_android.utils.DpToPx.dpTopx(getActivity(),20));
+        linearLayoutHelper.setMarginBottom(DpToPx.dpTopx(getActivity(),20));
         adapters.add(new IndexActAdapter(getActivity(),linearLayoutHelper));
 
         /*Hot*/
@@ -195,7 +197,7 @@ public class IndexFragment extends Fragment {
 
         //启动轮播图
         banner.addBannerLifecycleObserver(this)//添加生命周期观察者
-                .setAdapter(new IndexBannerAdapter(IndexBannerBean.getTestData2()))
+                .setAdapter(new IndexBannerAdapter(IndexBannerBean.getTestData3(),getActivity()))
                 .setIndicator(new CircleIndicator(getActivity()));
     }
 
@@ -236,6 +238,8 @@ public class IndexFragment extends Fragment {
 
 
     private void loadHotProducts(){
+
+        Log.d("URLAAA","HOT111");
 
         OkHttpUtils.get()
                 .url(Constant.API.HOT_PRODUCT_URL)

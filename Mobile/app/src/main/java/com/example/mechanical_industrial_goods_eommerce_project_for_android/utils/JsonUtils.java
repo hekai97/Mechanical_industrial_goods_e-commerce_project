@@ -1,4 +1,4 @@
-package com.example.mechanical_industrial_goods_eommerce_project_for_android.utils;
+package com.example.mechanical_industrial_goods_eommerce_project_for_android.Utils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
