@@ -1,4 +1,4 @@
-var baseUrl="http://localhost:8080/Mechanical_industrial_goods_e-commerce_project/";
+var baseUrl="http://10.20.138.118:8080/actionmall/";
 define(function(){
 	//获取url中的参数
 	function getParam(name){
@@ -18,6 +18,7 @@ define(function(){
 			crossDomain:true,
 			success:function(user){
 				//判断是否成功
+				alert(user.status+user.data.account);
 				if(user.status==0){
 					//隐藏登录时span标签
 					$("#register_info").css({display:"none"});

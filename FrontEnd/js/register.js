@@ -1,4 +1,4 @@
-var baseUrl="http://localhost:8080/Mechanical_industrial_goods_e-commerce_project/";
+var baseUrl="http://10.20.138.118:8080/actionmall/";
 define(['jquery','common'],function(jquery,common){
     //用户名是否有效
     var isUserNameValidate=false;
@@ -60,7 +60,7 @@ define(['jquery','common'],function(jquery,common){
                     //显示错误
                     $("#usernameError").css({display:"block"});
                     //错误信息添加
-                    $("#usernameError").html(data.msg);
+                    $("#usernameError").html(rs.msg);
                 }else{
                     //隐藏错误信息
                     $("#usernameError").css({display:"none"});
@@ -272,7 +272,7 @@ define(['jquery','common'],function(jquery,common){
                           email:$("#email").val(),
                           phone:$("#phone").val(),
                           question:$("#question").val(),
-                          asw:$("#asw").val()
+                          asw:$("#answer").val()
                 };
             //请求服务器
             $.ajax({
@@ -284,7 +284,7 @@ define(['jquery','common'],function(jquery,common){
                     if(rs.status==0){
                         //注册成功跳转登录界面
                         alert("注册成功");
-                        $(window).attr("location","login.html");
+                        $(window).attr("location","../html/login.html");
                     }
                     else{
                         //失败弹出提示

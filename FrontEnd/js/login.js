@@ -1,4 +1,4 @@
-var baseUrl="http://localhost:8080/Mechanical_industrial_goods_e-commerce_project/";
+var baseUrl="http://10.20.138.118:8080/actionmall/";
 define(['common'],function(common){
     var isAccountValidate=false;
     var isPasswordValidate=false;
@@ -32,15 +32,15 @@ define(['common'],function(common){
                 data:{account:$("#username").val(),password:$("#password").val()},
                 xhrFields:{withCredential:true},   //允许跨域请求时携带cookie属性
                 crossDomain:true,           //允许跨域请求
-                success:function*(user){
+                success:function(data){
                     //判断是否登录成功
                     if(data.status==0){
                         //成功判断是否是管理员
                         if(data.data.role==2){
-                            $(window).attr("location","../html/admin/index.html");
+                            $(window).attr("location","html/admin/index.html");
                         }
                         else{
-                            $(window).attr("locatuon","../html/index.html")
+                            $(window).attr("location","../html/index.html");
                         }
                     }else{
                         $("#passwordError").css({display:"block"});

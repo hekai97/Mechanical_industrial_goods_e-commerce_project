@@ -1,9 +1,9 @@
 require.config({
     paths: {
-            "jquery": "/mall/dy2/js/jquery-1.6.2.min",
-            "jquery_SuperSlide": "/mall/dy2/js/jquery.SuperSlide.2.1.1",
-            "handlebar": "/mall/dy2/js/handlebars-v4.0.11",
-            "jquery_url": "/mall/dy2/js/jquery.url",
+            "jquery": "../js/jquery-1.6.2.min",
+            "jquery_SuperSlide": "../js/jquery.SuperSlide.2.1.1",
+            "handlebar": "../js/handlebars-v4.0.11",
+            "jquery_url": "../js/jquery.url",
             },
     shim:  {
             'jquery_SuperSlide':['jquery'],

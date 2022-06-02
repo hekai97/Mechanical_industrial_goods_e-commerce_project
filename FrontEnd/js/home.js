@@ -2,7 +2,7 @@ define(['jquery_SuperSlide','common','handlebar'],function(jquery_SuperSlide,com
 	//1.加载产品分类
 	function getParam(){
 		$.ajax({
-			url:baseUrl+"param/findallparams.do",
+			url:baseUrl+"param/findallparams",
 			xhrFields:{withCredentials:true},
 			crossDomain:true,
 			success:function(rs){
@@ -20,7 +20,7 @@ define(['jquery_SuperSlide','common','handlebar'],function(jquery_SuperSlide,com
 	//2.加载热销商品
 	function getHotProduct(){
 		$.ajax({
-			url:baseUrl+"product/findhotproducts.do",
+			url:baseUrl+"product/findhotproducts",
 			xhrFields:{withCredentials:true},
 			crossDomain:true,
 			success:function(rs){
@@ -48,7 +48,7 @@ define(['jquery_SuperSlide','common','handlebar'],function(jquery_SuperSlide,com
 	//3.加载楼层信息
 	function getFloors(){
 		$.ajax({
-			url:baseUrl+"product/findfloors.do",
+			url:baseUrl+"product/findfloors",
 			xhrFields:{withCredentials:true},
 			crossDomain:true,
 			success:function(rs){
@@ -56,7 +56,7 @@ define(['jquery_SuperSlide','common','handlebar'],function(jquery_SuperSlide,com
 				if(rs.status==1){
 					return;
 				}
-				//1楼数据      获取数据（修改图片路径） 插件预编译  插入页面
+				//1楼数据获取数据（修改图片路径） 插件预编译  插入页面
 				var data1 = rs.data.oneFloor;
 				for(var i=0;i<data1.length;i++){
 					data1[i].iconUrl=baseUrl+data1[i].iconUrl;

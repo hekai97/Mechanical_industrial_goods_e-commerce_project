@@ -1,4 +1,4 @@
-var baseUrl="http://localhost:8080/Mechanical_industrial_goods_e-commerce_project/";
+var baseUrl="http://10.20.138.118:8080/actionmall/";
 define(['jquery','common'],function(jquery,common){
 	function ready(){
 		//当前密码失去焦点非空验证
