@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -21,8 +22,8 @@ public class ProductTypesControllerBackend {
     @Autowired
     private ProductTypesServiceImp productTypesServiceImp;
 
-    @RequestMapping(value = "delparam")
-    public Result<ProductTypes> delParam(@RequestBody int id){
+    @RequestMapping(value = "/delparam")
+    public Result<ProductTypes> delParam(HttpSession httpSession, @RequestBody int id){
         return productTypesServiceImp.delParam(id);
     }
 
@@ -31,28 +32,28 @@ public class ProductTypesControllerBackend {
      * 未实现
      * */
 
-    @RequestMapping(value = "findpartstype")
-    public Result<List<ProductTypes>> findPartStyle(@RequestBody int productTypeId){
+    @RequestMapping(value = "/findpartstype")
+    public Result<List<ProductTypes>> findPartStyle(HttpSession httpSession,@RequestBody int productTypeId){
         return productTypesServiceImp.findPartStyle(productTypeId);
     }
 
-    @RequestMapping(value = "findptype")
-    public Result<List<ProductTypes>> findPtype(){
+    @RequestMapping(value = "/findptype")
+    public Result<List<ProductTypes>> findPtype(HttpSession httpSession){
         return productTypesServiceImp.findPType();
     }
 
-    @RequestMapping(value = "findchildren")
-    public Result<List<ProductTypes>> findChildren(@RequestBody int id){
+    @RequestMapping(value = "/findchildren")
+    public Result<List<ProductTypes>> findChildren(HttpSession httpSession,@RequestBody int id){
         return productTypesServiceImp.findChildren(id);
     }
 
-    @RequestMapping(value = "updateparam")
-    public Result<ProductTypes> updateParam(@RequestBody String name,@RequestBody int id){
+    @RequestMapping(value = "/updateparam")
+    public Result<ProductTypes> updateParam(HttpSession httpSession,@RequestBody String name,@RequestBody int id){
         return productTypesServiceImp.updateParam(name,id);
     }
 
-    @RequestMapping(value = "saveparam")
-    public Result<ProductTypes> saveParam(@RequestBody String name,@RequestBody int parent_id){
+    @RequestMapping(value = "/saveparam")
+    public Result<ProductTypes> saveParam(HttpSession httpSession,@RequestBody String name,@RequestBody int parent_id){
         return productTypesServiceImp.saveParam(name,parent_id);
     }
 

@@ -1,11 +1,21 @@
 package com.hekai.backend.entites.reConstruction.compositeEntities;
 
+
+import org.springframework.data.domain.Pageable;
+
 /**
  * @author: hekai
  * @Date: 2022/5/29
  */
 public class PageBean <T>{
     private int pageNum;
+    private int pageSize;
+    private int totalRecord;
+    private int totalPage;
+    private int startIndex;
+    private T data;
+    private int prePage;
+    private int nextPage;
 
     public int getPageNum() {
         return pageNum;
@@ -70,12 +80,4 @@ public class PageBean <T>{
     public void setNextPage(int nextPage) {
         this.nextPage = nextPage;
     }
-
-    private int pageSize;
-    private int totalRecord;
-    private int totalPage;
-    private int startIndex;
-    private T data;
-    private int prePage;
-    private int nextPage;
 }
