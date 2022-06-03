@@ -1,6 +1,7 @@
 package com.example.mechanical_industrial_goods_eommerce_project_for_android.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -32,6 +33,7 @@ import com.example.mechanical_industrial_goods_eommerce_project_for_android.mode
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.ResponseCode;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.SverResponse;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.Utils.JsonUtils;
+import com.example.mechanical_industrial_goods_eommerce_project_for_android.ui.DetailActivity;
 import com.google.gson.reflect.TypeToken;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -146,7 +148,11 @@ public class CategoriesFragment extends Fragment {
             @Override
             public void onItemClick(View view, int pos) {
                 //跳转到详情界面
-                ToastUtils.showShortToast(getActivity(),"点击了ITEM");
+                //提取产品编号并跳转
+                String id=rightProductData.get(pos).getId()+"";
+                Intent intent=new Intent(getActivity(), DetailActivity.class);
+                intent.putExtra("id",id);
+                startActivity(intent);
             }
         });
 
@@ -229,9 +235,11 @@ public class CategoriesFragment extends Fragment {
     private void findProductByParam(String productTypeId, int pageNum, int pageSize, boolean flag){
         OkHttpUtils.get()
                 .url(Constant.API.CATEGORY_PRODUCT_URL)
+                .addParams("name","")
                 .addParams("productTypeId",productTypeId)
                 .addParams("pageNum",pageNum+"")
                 .addParams("pageSize",pageSize+"")
+                .addParams("partsId",0+"")
                 .build()
                 .execute(new StringCallback() {
                     @Override
@@ -247,6 +255,8 @@ public class CategoriesFragment extends Fragment {
 //                        resultList = JsonUtils.fromJson(response,type);
 //                        result = resultList.get(0);
                         if(result.getStatus()==ResponseCode.SUCCESS.getCode()){
+
+                            Log.d("allproduct","000");
 
                             if(result.getData()!=null){
                                 if(flag){

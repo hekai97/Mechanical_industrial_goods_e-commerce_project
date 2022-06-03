@@ -1,5 +1,6 @@
 package com.example.mechanical_industrial_goods_eommerce_project_for_android.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,6 +19,7 @@ import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.VirtualLayoutManager;
 import com.alibaba.android.vlayout.layout.GridLayoutHelper;
 import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
+import com.example.mechanical_industrial_goods_eommerce_project_for_android.Listener.OnItemClickListener;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.R;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.Utils.DpToPx;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.adapters.IndexActAdapter;
@@ -33,6 +35,7 @@ import com.example.mechanical_industrial_goods_eommerce_project_for_android.mode
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.SverResponse;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.Utils.JsonUtils;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.Utils.getScreenParams;
+import com.example.mechanical_industrial_goods_eommerce_project_for_android.ui.DetailActivity;
 import com.google.gson.FieldAttributes;
 import com.google.gson.reflect.TypeToken;
 import com.youth.banner.Banner;
@@ -186,6 +189,16 @@ public class IndexFragment extends Fragment {
 
         LinearLayoutHelper hotLayoutHelper = new LinearLayoutHelper();
         indexHotProductAdapter = new IndexHotProductAdapter(productData,getActivity(),hotLayoutHelper);
+        indexHotProductAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int pos) {
+                //提取产品编号并跳转
+                String id=productData.get(pos).getId()+"";
+                Intent intent=new Intent(getActivity(), DetailActivity.class);
+                intent.putExtra("id",id);
+                startActivity(intent);
+            }
+        });
         adapters.add(indexHotProductAdapter);
         //点击热销产品，要跳转到详情页面
 

@@ -30,6 +30,7 @@ import com.example.mechanical_industrial_goods_eommerce_project_for_android.mode
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.CartItem;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.ResponseCode;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.SverResponse;
+import com.example.mechanical_industrial_goods_eommerce_project_for_android.ui.DetailActivity;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.ui.LoginActivity;
 import com.google.gson.reflect.TypeToken;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -207,6 +208,11 @@ public class ShoppingcartFragment extends Fragment {
             @Override
             public void onItemClick(View view, int pos) {
                 //跳转到详情界面
+                //提取产品编号并跳转
+                String id=mData.get(pos).getId()+"";
+                Intent intent=new Intent(getActivity(), DetailActivity.class);
+                intent.putExtra("id",id);
+                startActivity(intent);
             }
         });
 

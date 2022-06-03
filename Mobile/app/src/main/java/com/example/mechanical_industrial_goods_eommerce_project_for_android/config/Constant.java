@@ -28,6 +28,8 @@ public class Constant {
         public static final String USER_INFO_URL = BASE_URL+"user/getuserinfo";
         //登陆接口
         public static final String USER_LOGIN_URL= BASE_URL+"user/do_login";
+        //商品详情
+        public static final String PRODUCT_DETAIL_URL= BASE_URL+"product/getdetail";
 
     }
 
