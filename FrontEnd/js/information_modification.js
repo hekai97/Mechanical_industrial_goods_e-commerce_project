@@ -1,4 +1,3 @@
-var baseUrl="http://10.20.138.118:8080/actionmall/";
 define(['jquery','common'],function(jquery,common){
 	
 	function ready(){
@@ -105,7 +104,7 @@ define(['jquery','common'],function(jquery,common){
 	//显示当前用户信息
 	function showUser(){
 		$.ajax({
-			url:baseUrl+"user/getuserinfo.do",
+			url:baseUrl+"user/getuserinfo",
 			xhrFields:{withCredentials:true},
 			crossDomain:true,
 			success:function(rs){

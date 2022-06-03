@@ -1,4 +1,3 @@
-var baseUrl="http://10.20.138.118:8080/actionmall/";
 define(['jquery','common'],function(jquery,common){
 	function ready(){
 		//当前密码失去焦点非空验证

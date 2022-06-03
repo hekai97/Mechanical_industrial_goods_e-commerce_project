@@ -1,4 +1,4 @@
-var baseUrl="http://10.20.138.118:8080/actionmall/";
+var baseUrl="http://192.168.43.74:8080/actionmall/";
 define(['common'],function(common){
     var isAccountValidate=false;
     var isPasswordValidate=false;
