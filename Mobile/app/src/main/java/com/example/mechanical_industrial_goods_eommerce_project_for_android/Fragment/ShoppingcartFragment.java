@@ -1,11 +1,20 @@
 package com.example.mechanical_industrial_goods_eommerce_project_for_android.Fragment;
 
+import android.app.UiAutomation;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +30,7 @@ import com.example.mechanical_industrial_goods_eommerce_project_for_android.mode
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.CartItem;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.ResponseCode;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.SverResponse;
+import com.example.mechanical_industrial_goods_eommerce_project_for_android.ui.LoginActivity;
 import com.google.gson.reflect.TypeToken;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -57,6 +67,12 @@ public class ShoppingcartFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    //本地广播
+    private LocalBroadcastManager localBroadcastManager;
+    private IntentFilter intentFilter;
+    private BroadcastReceiver broadcastReceiver;
+
+
     public ShoppingcartFragment() {
         // Required empty public constructor
     }
@@ -82,10 +98,6 @@ public class ShoppingcartFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -93,10 +105,50 @@ public class ShoppingcartFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View view = inflater.inflate(R.layout.fragment_shoppingcart, container, false);
+        View view = inflater.inflate(R.layout.fragment_cart, container, false);
         InitView(view);
-        loadCartData();
+//        onHiddenChanged(false);
         return view;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+        // 注册广播
+        Log.d("tiaozhuanlogin","zhuceguangbo");
+        localBroadcastManager = localBroadcastManager.getInstance(getActivity());
+        intentFilter = new IntentFilter();
+        intentFilter.addAction(Constant.ACTION.LOAD_CART_ACTION);
+        broadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                Log.d("tiaozhuanlogin","onReceive");
+                //加载购物车数据
+                loadCartData();
+            }
+        };
+        localBroadcastManager.registerReceiver(broadcastReceiver,intentFilter);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+
+        localBroadcastManager.unregisterReceiver(broadcastReceiver);
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        Log.d("tiaozhuanlogin", String.valueOf(hidden));
+        super.onHiddenChanged(hidden);
+        Log.d("tiaozhuanlogin", String.valueOf(hidden));
+        if(!hidden){
+            loadCartData();
+        }
     }
 
     public void InitView(View view){
@@ -104,12 +156,14 @@ public class ShoppingcartFragment extends Fragment {
         recyclerView = (RecyclerView)view.findViewById(R.id.cart_rv);
         total = (TextView)view.findViewById(R.id.total);
         btn_buy = (TextView)view.findViewById(R.id.buy_btn);
+        checkBox = (CheckBox) view.findViewById(R.id.btn_checked);
 
         mData = new ArrayList<>();
         cartAdapter = new CartAdapter(getActivity(),mData);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(cartAdapter);
+
         cartAdapter.setOnCartOptListener(new CartAdapter.OnCartOptListener() {
             @Override
             public void updateProductCount(int productId, int count) {
@@ -161,6 +215,7 @@ public class ShoppingcartFragment extends Fragment {
 
     //加载购物车数据
     private void loadCartData(){
+        Log.d("tiaozhuanlogin","loadcartdata");
         OkHttpUtils.get()
                 .url(Constant.API.CART_LIST_URL)
                 .build()
@@ -175,6 +230,9 @@ public class ShoppingcartFragment extends Fragment {
 
                         Type type = new TypeToken<SverResponse<Cart>>(){}.getType();
                         SverResponse<Cart> result = JsonUtils.fromJson(response,type);
+
+                        Log.d("tiaozhuanlogin",result.getStatus()+"");
+
                         if (result.getStatus() == ResponseCode.SUCCESS.getCode()){
                             if(result.getData().getLists() != null){
                                 mData.clear();
@@ -182,10 +240,14 @@ public class ShoppingcartFragment extends Fragment {
                                 cartAdapter.notifyDataSetChanged();
                             }
                             total.setText("合计：￥" + result.getData().getTotalPrice());
+                        }else {
+                            Intent intent = new Intent(getActivity(), LoginActivity.class);
+                            startActivity(intent);
                         }
 
                     }
                 });
+
     }
 
     private void updateProduct(int productId,int count) {
