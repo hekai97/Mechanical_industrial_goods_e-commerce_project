@@ -12,10 +12,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.Mechanical_industrial_goods_Eommerce_project_for_android">
+        android:theme="@style/Theme.Mechanical_industrial_goods_Eommerce_project_for_android"
+        android:usesCleartextTraffic="true">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.LoginActivity"/>
+        <activity
+            android:name=".ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
