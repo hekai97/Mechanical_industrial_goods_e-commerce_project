@@ -5,9 +5,7 @@ import com.hekai.backend.entites.sourceEntites.User;
 import com.hekai.backend.service.UserService;
 import com.hekai.backend.utils.ConstUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -23,21 +21,24 @@ public class UserControllerFrontend {
     private UserService userService;
 
     @RequestMapping(value = "/getUserByAccount")
+    @ResponseBody
     public Result<User> getUserByAccount(String account){
         return userService.findUserByAccount(account);
     }
 
     @RequestMapping(value = "/do_logout")
+    @ResponseBody
     public Result<User> doLogOut(HttpSession httpSession){
         httpSession.removeAttribute(ConstUtil.CUR_USER);
         return Result.createRespBySuccess();
     }
 
     @RequestMapping(value = "/updateuserinfo")
+    @ResponseBody
     public Result<User> updateUserInfo(HttpSession httpSession,@RequestBody User user){
         User curUser = (User) httpSession.getAttribute(ConstUtil.CUR_USER);
         if(curUser == null) {
-            return Result.createByErrorMessage("用户尚未登陆!");
+            return Result.createByErrorMessage("用户尚未登录!");
         }
         user.setId(curUser.getId());
         user.setAccount(curUser.getAccount());
@@ -50,10 +51,11 @@ public class UserControllerFrontend {
     }
 
     @RequestMapping(value = "/updatepassword")
+    @ResponseBody
     public Result<String> updatePassword(HttpSession httpSession,String newpwd,String oldpwd){
         User curUser = (User) httpSession.getAttribute(ConstUtil.CUR_USER);
         if(curUser == null) {
-            return Result.createByErrorMessage("用户尚未登陆!");
+            return Result.createByErrorMessage("用户尚未登录!");
         }
         Result<String> result=userService.updatePassword(curUser,newpwd,oldpwd);
         if(result.isSuccess()) {
@@ -63,32 +65,37 @@ public class UserControllerFrontend {
     }
 
     @RequestMapping(value = "/resetpassword")
+    @ResponseBody
     public Result<String> resetPassword(String newpwd,Integer userid){
         return userService.resetPassword(newpwd,userid);
     }
 
     @RequestMapping(value = "/checkuserasw")
+    @ResponseBody
     public Result<String> checkUserAsw(String account,String question,String asw){
         return userService.checkUserAnswer(account,question,asw);
     }
 
     @RequestMapping(value = "/getuserquestion")
+    @ResponseBody
     public Result<String> getUserQuestion(String account){
         return userService.getUserQuestion(account);
     }
 
     @RequestMapping(value = "/getuserinfo")
+    @ResponseBody
     public Result<User> getUserInfo(HttpSession httpSession){
         User curUser = (User) httpSession.getAttribute(ConstUtil.CUR_USER);
         if(curUser == null) {
             System.out.println("此时用户为空"+"sessionId="+httpSession.getId());
-            return Result.createByErrorMessage("用户尚未登陆!");
+            return Result.createByErrorMessage("用户尚未登录!");
         }
         System.out.println("此时用户为"+curUser.getAccount()+"sessionId="+httpSession.getId());
         return userService.findUserByAccount(curUser.getAccount());
     }
 
     @RequestMapping(value = "/do_register")
+    @ResponseBody
     public Result<User> doRegister(User user){
         Result<User> result=userService.doRegister(user);
         System.out.println(result.getStatus());
@@ -97,16 +104,18 @@ public class UserControllerFrontend {
     }
 
     @RequestMapping(value = "/do_login")
+    @ResponseBody
     public Result<User> doLogin(HttpSession httpSession,String account,String password){
         Result<User> user=userService.doLogin(account,password);
         if(user.isSuccess()){
-            httpSession.setAttribute(ConstUtil.CUR_USER,user);
+            httpSession.setAttribute(ConstUtil.CUR_USER,user.getData());
         }
         System.out.println("调用了dologin，account="+account+"密码"+password+"sessionId="+httpSession.getId());
         return user;
     }
 
     @RequestMapping(value = "/do_check_info")
+    @ResponseBody
     public Result<User> doCheckInfo(String info,String type){
         return userService.doCheckInfo(info,type);
     }

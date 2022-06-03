@@ -1,9 +1,9 @@
 package com.hekai.backend.serviceImp;
 
 import com.hekai.backend.entites.reConstruction.compositeEntities.OrderAndOrderItemList;
+import com.hekai.backend.entites.reConstruction.compositeEntities.OrderWithOrderItemList;
 import com.hekai.backend.entites.reConstruction.compositeEntities.PageBean;
 import com.hekai.backend.entites.reConstruction.compositeEntities.Result;
-import com.hekai.backend.entites.reConstruction.compositeEntities.OrderWithOrderItemList;
 import com.hekai.backend.entites.reConstruction.singleEntites.SimplifyOrderItem;
 import com.hekai.backend.entites.sourceEntites.Address;
 import com.hekai.backend.entites.sourceEntites.Order;
@@ -14,7 +14,6 @@ import com.hekai.backend.repository.OrderItemRepository;
 import com.hekai.backend.repository.OrderRepository;
 import com.hekai.backend.service.OrderService;
 import com.hekai.backend.utils.ConstUtil;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -22,7 +21,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -184,6 +185,7 @@ public class OrderServiceImp implements OrderService {
         }
         if(order.getStatus()==ConstUtil.OrderStatus.ORDER_NO_PAY){
             order.setStatus(ConstUtil.OrderStatus.ORDER_CANCELED);
+            order.setCloseTime(new Timestamp(new Date().getTime()));
             orderRepository.save(order);
             return Result.createRespBySuccess("该订单已取消");
         }
@@ -198,6 +200,7 @@ public class OrderServiceImp implements OrderService {
         }
         if(order.getStatus()==ConstUtil.OrderStatus.ORDER_SHIPPED){
             order.setStatus(ConstUtil.OrderStatus.ORDER_SUCCESS);
+            order.setFinishTime(new Timestamp(new Date().getTime()));
             orderRepository.save(order);
             return Result.createRespBySuccessMessage("订单确认收货成功");
         }

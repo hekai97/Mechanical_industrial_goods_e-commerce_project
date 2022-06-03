@@ -18,7 +18,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -67,7 +66,7 @@ public class ProductServiceImp implements ProductService {
     @Override
     public Result<List<Product>> findHotProducts(Integer num) {
         List<Product> hotProducts=productRepository.findAllByIsHot(ConstUtil.HotStatus.HOT_STATUS);
-        return Result.createRespBySuccess(hotProducts.subList(0,num));
+        return Result.createRespBySuccess(hotProducts.subList(0,num> hotProducts.size()? hotProducts.size() : num));
     }
 
     @Override
@@ -88,7 +87,7 @@ public class ProductServiceImp implements ProductService {
     @Override
     public Result<PageBean<List<ProductWithDescAndHot>>> findProducts(Integer productTypeId, Integer partsId, int pageNum, int pageSize, String name) {
         Pageable pageable= PageRequest.of(pageNum,pageSize);
-        Page<Product> productPage=productRepository.findAllByProductIdAndPartsIdAndStatusAndNameLike(productTypeId,partsId,ConstUtil.ProductStatus.STATUS_ON_SALE,name,pageable);
+        Page<Product> productPage=productRepository.findProductByProductIdAndPartsIdAndStatusAndNameLike(productTypeId,partsId,ConstUtil.ProductStatus.STATUS_ON_SALE,name,pageable);
         List<Product> productList=productPage.getContent();
         List<ProductWithDescAndHot> resultData=new ArrayList<>();
         for(Product p:productList){

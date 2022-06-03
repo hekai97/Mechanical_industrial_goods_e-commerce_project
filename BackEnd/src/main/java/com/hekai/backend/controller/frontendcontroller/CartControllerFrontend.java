@@ -28,7 +28,7 @@ public class CartControllerFrontend {
     public Result<Integer> getCardCount(HttpSession httpSession){
         User user=(User) httpSession.getAttribute(ConstUtil.CUR_USER);
         if(user==null){
-            return Result.createByErrorMessage("请登陆后再操作");
+            return Result.createByErrorMessage("请登录后再操作");
         }
         return cartService.getCardCount(user.getId());
     }
@@ -37,7 +37,7 @@ public class CartControllerFrontend {
     public Result<CartWithProductAndTotalPrice> updateCarts(HttpSession httpSession,Integer productId, Integer count, Integer checked){
         User user=(User) httpSession.getAttribute(ConstUtil.CUR_USER);
         if(user==null){
-            return Result.createByErrorMessage("请登陆后再操作");
+            return Result.createByErrorMessage("请登录后再操作");
         }
         return cartService.updateCarts(user,productId,count,checked);
     }
@@ -46,7 +46,7 @@ public class CartControllerFrontend {
     public Result<Cart> clearCarts(HttpSession httpSession){
         User user=(User) httpSession.getAttribute(ConstUtil.CUR_USER);
         if(user==null){
-            return Result.createByErrorMessage("请登陆后再操作");
+            return Result.createByErrorMessage("请登录后再操作");
         }
         return cartService.clearCarts(user);
     }
@@ -55,7 +55,7 @@ public class CartControllerFrontend {
     public Result<CartWithProductAndTotalPrice> delCarts(HttpSession httpSession,Integer productId){
         User user=(User) httpSession.getAttribute(ConstUtil.CUR_USER);
         if(user==null){
-            return Result.createByErrorMessage("请登陆后再操作");
+            return Result.createByErrorMessage("请登录后再操作");
         }
         return cartService.deleteCartsProductById(user,productId);
     }
@@ -64,7 +64,7 @@ public class CartControllerFrontend {
     public Result<CartWithProductAndTotalPrice> findAllCarts(HttpSession httpSession){
         User user=(User) httpSession.getAttribute(ConstUtil.CUR_USER);
         if(user==null){
-            return Result.createByErrorMessage("请登陆后再操作");
+            return Result.createByErrorMessage("请登录后再操作");
         }
         return cartService.findAllCarts(user);
     }
@@ -73,7 +73,7 @@ public class CartControllerFrontend {
     public Result<Cart> saveCart(HttpSession httpSession,Integer productId,Integer count){
         User user=(User) httpSession.getAttribute(ConstUtil.CUR_USER);
         if(user==null){
-            return Result.createByErrorMessage("请登陆后再操作");
+            return Result.createByErrorMessage("请登录后再操作");
         }
         return cartService.saveCart(user,productId,count);
     }

@@ -13,7 +13,7 @@ import java.util.List;
 public interface AddressService {
     Result<Address> findAddressByAddrId(Integer id);
 
-    Result<List<Address>> setDafault(User user, Integer id);
+    Result<List<Address>> setDefault(User user, Integer id);
 
     Result<List<Address>> findAddressByUserId(int id);
 

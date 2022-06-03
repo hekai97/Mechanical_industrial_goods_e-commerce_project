@@ -6,8 +6,8 @@ import com.hekai.backend.entites.sourceEntites.User;
 import com.hekai.backend.service.AddressService;
 import com.hekai.backend.utils.ConstUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
@@ -25,6 +25,7 @@ public class AddressControllerFrontend {
     private AddressService addressService;
 
     @RequestMapping(value = "/findAddressById")
+    @ResponseBody
     public Result<Address> findAddressById(HttpSession httpSession,Integer id){
         return addressService.findAddressByAddrId(id);
     }
@@ -35,7 +36,7 @@ public class AddressControllerFrontend {
         if(user==null){
             return Result.createByErrorMessage("请登录后再操作");
         }
-        return addressService.setDafault(user,id);
+        return addressService.setDefault(user,id);
     }
 
     @RequestMapping(value = "/findaddrs")

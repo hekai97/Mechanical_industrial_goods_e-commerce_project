@@ -30,7 +30,7 @@ public class AddressServiceImp implements AddressService {
     }
 
     @Override
-    public Result<List<Address>> setDafault(User user, Integer id) {
+    public Result<List<Address>> setDefault(User user, Integer id) {
         Address address=addressRepository.findAddressById(id);
         if(address==null){
             return Result.createByErrorMessage("默认地址修改失败");

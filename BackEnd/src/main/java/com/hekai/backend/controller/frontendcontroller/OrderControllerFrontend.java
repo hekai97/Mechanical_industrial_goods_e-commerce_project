@@ -31,7 +31,7 @@ public class OrderControllerFrontend {
     public Result<String> confirmReceipt(HttpSession httpSession, Long orderNo){
         User user=(User) httpSession.getAttribute(ConstUtil.CUR_USER);
         if(user==null){
-            return Result.createByErrorMessage("请登陆后再操作");
+            return Result.createByErrorMessage("请登录后再操作");
         }
         return orderService.confirmReceipt(user,orderNo);
     }
@@ -40,7 +40,7 @@ public class OrderControllerFrontend {
     public Result<OrderWithOrderItemList> getDetail(HttpSession httpSession,Long orderNo){
         User user=(User) httpSession.getAttribute(ConstUtil.CUR_USER);
         if(user==null){
-            return Result.createByErrorMessage("请登陆后再操作");
+            return Result.createByErrorMessage("请登录后再操作");
         }
         return orderService.getDetail(orderNo);
     }
@@ -49,7 +49,7 @@ public class OrderControllerFrontend {
     public Result<String> cancelOrder(HttpSession httpSession,Long orderNo){
         User user=(User) httpSession.getAttribute(ConstUtil.CUR_USER);
         if(user==null){
-            return Result.createByErrorMessage("请登陆后再操作");
+            return Result.createByErrorMessage("请登录后再操作");
         }
         return orderService.cancelOrder(user,orderNo);
     }
@@ -60,7 +60,7 @@ public class OrderControllerFrontend {
                                                                   @RequestParam(value="pageSize",defaultValue="10") int pageSize){
         User user=(User) httpSession.getAttribute(ConstUtil.CUR_USER);
         if(user==null){
-            return Result.createByErrorMessage("请登陆后再操作");
+            return Result.createByErrorMessage("请登录后再操作");
         }
         return orderService.getOrderLists(user,status,pageNum,pageSize);
     }
@@ -69,7 +69,7 @@ public class OrderControllerFrontend {
     public Result<OrderAndOrderItemList> createOrder(HttpSession httpSession,Integer addrId){
         User user=(User) httpSession.getAttribute(ConstUtil.CUR_USER);
         if(user==null){
-            return Result.createByErrorMessage("请登陆后再操作");
+            return Result.createByErrorMessage("请登录后再操作");
         }
         return orderService.creatOrder(user,addrId);
     }
