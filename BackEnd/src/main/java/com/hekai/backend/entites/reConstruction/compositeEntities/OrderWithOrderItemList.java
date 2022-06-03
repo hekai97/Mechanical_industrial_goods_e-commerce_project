@@ -36,7 +36,7 @@ public class OrderWithOrderItemList {
 
     public OrderWithOrderItemList(@NotNull Order order, @NotNull List<SimplifyOrderItem> items,@NotNull Address address){
         this.orderNo=order.getOrderNo();
-        this.amount=order.getAmount();
+        this.amount=this.amount.add(order.getAmount());
         this.type=order.getType();
         //付款类型，1代表在线支付，2代表货到付款
         switch (order.getType()) {
