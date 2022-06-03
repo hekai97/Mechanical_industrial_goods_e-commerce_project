@@ -2,7 +2,7 @@
 <html>
     <head lang="en">
         <meta charset="UTF-8">
-        <title>登录</title>
+        <title>购物车</title>
             <link rel="stylesheet" type="text/css" href="../css/reset.css">
             <link rel="stylesheet" type="text/css" href="../css/common.css">
             <link rel="stylesheet" type="text/css" href="../css/cart.css">
@@ -10,7 +10,7 @@
         </head>
 <body>
     <div class="content_box action_search_box">
-        <a class="logo" href="../index.html">
+        <a class="logo" href="../html/index.html">
         </a>
     </div>
     <hr style="width: 100%;color: whitesmoke;">
@@ -109,7 +109,7 @@
                 </div>
     
                 <div  class="shop_car_probox" id="cart-item-container">
-                    <div class="pro00">
+                    <!-- <div class="pro00">
                         <input type="checkbox" class="all_checkbox">
                     </div>
                     <div class="pro01">
@@ -133,7 +133,7 @@
                     </div>
                     <div class="pro05">
                         <a href="#">删除</a>
-                    </div>
+                    </div> -->
                 </div>
     
                 <!--总计结算-->
@@ -240,3 +240,41 @@
 </body>
 </html>
 
+<!--购物中商品的模板-->
+<script id="cart-item-tpl" type="text/x-handlebars-template">
+    {{#each this}}
+    <div class="shop_car_probox">
+        <div class="pro00">
+            <input type="checkbox" class="all_checkbox" data-product-id={{productId}}>
+        </div>
+        <div class="pro01">
+            <input name="id" type="hidden" value="9206">
+            <a href="product_detail.html?pid={{goodsId}}" target="_blank">
+                {{name}}
+            </a>
+            </input>
+        </div>
+        <div class="pro02">
+            ￥{{price}}
+        </div>
+        <div class="pro03">
+            <div class="product_select_num_value clearfix">
+                <a class="minus_btn  l" href="javascript:void(0);" data-product-id={{productId}}></a>
+                <input autocomplete="off" class="l" id="quantity{{productId}}" data-stock={{stock}} maxlength="4"
+                       minquantity="1" name="quantity" type="text" value="{{quantity}}"></input>
+                <a class="plus_btn l " href="javascript:void(0);" data-product-id={{productId}}></a>
+            </div>
+        </div>
+        <div class="pro04">
+            <span class="single_total">
+                ￥{{totalPrice}}
+            </span>
+        </div>
+        <div class="pro05">
+            <a class="delete" data-product-id={{productId}} href="javascript:void(0);">
+                删除
+            </a>
+        </div>
+    </div>
+    {{/each}}
+</script>

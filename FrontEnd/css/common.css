@@ -15,7 +15,7 @@ body{position: relative;min-width: 1200px;background: #ffffff;}
 }
 .header_inbox p{
     float: left;
-    line-height: 12px;
+    line-height: 35px;
     color: #666666;
 }
 .header_inbox a{
@@ -41,10 +41,10 @@ body{position: relative;min-width: 1200px;background: #ffffff;}
 }
 .my_action a{
     text-align: center;
-    line-height: 12px;
+    line-height: 35px;
 }
 .my_action img{
-    margin-top: 0px;
+    margin-top: 10px;
 }
 
 
