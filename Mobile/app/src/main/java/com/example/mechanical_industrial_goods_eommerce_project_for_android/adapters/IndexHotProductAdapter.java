@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.LayoutHelper;
 import com.bumptech.glide.Glide;
+import com.example.mechanical_industrial_goods_eommerce_project_for_android.Listener.OnItemClickListener;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.R;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.config.Constant;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.Product;
@@ -27,11 +28,16 @@ public class IndexHotProductAdapter extends DelegateAdapter.Adapter<IndexHotProd
     private List<Product> data;
     private Context context;
     private LayoutHelper layoutHelper;
+    private OnItemClickListener onItemClickListener;
 
     public IndexHotProductAdapter(List<Product> data, Context context, LayoutHelper layoutHelper) {
         this.data = data;
         this.context = context;
         this.layoutHelper = layoutHelper;
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
     }
 
     @Override
@@ -61,6 +67,15 @@ public class IndexHotProductAdapter extends DelegateAdapter.Adapter<IndexHotProd
         holder.stock.setText("库存："+ product.getStock());
         holder.contentContainer.setTag(position);
         Glide.with(context).load(Constant.API.BASE_URL+product.getIconURL()).into(holder.icon_URL);
+        holder.contentContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(onItemClickListener!=null)
+                {
+                    onItemClickListener.onItemClick(view,(int) view.getTag());
+                }
+            }
+        });
     }
 
     @Override
