@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -65,6 +66,7 @@ public class CategoriesFragment extends Fragment {
     private SverResponse<PageBean<Product>> result;
 //    private List<SverResponse<PageBean<Product>>> resultList;
     private String typeId;
+    private String name;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -140,7 +142,10 @@ public class CategoriesFragment extends Fragment {
             @Override
             public void onItemClick(View view, int pos) {
                 typeId = leftCategoryData.get(pos).getId()+"";
-                findProductByParam(typeId,1,10,true);
+                name=leftCategoryData.get(pos).getName();
+//                findProductByParam(typeId,1,10,true);
+                findProductByParam(typeId,1,10,leftCategoryData.get(0).getName(),true);
+
             }
         });
 
@@ -180,7 +185,7 @@ public class CategoriesFragment extends Fragment {
                     Log.d("loadingMMMMM","notNull");
                     PageBean pageBean = result.getData();
                     if(pageBean.getPageNum()!=pageBean.getNextPage()){
-                        findProductByParam(typeId,pageBean.getNextPage(),pageBean.getPageSize(),false);
+                        findProductByParam(typeId,pageBean.getNextPage(),pageBean.getPageSize(),name,false);
                     }
                 }else {
                     Log.d("loadingMMMMM","Null");
@@ -222,8 +227,8 @@ public class CategoriesFragment extends Fragment {
 
                             typeId = leftCategoryData.get(0).getId()+"";
                             leftCategoryData.get(0).setPressed(true);
-                            findProductByParam(typeId,1,10,true);
-
+//                            findProductByParam(typeId,1,10,true);
+                            findProductByParam(typeId,1,10,leftCategoryData.get(0).getName(),true);
                             categoryLeftAdapter.notifyDataSetChanged();
                         }
 
@@ -232,10 +237,10 @@ public class CategoriesFragment extends Fragment {
 
     }
 
-    private void findProductByParam(String productTypeId, int pageNum, int pageSize, boolean flag){
+    private void findProductByParam(String productTypeId, int pageNum, int pageSize, @Nullable String name, boolean flag){
         OkHttpUtils.get()
                 .url(Constant.API.CATEGORY_PRODUCT_URL)
-                .addParams("name","")
+                .addParams("name",name)
                 .addParams("productTypeId",productTypeId)
                 .addParams("pageNum",pageNum+"")
                 .addParams("pageSize",pageSize+"")
