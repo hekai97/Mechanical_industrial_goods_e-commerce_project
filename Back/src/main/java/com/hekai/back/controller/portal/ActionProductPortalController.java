@@ -25,7 +25,7 @@ public class ActionProductPortalController {
 	 * @param num
 	 * @return
 	 */
-	@RequestMapping(value="/findhotproducts.do",method=RequestMethod.POST)
+	@RequestMapping(value="/findhotproducts",method=RequestMethod.POST)
 	@ResponseBody
 	public SverResponse<List<ActionProduct>> findHotProducts(Integer num){
 		return actionProductService.findHotProducts(num);
@@ -34,7 +34,7 @@ public class ActionProductPortalController {
 	 * 查找楼层商品
 	 * @return
 	 */
-	@RequestMapping("findfloor.do")
+	@RequestMapping("findfloor")
 	@ResponseBody
 	public SverResponse<ActionProductFloorVo> findFloorProducts(){
 		return actionProductService.findFloorProducts();
@@ -44,7 +44,7 @@ public class ActionProductPortalController {
 	 * @param productId
 	 * @return
 	 */
-	@RequestMapping("/getdetail.do")
+	@RequestMapping("/getdetail")
 	@ResponseBody
 	public SverResponse<ActionProduct> getProductDetail(Integer productId){
 		return actionProductService.findProductDetailForPortal(productId);
@@ -58,7 +58,7 @@ public class ActionProductPortalController {
 	 * @param pageSize
 	 * @return
 	 */
-	@RequestMapping("/findproducts.do")
+	@RequestMapping("/findproducts")
 	@ResponseBody
 	public SverResponse<PageBean<ActionProductListVo>> searchProducts(Integer productTypeId, Integer partsId, String name,
 																	  @RequestParam(value="pageNum",defaultValue="1") int pageNum,

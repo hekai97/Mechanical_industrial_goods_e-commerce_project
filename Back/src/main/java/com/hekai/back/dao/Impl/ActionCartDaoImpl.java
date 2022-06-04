@@ -6,6 +6,7 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ColumnListHandler;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 @Repository
 public class ActionCartDaoImpl implements ActionCartDao {
-	@Resource
+	@Autowired
 	private QueryRunner queryRunner;
 	
 	private String str = "id,user_id,product_id,quantity,created,updated,checked";

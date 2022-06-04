@@ -4,6 +4,7 @@ import com.hekai.back.dao.ActionOrderItemDao;
 import com.hekai.back.pojo.ActionOrderItem;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
@@ -11,7 +12,7 @@ import java.sql.SQLException;
 import java.util.List;
 @Repository
 public class ActionOrderItemDaoImpl implements ActionOrderItemDao {
-	@Resource
+	@Autowired
 	private QueryRunner queryRunner;
 
 	private String str = "id,uid,order_no,goods_id,goods_name,icon_url,price,quantity,total_price,created,updated";

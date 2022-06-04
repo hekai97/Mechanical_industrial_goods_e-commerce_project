@@ -31,7 +31,7 @@ public class ActionUserBackController {
 	 * 			密码
 	 * @return
 	 */
-	@RequestMapping(value = "/login.do" , method = RequestMethod.POST)
+	@RequestMapping(value = "/login" , method = RequestMethod.POST)
 	@ResponseBody
 	public SverResponse<User> doLogin(HttpSession session,String account,String password) {
 			//1.调用Service：登陆
@@ -53,7 +53,7 @@ public class ActionUserBackController {
 	 * @param session
 	 * @return
 	 */
-	@RequestMapping("/finduserlist.do")
+	@RequestMapping("/finduserlist")
 	@ResponseBody
 	public SverResponse<List<ActionUserVo>> getUserDetail(HttpSession session) {
 		//1.判断用户是否登陆
@@ -77,7 +77,7 @@ public class ActionUserBackController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping("/finduser.do")
+	@RequestMapping("/finduser")
 	@ResponseBody
 	public SverResponse<ActionUserVo> findUser(HttpSession session, Integer id){
 		//1.判断用户是否登陆
@@ -102,7 +102,7 @@ public class ActionUserBackController {
 	 * @param actionUserVo
 	 * @return
 	 */
-	@RequestMapping("/updateuser.do")
+	@RequestMapping("/updateuser")
 	@ResponseBody
 	public SverResponse<User> updateUser(HttpSession session,ActionUserVo actionUserVo){
 		//1.判断用户是否登陆
@@ -126,7 +126,7 @@ public class ActionUserBackController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping("/deleteusers.do")
+	@RequestMapping("/deleteusers")
 	@ResponseBody
 	public SverResponse<String> delUsers(HttpSession session,Integer id){
 		//1.判断用户是否登陆

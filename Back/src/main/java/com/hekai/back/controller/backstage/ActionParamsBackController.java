@@ -32,7 +32,7 @@ public class ActionParamsBackController {
 	 * @param actionParam
 	 * @return
 	 */
-	@RequestMapping("/saveparam.do")
+	@RequestMapping("/saveparam")
 	@ResponseBody
 	public SverResponse<String> saveParam(HttpSession session, ActionParam actionParam){
 		//1.判断用户是否登陆
@@ -57,7 +57,7 @@ public class ActionParamsBackController {
 	 * @param actionParam
 	 * @return
 	 */
-	@RequestMapping("/updateparam.do")
+	@RequestMapping("/updateparam")
 	@ResponseBody
 	public SverResponse<String> updateCategory(HttpSession session,ActionParam actionParam){
 		//1.判断用户是否登陆
@@ -81,7 +81,7 @@ public class ActionParamsBackController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping("/delparam.do")
+	@RequestMapping("/delparam")
 	@ResponseBody
 	public SverResponse<String> delParam(HttpSession session,Integer id){
 		//1.判断用户是否登陆
@@ -105,7 +105,7 @@ public class ActionParamsBackController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping("/findchildren.do")
+	@RequestMapping("/findchildren")
 	@ResponseBody
 	public SverResponse<List<ActionParam>> getChildrenParam(HttpSession session,@RequestParam(value="id",defaultValue="0")Integer id){
 		//1.判断用户是否登陆

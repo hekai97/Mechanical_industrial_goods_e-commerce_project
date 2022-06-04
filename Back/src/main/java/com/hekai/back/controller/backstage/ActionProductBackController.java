@@ -30,7 +30,7 @@ public class ActionProductBackController {
 	 * @param product
 	 * @return
 	 */
-	@RequestMapping("/productlist.do")
+	@RequestMapping("/productlist")
 	@ResponseBody
 	public SverResponse<List<ActionProductListVo>> findProducts(HttpSession session, ActionProduct product){
 		//1.判断用户是否登陆
@@ -53,7 +53,7 @@ public class ActionProductBackController {
 	 * @param product
 	 * @return
 	 */
-	@RequestMapping("/saveproduct.do")
+	@RequestMapping("/saveproduct")
 	@ResponseBody
 	public SverResponse<String> saveProduct(HttpSession session,ActionProduct product){
 		//1.判断用户是否登陆
@@ -78,7 +78,7 @@ public class ActionProductBackController {
 	 * @param hot
 	 * @return
 	 */
-	@RequestMapping("/setstatus.do")
+	@RequestMapping("/setstatus")
 	@ResponseBody
 	public SverResponse<String> modifyStatus(HttpSession session,Integer productId,Integer status,Integer hot){
 		//1.判断用户是否登陆

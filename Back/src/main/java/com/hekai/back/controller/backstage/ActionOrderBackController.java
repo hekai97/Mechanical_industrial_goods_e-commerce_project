@@ -27,7 +27,7 @@ public class ActionOrderBackController {
 	@Autowired
 	private ActionUserService userService;
 	
-	@RequestMapping("/findorders_nopages.do")
+	@RequestMapping("/findorders_nopages")
 	@ResponseBody
 	public SverResponse<List<ActionOrderVo>> findOrder(HttpSession session, Long orderNo){
 		//1.判断用户是否登陆
@@ -51,7 +51,7 @@ public class ActionOrderBackController {
 	 * @param orderNo
 	 * @return
 	 */
-	@RequestMapping("/getdetail.do")
+	@RequestMapping("/getdetail")
 	@ResponseBody
 	public SverResponse<ActionOrderVo> getDetail(HttpSession session,Long orderNo){
 		//1.判断用户是否登陆
@@ -75,7 +75,7 @@ public class ActionOrderBackController {
 	 * @param pageSize
 	 * @return
 	 */
-	@RequestMapping(value="/findorders.do",method=RequestMethod.POST)
+	@RequestMapping(value="/findorders",method=RequestMethod.POST)
 	@ResponseBody
 	public SverResponse<PageBean<ActionOrderVo>> getList(HttpSession session,
 														 @RequestParam(value="pageNum",defaultValue="1") int pageNum,

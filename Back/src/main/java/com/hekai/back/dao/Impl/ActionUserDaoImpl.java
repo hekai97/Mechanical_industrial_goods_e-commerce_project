@@ -6,6 +6,7 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ColumnListHandler;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
@@ -15,7 +16,7 @@ import java.util.List;
 
 @Repository
 public class ActionUserDaoImpl implements ActionUserDao {
-	@Resource
+	@Autowired
 	private QueryRunner queryRunner;
 	@Override
 	public int checkUserByAccount(String account) {

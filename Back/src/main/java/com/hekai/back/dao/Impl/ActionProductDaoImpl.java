@@ -7,6 +7,7 @@ import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ColumnListHandler;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 @Repository
 public class ActionProductDaoImpl implements ActionProductDao {
-	@Resource
+	@Autowired
 	private QueryRunner queryRunner;
 	private String str="id,name,product_id,parts_id,icon_url,sub_images,"
 			+ "detail,spec_param,price,stock,status,is_hot,created,updated";

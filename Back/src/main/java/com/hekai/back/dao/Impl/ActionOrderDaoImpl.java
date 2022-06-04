@@ -6,6 +6,7 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ColumnListHandler;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
@@ -15,8 +16,8 @@ import java.util.List;
 
 @Repository
 public class ActionOrderDaoImpl implements ActionOrderDao {
-	
-	@Resource
+
+	@Autowired
 	private QueryRunner queryRunner;
 	
 	private String str = "id,order_no,uid,addr_id,amount,type,freight,"
