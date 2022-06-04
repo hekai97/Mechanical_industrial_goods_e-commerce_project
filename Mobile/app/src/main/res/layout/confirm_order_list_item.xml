@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:background="@drawable/detail_product_top_background"
+    tools:context=".ui.ConfirmOrderActivity">
+    <ImageView
+        android:id="@+id/icon_url"
+        android:layout_width="100dp"
+        android:layout_height="80dp" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/icon_url"
+        android:paddingLeft="10dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/name"
+            android:lines="1"
+            android:ellipsize="end"
+            android:textSize="16sp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/price"
+            android:gravity="right"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/name"
+            android:textColor="@color/font_color_red"
+            android:textSize="14sp"/>
+        <TextView
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/price"
+            android:id="@+id/num"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:text="X1"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -20,16 +20,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.Listener.OnItemClickListener;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.R;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.Utils.JsonUtils;
+import com.example.mechanical_industrial_goods_eommerce_project_for_android.Utils.ToastUtils;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.adapters.CartAdapter;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.config.Constant;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.Cart;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.CartItem;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.ResponseCode;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.SverResponse;
+import com.example.mechanical_industrial_goods_eommerce_project_for_android.ui.ConfirmOrderActivity;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.ui.DetailActivity;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.ui.LoginActivity;
 import com.google.gson.reflect.TypeToken;
@@ -200,6 +203,16 @@ public class ShoppingcartFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 //跳转到确定订单页面
+                System.out.println("buy");
+                if(!total.getText().toString().equals("合计：￥0"))
+                {
+                    Intent intent=new Intent(getActivity(), ConfirmOrderActivity.class);
+                    startActivity(intent);
+                }
+                else
+                {
+                    ToastUtils.showLongToast(getActivity(),"请先选择商品");
+                }
 
             }
         });

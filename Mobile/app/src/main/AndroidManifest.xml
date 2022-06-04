@@ -16,6 +16,12 @@
         android:theme="@style/Theme.Mechanical_industrial_goods_Eommerce_project_for_android"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.AddressListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.ConfirmOrderActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.DetailActivity"
             android:exported="false" />
         <activity android:name=".ui.LoginActivity" />

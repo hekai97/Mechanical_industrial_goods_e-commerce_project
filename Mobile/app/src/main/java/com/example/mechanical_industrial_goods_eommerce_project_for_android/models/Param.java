@@ -4,46 +4,40 @@ import java.util.List;
 
 public class Param {
 
-    /**
-     * id
-     */
-    private Integer id;
-    /**
-     * parent_id
-     */
-    private Integer parent_id;
-    /**
-     * name
-     */
+    private int id;
+    private int parent_id;
     private String name;
-    /**
-     * status
-     */
-    private int status;
-    /**
-     * sort_order
-     */
-    private Integer sort_order;
-    /**
-     * level
-     */
-    private Integer level;
-    /**
-     * created
-     */
+    private boolean status;
+    private int sort_order;
+    private int level;
     private String created;
-    /**
-     * updated
-     */
     private String updated;
-    /**
-     * children
-     */
-    private List<?> children;
 
     private boolean pressed = false;
 
-    public Integer getId() {
+    public Param() {
+    }
+
+    public Param(int id, int parent_id, String name, boolean status, int sort_order, int level, String created, String updated) {
+        this.id = id;
+        this.parent_id = parent_id;
+        this.name = name;
+        this.status = status;
+        this.sort_order = sort_order;
+        this.level = level;
+        this.created = created;
+        this.updated = updated;
+    }
+
+    public boolean isPressed() {
+        return pressed;
+    }
+
+    public void setPressed(boolean pressed) {
+        this.pressed = pressed;
+    }
+
+    public int getId() {
         return id;
     }
 
@@ -51,7 +45,7 @@ public class Param {
         this.id = id;
     }
 
-    public Integer getParent_id() {
+    public int getParent_id() {
         return parent_id;
     }
 
@@ -67,15 +61,15 @@ public class Param {
         this.name = name;
     }
 
-    public int isStatus() {
+    public boolean isStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 
-    public Integer getSort_order() {
+    public int getSort_order() {
         return sort_order;
     }
 
@@ -83,7 +77,7 @@ public class Param {
         this.sort_order = sort_order;
     }
 
-    public Integer getLevel() {
+    public int getLevel() {
         return level;
     }
 
@@ -105,21 +99,5 @@ public class Param {
 
     public void setUpdated(String updated) {
         this.updated = updated;
-    }
-
-    public List<?> getChildren() {
-        return children;
-    }
-
-    public void setChildren(List<?> children) {
-        this.children = children;
-    }
-
-    public boolean isPressed() {
-        return pressed;
-    }
-
-    public void setPressed(boolean pressed) {
-        this.pressed = pressed;
     }
 }
