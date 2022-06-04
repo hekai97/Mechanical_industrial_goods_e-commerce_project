@@ -11,7 +11,7 @@ import java.io.IOException;
  * @author: hekai
  * @Date: 2022/6/3
  */
-//@Component
+@Component
 public class CrossOriginControlFilter implements Filter {
 
     @Override

@@ -21,8 +21,13 @@ public class WebMvcConfig implements WebMvcConfigurer {
         configurer.addPathPrefix("actionmall", HandlerTypePredicate.forAnnotation(RestController.class));
     }
 
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**").allowedOrigins("*");
-    }
+//    @Override
+//    public void addCorsMappings(CorsRegistry registry) {
+//        registry.addMapping("/**")
+//                .allowedOriginPatterns("*")
+//                .allowedMethods("GET", "HEAD", "POST", "PUT", "DELETE", "OPTIONS")
+//                .allowCredentials(true)
+//                .maxAge(3600)
+//                .allowedHeaders("*");
+//    }
 }

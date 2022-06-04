@@ -1,4 +1,3 @@
-var baseUrl="http://10.20.138.118:8080/actionmall/";
 define(['common'],function(common){
     var isAccountValidate=false;
     var isPasswordValidate=false;
