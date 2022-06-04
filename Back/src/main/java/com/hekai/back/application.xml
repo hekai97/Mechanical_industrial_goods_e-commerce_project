@@ -22,7 +22,7 @@
         <property name="ignoreUnresolvablePlaceholders" value="true" />
         <property name="locations">
             <list>
-                <value>classpath:application.properties</value>
+                <value>classpath:DataSource.properties</value>
             </list>
         </property>
     </bean>

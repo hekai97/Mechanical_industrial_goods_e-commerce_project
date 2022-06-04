@@ -40,6 +40,7 @@ define(['common'],function(common){
                             $(window).attr("location","html/admin/index.html");
                         }
                         else{
+                            alert("登录成功")
                             $(window).attr("location","../html/index.html");
                         }
                     }else{
