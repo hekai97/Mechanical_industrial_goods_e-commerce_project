@@ -1,4 +1,16 @@
 /**
+ * By default DataTables only uses the sAjaxSource variable at initialisation
+ * time, however it can be useful to re-read an Ajax source and have the table
+ * update. Typically you would need to use the `fnClearTable()` and
+ * `fnAddData()` functions, however this wraps it all up in a single function
+ * call.
+ *
+ * DataTables 1.10 provides the `dt-api ajax.url()` and `dt-api ajax.reload()`
+ * methods, built-in, to give the same functionality as this plug-in. As such
+ * this method is marked deprecated, but is available for use with legacy
+ * version of DataTables. Please use the new API if you are used DataTables 1.10
+ * or newer.
+ *
  *  @name fnReloadAjax
  *  @summary Reload the table's data from the Ajax source
  *  @author [Allan Jardine](http://sprymedia.co.uk)

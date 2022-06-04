@@ -1,4 +1,4 @@
-var baseUrl="http://192.168.43.74:8080/actionmall/";
+var baseUrl="http://10.21.6.219:8080/actionmall/";
 define(function(){
 	//获取url中的参数
 	function getParam(name){
