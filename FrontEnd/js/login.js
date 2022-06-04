@@ -1,4 +1,3 @@
-var baseUrl="http://192.168.43.74:8080/actionmall/";
 define(['common'],function(common){
     var isAccountValidate=false;
     var isPasswordValidate=false;
@@ -40,7 +39,7 @@ define(['common'],function(common){
                             $(window).attr("location","html/admin/index.html");
                         }
                         else{
-                            $(window).attr("location","../html/index.html");
+                            window.location.href="../html/index.html";
                         }
                     }else{
                         $("#passwordError").css({display:"block"});

@@ -127,6 +127,7 @@ define(['jquery','common'],function(jquery,common){
         if(rePwd=="")
         {
             $("#repasswordError").css({display:"block"});
+            $("#repasswordError").html("请确认密码！");
             return false;
         }
         return true;
@@ -158,7 +159,7 @@ define(['jquery','common'],function(jquery,common){
         $("#phoneError").css({display:"none"});
         if(phone==""){
             $("#phoneError").css({display:"block"});
-            $("#rphoneError").html("请输入手机号码！");
+            $("#phoneError").html("请输入手机号码！");
             return false;
         }
         //手机格式验证判断是否为手机号
