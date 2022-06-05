@@ -22,7 +22,7 @@ public class ProductTypesControllerBackend {
     @Autowired
     private ProductTypesServiceImp productTypesServiceImp;
 
-    @RequestMapping(value = "/delparam")
+    @RequestMapping(value = "/delparam.do")
     public Result<ProductTypes> delParam(HttpSession httpSession, @RequestBody int id){
         return productTypesServiceImp.delParam(id);
     }
@@ -32,27 +32,27 @@ public class ProductTypesControllerBackend {
      * 未实现
      * */
 
-    @RequestMapping(value = "/findpartstype")
+    @RequestMapping(value = "/findpartstype.do")
     public Result<List<ProductTypes>> findPartStyle(HttpSession httpSession,@RequestBody int productTypeId){
         return productTypesServiceImp.findPartStyle(productTypeId);
     }
 
-    @RequestMapping(value = "/findptype")
+    @RequestMapping(value = "/findptype.do")
     public Result<List<ProductTypes>> findPtype(HttpSession httpSession){
         return productTypesServiceImp.findPType();
     }
 
-    @RequestMapping(value = "/findchildren")
+    @RequestMapping(value = "/findchildren.do")
     public Result<List<ProductTypes>> findChildren(HttpSession httpSession,@RequestBody int id){
         return productTypesServiceImp.findChildren(id);
     }
 
-    @RequestMapping(value = "/updateparam")
+    @RequestMapping(value = "/updateparam.do")
     public Result<ProductTypes> updateParam(HttpSession httpSession,@RequestBody String name,@RequestBody int id){
         return productTypesServiceImp.updateParam(name,id);
     }
 
-    @RequestMapping(value = "/saveparam")
+    @RequestMapping(value = "/saveparam.do")
     public Result<ProductTypes> saveParam(HttpSession httpSession,@RequestBody String name,@RequestBody int parent_id){
         return productTypesServiceImp.saveParam(name,parent_id);
     }

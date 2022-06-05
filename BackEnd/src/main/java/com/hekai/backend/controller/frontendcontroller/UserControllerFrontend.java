@@ -20,20 +20,20 @@ public class UserControllerFrontend {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/getUserByAccount")
+    @RequestMapping(value = "/getUserByAccount.do")
     @ResponseBody
     public Result<User> getUserByAccount(String account){
         return userService.findUserByAccount(account);
     }
 
-    @RequestMapping(value = "/do_logout")
+    @RequestMapping(value = "/do_logout.do")
     @ResponseBody
     public Result<User> doLogOut(HttpSession httpSession){
         httpSession.removeAttribute(ConstUtil.CUR_USER);
         return Result.createRespBySuccess();
     }
 
-    @RequestMapping(value = "/updateuserinfo")
+    @RequestMapping(value = "/updateuserinfo.do")
     @ResponseBody
     public Result<User> updateUserInfo(HttpSession httpSession,@RequestBody User user){
         User curUser = (User) httpSession.getAttribute(ConstUtil.CUR_USER);
@@ -50,7 +50,7 @@ public class UserControllerFrontend {
         return result;
     }
 
-    @RequestMapping(value = "/updatepassword")
+    @RequestMapping(value = "/updatepassword.do")
     @ResponseBody
     public Result<String> updatePassword(HttpSession httpSession,String newpwd,String oldpwd){
         User curUser = (User) httpSession.getAttribute(ConstUtil.CUR_USER);
@@ -64,25 +64,25 @@ public class UserControllerFrontend {
         return result;
     }
 
-    @RequestMapping(value = "/resetpassword")
+    @RequestMapping(value = "/resetpassword.do")
     @ResponseBody
     public Result<String> resetPassword(String newpwd,Integer userid){
         return userService.resetPassword(newpwd,userid);
     }
 
-    @RequestMapping(value = "/checkuserasw")
+    @RequestMapping(value = "/checkuserasw.do")
     @ResponseBody
     public Result<String> checkUserAsw(String account,String question,String asw){
         return userService.checkUserAnswer(account,question,asw);
     }
 
-    @RequestMapping(value = "/getuserquestion")
+    @RequestMapping(value = "/getuserquestion.do")
     @ResponseBody
     public Result<String> getUserQuestion(String account){
         return userService.getUserQuestion(account);
     }
 
-    @RequestMapping(value = "/getuserinfo")
+    @RequestMapping(value = "/getuserinfo.do")
     @ResponseBody
     public Result<User> getUserInfo(HttpSession httpSession){
         User curUser = (User) httpSession.getAttribute(ConstUtil.CUR_USER);
@@ -94,7 +94,7 @@ public class UserControllerFrontend {
         return userService.findUserByAccount(curUser.getAccount());
     }
 
-    @RequestMapping(value = "/do_register")
+    @RequestMapping(value = "/do_register.do")
     @ResponseBody
     public Result<User> doRegister(User user){
         Result<User> result=userService.doRegister(user);
@@ -103,7 +103,7 @@ public class UserControllerFrontend {
         return result;
     }
 
-    @RequestMapping(value = "/do_login")
+    @RequestMapping(value = "/do_login.do")
     @ResponseBody
     public Result<User> doLogin(HttpSession httpSession,String account,String password){
         Result<User> user=userService.doLogin(account,password);
@@ -114,7 +114,7 @@ public class UserControllerFrontend {
         return user;
     }
 
-    @RequestMapping(value = "/do_check_info")
+    @RequestMapping(value = "/do_check_info.do")
     @ResponseBody
     public Result<User> doCheckInfo(String info,String type){
         return userService.doCheckInfo(info,type);

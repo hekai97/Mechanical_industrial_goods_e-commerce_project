@@ -24,7 +24,7 @@ public class CartControllerFrontend {
     @Autowired
     private CartService cartService;
 
-    @RequestMapping(value = "/getcartcount")
+    @RequestMapping(value = "/getcartcount.do")
     public Result<Integer> getCardCount(HttpSession httpSession){
         User user=(User) httpSession.getAttribute(ConstUtil.CUR_USER);
         if(user==null){
@@ -33,8 +33,9 @@ public class CartControllerFrontend {
         return cartService.getCardCount(user.getId());
     }
 
-    @RequestMapping(value = "/updatecarts")
+    @RequestMapping(value = "/updatecarts.do")
     public Result<CartWithProductAndTotalPrice> updateCarts(HttpSession httpSession,Integer productId, Integer count, Integer checked){
+        System.out.println("productId="+productId+"count="+count+"checked="+checked);
         User user=(User) httpSession.getAttribute(ConstUtil.CUR_USER);
         if(user==null){
             return Result.createByErrorMessage("请登录后再操作");
@@ -42,7 +43,7 @@ public class CartControllerFrontend {
         return cartService.updateCarts(user,productId,count,checked);
     }
 
-    @RequestMapping(value = "/clearcarts")
+    @RequestMapping(value = "/clearcarts.do")
     public Result<Cart> clearCarts(HttpSession httpSession){
         User user=(User) httpSession.getAttribute(ConstUtil.CUR_USER);
         if(user==null){
@@ -51,7 +52,7 @@ public class CartControllerFrontend {
         return cartService.clearCarts(user);
     }
 
-    @RequestMapping(value = "/delcarts")
+    @RequestMapping(value = "/delcarts.do")
     public Result<CartWithProductAndTotalPrice> delCarts(HttpSession httpSession,Integer productId){
         User user=(User) httpSession.getAttribute(ConstUtil.CUR_USER);
         if(user==null){
@@ -60,7 +61,7 @@ public class CartControllerFrontend {
         return cartService.deleteCartsProductById(user,productId);
     }
 
-    @RequestMapping(value = "/findallcarts")
+    @RequestMapping(value = "/findallcarts.do")
     public Result<CartWithProductAndTotalPrice> findAllCarts(HttpSession httpSession){
         User user=(User) httpSession.getAttribute(ConstUtil.CUR_USER);
         if(user==null){
@@ -69,7 +70,7 @@ public class CartControllerFrontend {
         return cartService.findAllCarts(user);
     }
 
-    @RequestMapping(value = "/savecart")
+    @RequestMapping(value = "/savecart.do")
     public Result<Cart> saveCart(HttpSession httpSession,Integer productId,Integer count){
         User user=(User) httpSession.getAttribute(ConstUtil.CUR_USER);
         if(user==null){

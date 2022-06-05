@@ -1,14 +1,13 @@
 package com.hekai.backend.controller.frontendcontroller;
 
-import com.hekai.backend.entites.reConstruction.compositeEntities.OrderWithOrderItemList;
 import com.hekai.backend.entites.reConstruction.compositeEntities.OrderAndOrderItemList;
+import com.hekai.backend.entites.reConstruction.compositeEntities.OrderWithOrderItemList;
 import com.hekai.backend.entites.reConstruction.compositeEntities.PageBean;
 import com.hekai.backend.entites.reConstruction.compositeEntities.Result;
 import com.hekai.backend.entites.sourceEntites.User;
 import com.hekai.backend.service.OrderService;
 import com.hekai.backend.utils.ConstUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,7 +26,7 @@ public class OrderControllerFrontend {
     @Autowired
     private OrderService orderService;
 
-    @RequestMapping(value = "/confirmreceipt")
+    @RequestMapping(value = "/confirmreceipt.do")
     public Result<String> confirmReceipt(HttpSession httpSession, Long orderNo){
         User user=(User) httpSession.getAttribute(ConstUtil.CUR_USER);
         if(user==null){
@@ -36,7 +35,7 @@ public class OrderControllerFrontend {
         return orderService.confirmReceipt(user,orderNo);
     }
 
-    @RequestMapping(value = "/getdetail")
+    @RequestMapping(value = "/getdetail.do")
     public Result<OrderWithOrderItemList> getDetail(HttpSession httpSession,Long orderNo){
         User user=(User) httpSession.getAttribute(ConstUtil.CUR_USER);
         if(user==null){
@@ -45,7 +44,7 @@ public class OrderControllerFrontend {
         return orderService.getDetail(orderNo);
     }
 
-    @RequestMapping(value = "/cancelorder")
+    @RequestMapping(value = "/cancelorder.do")
     public Result<String> cancelOrder(HttpSession httpSession,Long orderNo){
         User user=(User) httpSession.getAttribute(ConstUtil.CUR_USER);
         if(user==null){
@@ -54,7 +53,7 @@ public class OrderControllerFrontend {
         return orderService.cancelOrder(user,orderNo);
     }
 
-    @RequestMapping(value = "/getlist")
+    @RequestMapping(value = "/getlist.do")
     public Result<PageBean<List<OrderWithOrderItemList>>> getList(HttpSession httpSession, Integer status,
                                                                   @RequestParam(value="pageNum",defaultValue="1") int pageNum,
                                                                   @RequestParam(value="pageSize",defaultValue="10") int pageSize){
@@ -65,7 +64,7 @@ public class OrderControllerFrontend {
         return orderService.getOrderLists(user,status,pageNum,pageSize);
     }
 
-    @RequestMapping(value = "/createorder")
+    @RequestMapping(value = "/createorder.do")
     public Result<OrderAndOrderItemList> createOrder(HttpSession httpSession,Integer addrId){
         User user=(User) httpSession.getAttribute(ConstUtil.CUR_USER);
         if(user==null){

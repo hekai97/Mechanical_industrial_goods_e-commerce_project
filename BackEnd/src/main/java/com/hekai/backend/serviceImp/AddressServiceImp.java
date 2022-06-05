@@ -35,7 +35,7 @@ public class AddressServiceImp implements AddressService {
         if(address==null){
             return Result.createByErrorMessage("默认地址修改失败");
         }
-        address.setDfault((byte) 1);
+        address.setDfault(true);
         address.setUpdated(new Timestamp(new Date().getTime()));
         addressRepository.save(address);
         List<Address> addresses=addressRepository.findByUserId(user.getId());
@@ -62,7 +62,7 @@ public class AddressServiceImp implements AddressService {
     @Override
     public Result<List<Address>> saveAddress(User user, Address address) {
         address.setIsDel((byte) 0);
-        address.setDfault((byte) 0);
+        address.setDfault(false);
         Timestamp timestamp=new Timestamp(new Date().getTime());
         address.setCreated(timestamp);
         address.setUpdated(timestamp);
