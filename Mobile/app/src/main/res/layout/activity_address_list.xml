@@ -29,15 +29,16 @@
         android:background="@color/font_color_hot_title"
         android:textColor="@color/colorWhite"
         android:id="@+id/btn_add"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/address_rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar"
         android:layout_above="@id/btn_add"
+        android:layout_below="@+id/toolbar"
         android:layout_gravity="center_horizontal"
         android:background="#F5F5F5"
         android:paddingLeft="5dp"
-        android:paddingRight="5dp"/>
+        android:paddingRight="5dp" />
 
 </RelativeLayout>

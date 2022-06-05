@@ -211,7 +211,19 @@ public class ConfirmOrderActivity extends AppCompatActivity {
                         {
                             //跳转到订单详情
                             Toast.makeText(ConfirmOrderActivity.this,"提交订单完成",Toast.LENGTH_SHORT).show();
-                            // TODO: 2022/6/4 跳转到订单详情 
+                            // ConfirmOrderActivity.this.finish();
+
+                            Intent intent = new Intent(Constant.ACTION.LOAD_CART_ACTION);
+                            LocalBroadcastManager.getInstance(ConfirmOrderActivity.this).sendBroadcast(intent);
+
+                            intent = new Intent(ConfirmOrderActivity.this, OrderDetailActivity.class);
+
+                            intent.putExtra("id",result.getData().getOrderNo());
+
+                            startActivity(intent);
+
+
+                            ConfirmOrderActivity.this.finish();
                         }
                         else
                         {

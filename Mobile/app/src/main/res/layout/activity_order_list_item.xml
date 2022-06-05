@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:background="@color/colorBackground">
+
+    <TextView
+        android:id="@+id/orderNo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="订单编号:"
+        android:textColor="@color/font_color"
+        android:textSize="@dimen/big_font" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/orderNo"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:padding="5dp"
+            android:text="订单状态:"
+            android:textSize="@dimen/normal_font" />
+        <TextView
+            android:id="@+id/total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:padding="5dp"
+            android:text="$111"
+            android:textSize="@dimen/normal_font" />
+        <TextView
+            android:layout_below="@+id/status"
+            android:id="@+id/deliveryName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="收货人:"
+            android:padding="5dp"/>
+    </RelativeLayout>
+
+
+
+
+</RelativeLayout>

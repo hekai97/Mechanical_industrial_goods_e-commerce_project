@@ -198,6 +198,11 @@ public class IndexFragment extends Fragment {
                 intent.putExtra("id",id);
                 startActivity(intent);
             }
+
+            @Override
+            public void onItemLongClick(View v, int pos) {
+
+            }
         });
         adapters.add(indexHotProductAdapter);
         //点击热销产品，要跳转到详情页面
@@ -254,7 +259,7 @@ public class IndexFragment extends Fragment {
 
         Log.d("URLAAA","HOT111");
 
-        OkHttpUtils.get()
+        OkHttpUtils.post()
                 .url(Constant.API.HOT_PRODUCT_URL)
                 .addParams("num","10")
                 .build()

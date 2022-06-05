@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.Listener.OnItemClickListener;
@@ -48,10 +47,13 @@ public class AddressListActivity extends AppCompatActivity implements View.OnCli
         Intent intent;
         switch (view.getId()) {
             case R.id.btn_add:
-                // TODO: 2022/6/4 跳转到添加地址activity
+                intent = new Intent(AddressListActivity.this,AddAddressActivity.class);
+                startActivity(intent);
                 break;
             case R.id.btn_update:
                 // TODO: 2022/6/4 跳转到更新地址activity
+                intent = new Intent(AddressListActivity.this, UpdateAddrActivity.class);
+                startActivity(intent);
                 break;
         }
     }
@@ -85,6 +87,11 @@ public class AddressListActivity extends AppCompatActivity implements View.OnCli
 
             }
 
+            @Override
+            public void onItemLongClick(View v, int pos) {
+
+            }
+
         });
         addressAdapter.setOnAddrOptListener(new AddressAdapter.OnAddrOptListener() {
             @Override
@@ -94,6 +101,8 @@ public class AddressListActivity extends AppCompatActivity implements View.OnCli
 
             }
         });
+
+        // TODO: 2022/6/5 增加一个修改按钮进行地址修改的操作
     }
 
     /**

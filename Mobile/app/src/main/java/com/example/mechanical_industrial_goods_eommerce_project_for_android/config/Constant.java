@@ -2,7 +2,7 @@ package com.example.mechanical_industrial_goods_eommerce_project_for_android.con
 
 public class Constant {
 
-    public static class API {
+    public static class APIR {
 
         //基地址
 //        public static final String BASE_URL = "http://192.168.43.74:8080/actionmall/";
@@ -45,16 +45,19 @@ public class Constant {
 
     }
 
-    public static class APIR{
+    public static class API{
         //基地址
-        public static final String BASE_URL = "http://44.201.174.208/actionmall/";
-
+//        public static final String BASE_URL = "http://44.201.174.208/actionmall/";
+        public static final String BASE_URL = "http://192.168.43.74:8080/mall/";
         //产品类型参数地址
         public static final String CATEGORY_PARAM_URL= BASE_URL+"param/findallparams.do";
+//        public static final String CATEGORY_PARAM_URL = BASE_URL + "findallparams";
         //热销商品
         public static final String HOT_PRODUCT_URL= BASE_URL+"product/findhotproducts.do";
+//        public static final String HOT_PRODUCT_URL= BASE_URL+"findhotproducts.do";
         //商品分类查询
         public static final String CATEGORY_PRODUCT_URL= BASE_URL+"product/findproducts.do";
+//        public static final String CATEGORY_PRODUCT_URL= BASE_URL+"findproducts.do";
         //商品详情
         public static final String PRODUCT_DETAIL_URL= BASE_URL+"product/getdetail.do";
         //购物车列表
@@ -73,11 +76,15 @@ public class Constant {
         public static final String USER_INFO_URL=BASE_URL+"user/getuserinfo.do";
         //用户退出登录
         public static final String USER_EXIT_URL = BASE_URL+"user/do_logout.do";
+        //获取用户密码问题
+        public static final String USER_QUE_URL = BASE_URL+"user/getuserquestion.do";
 
         //用户注册
         public static final String REGISTER_INFO_URL = BASE_URL+"user/do_register.do";
         //用户修改密码
         public static final String REGISTER_RESETPW_URL = BASE_URL+"user/resetpassword.do";
+        //检查问题和密码匹配
+        public static final String CHECK_ASW_URL = BASE_URL+"user/checkuserasw.do";
         //地址列表
         public static final String USER_ADDR_LIST_URL= BASE_URL+"addr/findaddrs.do";
         //删除地址

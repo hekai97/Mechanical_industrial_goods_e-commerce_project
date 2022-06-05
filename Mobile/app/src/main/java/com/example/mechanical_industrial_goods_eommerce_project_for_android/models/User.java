@@ -11,6 +11,25 @@ public class User {
     private String create_time;
     private String update_time;
 
+    private String data;//少写一个javabean，在这添加一个data参数，在获取用户问题处复用此bean类型
+    private String msg;//同上
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
     public Integer getId() {
         return id;
     }

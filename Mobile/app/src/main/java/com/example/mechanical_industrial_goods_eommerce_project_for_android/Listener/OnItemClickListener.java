@@ -5,4 +5,5 @@ import android.view.View;
 public interface OnItemClickListener {
 
     public void onItemClick(View view, int pos);
+    public void onItemLongClick(View v, int pos);
 }

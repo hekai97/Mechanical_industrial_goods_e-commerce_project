@@ -41,17 +41,26 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         passwordEdit = (EditText) findViewById(R.id.password);
         findViewById(R.id.btn_login).setOnClickListener(this);
         findViewById(R.id.btn_register).setOnClickListener(this);
+        findViewById(R.id.btn_resetpw).setOnClickListener(this);
 
     }
 
     @Override
     public void onClick(View view) {
+        Intent intent;
         switch (view.getId()){
             case R.id.btn_login:
                 login();
                 break;
             case R.id.btn_register:
-
+                //调用注册方法
+                intent = new Intent(LoginActivity.this,RegisterActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btn_resetpw:
+                //调用更改密码方法
+                intent = new Intent(LoginActivity.this,ResetPwGetAcActivity.class);
+                startActivity(intent);
                 break;
         }
     }

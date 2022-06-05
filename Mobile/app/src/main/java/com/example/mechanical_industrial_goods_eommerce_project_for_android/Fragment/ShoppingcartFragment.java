@@ -227,6 +227,11 @@ public class ShoppingcartFragment extends Fragment {
                 intent.putExtra("id",id);
                 startActivity(intent);
             }
+
+            @Override
+            public void onItemLongClick(View v, int pos) {
+
+            }
         });
 
     }
@@ -235,7 +240,7 @@ public class ShoppingcartFragment extends Fragment {
     //加载购物车数据
     private void loadCartData(){
         Log.d("tiaozhuanlogin","loadcartdata");
-        OkHttpUtils.get()
+        OkHttpUtils.post()
                 .url(Constant.API.CART_LIST_URL)
                 .build()
                 .execute(new StringCallback() {
