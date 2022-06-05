@@ -13,7 +13,7 @@ define(['jquery','common','handlebar'],function(jquery,common,Handlebars){
 	//1.加载  获取所有产品类型
 	function ready(){
 		$.ajax({
-			url:baseUrl+"param/findallparams",
+			url:baseUrl+"param/findallparams.do",
 			xhrFields:{withCredentials:true},
 			crossDomain:true,
 			success:function(rs){
@@ -84,7 +84,7 @@ define(['jquery','common','handlebar'],function(jquery,common,Handlebars){
 		}
 		//向服务器发送请求查询数据
 		$.ajax({
-			url:baseUrl+"product/findproducts",
+			url:baseUrl+"product/findproducts.do",
 			xhrFields:{withCredentials:true},
 			crossDomain:true,
 			data:{'productTypeId':productTypeId,'partsId':partsTypeId,'name':conditon,'pageNum':pageNum,'pageSize':pageSize},

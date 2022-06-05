@@ -90,7 +90,7 @@ define(['jquery'],function(jquery){
 			}
 			//验证用户名是否正确，展示输入问题部分
 			$.ajax({
-				url:baseUrl+"user/getUserByAccount",
+				url:baseUrl+"user/getUserByAccount.do",
 				xhrFields:{withCredentials:true},
 				crossDomain:true,
 				type:"post",
@@ -114,7 +114,7 @@ define(['jquery'],function(jquery){
 		}else{
 			//答案提交
 			$.ajax({
-				url:baseUrl+"user/checkuserasw",
+				url:baseUrl+"user/checkuserasw.do",
 				xhrFields:{withCredentials:true},
 				crossDomain:true,
 				type:"post",
@@ -148,7 +148,7 @@ define(['jquery'],function(jquery){
 		}
 		//向后台提交重置密码
 		$.ajax({
-			url:baseUrl+"user/resetpassword",
+			url:baseUrl+"user/resetpassword.do",
 			xhrFields:{withCredentials:true},
 			crossDomain:true,
 			type:"post",

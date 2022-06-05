@@ -34,7 +34,7 @@ define(['jquery','common','handlebar'],function(jquery,common,Handlebars){
 			var orderNo = $(this).attr("data-orderno");
 			//向服务器发送请求
 			$.ajax({
-				url:baseUrl+"order/confirmreceipt",
+				url:baseUrl+"order/confirmreceipt.do",
 				xhrFields:{withCredentials:true},
 				crossDomain:true,
 				data:{'orderNo':orderNo},
@@ -66,7 +66,7 @@ define(['jquery','common','handlebar'],function(jquery,common,Handlebars){
 	//获得订单列表
 	function getOrders(status,pageNum,pageSize,callBack){
 		$.ajax({
-			url:baseUrl+"order/getlist",
+			url:baseUrl+"order/getlist.do",
 			xhrFields:{withCredentials:true},
 			crossDomain:true,
 			data:{'status':status,'pageNum':pageNum,'pageSize':pageSize},

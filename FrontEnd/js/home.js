@@ -2,7 +2,7 @@ define(['jquery_SuperSlide','common','handlebar'],function(jquery_SuperSlide,com
 	//1.加载产品分类
 	function getParam(){
 		$.ajax({
-			url:baseUrl+"param/findallparams",
+			url:baseUrl+"param/findallparams.do",
 			xhrFields:{withCredentials:true},
 			crossDomain:true,
 			success:function(rs){
@@ -20,7 +20,7 @@ define(['jquery_SuperSlide','common','handlebar'],function(jquery_SuperSlide,com
 	//2.加载热销商品
 	function getHotProduct(){
 		$.ajax({
-			url:baseUrl+"product/findhotproducts",
+			url:baseUrl+"product/findhotproducts.do",
 			type:"post",
 			data:{num:5},
 			xhrFields:{withCredentials:true},
@@ -50,7 +50,7 @@ define(['jquery_SuperSlide','common','handlebar'],function(jquery_SuperSlide,com
 	//3.加载楼层信息
 	function getFloors(){
 		$.ajax({
-			url:baseUrl+"product/findfloors",
+			url:baseUrl+"product/findfloors.do",
 			xhrFields:{withCredentials:true},
 			crossDomain:true,
 			success:function(rs){

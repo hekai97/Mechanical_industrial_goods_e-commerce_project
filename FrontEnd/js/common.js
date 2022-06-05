@@ -1,4 +1,4 @@
-var baseUrl="http://10.21.6.219:8080/actionmall/";
+var baseUrl="http://10.20.200.19:8080/mall/";
 define(function(){
 	//获取url中的参数
 	function getParam(name){
@@ -13,7 +13,7 @@ define(function(){
 	function getUserInfo(){
 		//向服务器请求数据
 		$.ajax({
-			url:baseUrl+"user/getuserinfo",
+			url:baseUrl+"user/getuserinfo.do",
 			xhrFields:{withCredentials:true},
 			crossDomain:true,
 			success:function(user){
@@ -35,7 +35,7 @@ define(function(){
 	//获取用户购物车商品数量
 	function getCartCount(){
 		$.ajax({
-			url:baseUrl+"cart/getcartcount",
+			url:baseUrl+"cart/getcartcount.do",
 			xhrFields:{withCredentials:true},
 			crossDomain:true,
 			success:function(rs){
@@ -53,7 +53,7 @@ define(function(){
 		$("#headerLogout").click(function(){
 			//向服务器请求数据
 			$.ajax({
-				url:baseUrl+"user/do_logout",
+				url:baseUrl+"user/do_logout.do",
 				xhrFields:{withCredentials:true},
 				crossDomain:true,
 				success:function(rs){

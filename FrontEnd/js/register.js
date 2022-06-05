@@ -49,7 +49,7 @@ define(['jquery','common'],function(jquery,common){
         //请求服务器验证用户名是否存在 同步
         var flag=false;
         $.ajax({
-            url:baseUrl+"user/do_check_info?number="+Math.random(),
+            url:baseUrl+"user/do_check_info.do?number="+Math.random(),
             type:"post",
             data:{info:userName,type:"account"},
             async:false,
@@ -276,7 +276,7 @@ define(['jquery','common'],function(jquery,common){
                 };
             //请求服务器
             $.ajax({
-                url:baseUrl+"user/do_register",
+                url:baseUrl+"user/do_register.do",
                 type:"post",
                 data:formData,
                 success:function(rs){

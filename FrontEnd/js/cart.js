@@ -6,7 +6,7 @@ define(['jquery','handlebar','common'],function(jquery,Handlebars,common){
 		$(".delete").live("click",function(){
 			var productId = $(this).attr("data-product-id");
 			$.ajax({
-				url:baseUrl+"cart/delcarts",
+				url:baseUrl+"cart/delcarts.do",
 				data:{"productId":productId},
 				xhrFields:{withCredentials:true},
 				crossDomain:true,
@@ -20,7 +20,7 @@ define(['jquery','handlebar','common'],function(jquery,Handlebars,common){
 		//3.清空购物车
 		$("#clear").click(function(){
 			$.ajax({
-				url:baseUrl+"cart/clearcarts",
+				url:baseUrl+"cart/clearcarts.do",
 				xhrFields:{withCredentials:true},
 				crossDomain:true,
 				success:function(rs){
@@ -129,7 +129,7 @@ define(['jquery','handlebar','common'],function(jquery,Handlebars,common){
 	//更新购物车信息
 	function updateCartInfo(productId,count,checked){
 		$.ajax({
-			url:baseUrl+"cart/updatecarts",
+			url:baseUrl+"cart/updatecarts.do",
 			xhrFields:{withCredentials:true},
 			crossDomain:true,
 			data:{'count':count,'productId':productId,'checked':checked},
@@ -143,7 +143,7 @@ define(['jquery','handlebar','common'],function(jquery,Handlebars,common){
 	//读取购物车信息
 	function getCartInfo(){
 		$.ajax({
-			url:baseUrl+"cart/findallcarts",
+			url:baseUrl+"cart/findallcarts.do",
 			xhrFields:{withCredentials:true},
 			crossDomain:true,
 			async:false,
