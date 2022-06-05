@@ -26,7 +26,7 @@ public class ActionCartPortalController {
 	 * @param count
 	 * @return
 	 */
-	@RequestMapping(value="/savecart",method=RequestMethod.POST)
+	@RequestMapping(value="/savecart.do",method=RequestMethod.POST)
 	@ResponseBody
 	public SverResponse<String> addProductCart(HttpSession session, Integer productId, Integer count){
 		User user = (User) session.getAttribute(ConstUtil.CUR_USER);
@@ -40,7 +40,7 @@ public class ActionCartPortalController {
 	 * @param session
 	 * @return
 	 */
-	@RequestMapping(value="/findallcarts",method=RequestMethod.POST)
+	@RequestMapping(value="/findallcarts.do",method=RequestMethod.POST)
 	@ResponseBody
 	public SverResponse<ActionCartVo> findAllCarts(HttpSession session){
 		User user = (User) session.getAttribute(ConstUtil.CUR_USER);
@@ -54,7 +54,7 @@ public class ActionCartPortalController {
 	 * @param session
 	 * @return
 	 */
-	@RequestMapping(value="/clearcarts",method=RequestMethod.POST)
+	@RequestMapping(value="/clearcarts.do",method=RequestMethod.POST)
 	@ResponseBody
 	public SverResponse<String> clearCarts(HttpSession session){
 		User user = (User) session.getAttribute(ConstUtil.CUR_USER);
@@ -71,7 +71,7 @@ public class ActionCartPortalController {
 	 * @param checked
 	 * @return
 	 */
-	@RequestMapping(value="/updatecarts",method=RequestMethod.POST)
+	@RequestMapping(value="/updatecarts.do",method=RequestMethod.POST)
 	@ResponseBody
 	public SverResponse<ActionCartVo> updateCarts(HttpSession session,Integer productId,Integer count,Integer checked){
 		User user = (User) session.getAttribute(ConstUtil.CUR_USER);
@@ -86,7 +86,7 @@ public class ActionCartPortalController {
 	 * @param productId
 	 * @return
 	 */
-	@RequestMapping(value="/deletecarts",method=RequestMethod.POST)
+	@RequestMapping(value="/deletecarts.do",method=RequestMethod.POST)
 	@ResponseBody
 	public SverResponse<ActionCartVo> deleteCarts(HttpSession session,Integer productId){
 		User user = (User) session.getAttribute(ConstUtil.CUR_USER);
@@ -100,7 +100,7 @@ public class ActionCartPortalController {
 	 * @param session
 	 * @return
 	 */
-	@RequestMapping(value="/getcartscount",method=RequestMethod.POST)
+	@RequestMapping(value="/getcartscount.do",method=RequestMethod.POST)
 	@ResponseBody
 	public SverResponse<Integer> getCartsCount(HttpSession session){
 		User user = (User) session.getAttribute(ConstUtil.CUR_USER);

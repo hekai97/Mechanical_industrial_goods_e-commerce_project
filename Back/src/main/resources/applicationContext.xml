@@ -51,16 +51,12 @@
     <!-- 对数据源进行代理 -->
     <bean id="proxyDataSource"
           class="org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy">
-        <constructor-arg>
-            <ref bean="dataSourceTarget" />
-        </constructor-arg>
+        <constructor-arg ref="dataSourceTarget"/>
     </bean>
 
     <!-- 直接使用数据源的代理对象 -->
     <bean id="queryRunner" class="org.apache.commons.dbutils.QueryRunner">
-        <constructor-arg>
-            <ref bean="proxyDataSource" />
-        </constructor-arg>
+        <constructor-arg ref="proxyDataSource"/>
     </bean>
 
     <!-- 事物管理器 -->

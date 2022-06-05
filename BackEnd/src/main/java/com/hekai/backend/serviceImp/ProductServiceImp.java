@@ -87,7 +87,7 @@ public class ProductServiceImp implements ProductService {
     @Override
     public Result<PageBean<List<ProductWithDescAndHot>>> findProducts(Integer productTypeId, Integer partsId, int pageNum, int pageSize, String name) {
         Pageable pageable= PageRequest.of(pageNum,pageSize);
-        Page<Product> productPage=productRepository.findProductByProductIdAndPartsIdAndStatusAndNameLike(productTypeId,partsId,ConstUtil.ProductStatus.STATUS_ON_SALE,name,pageable);
+        Page<Product> productPage=productRepository.findByProductIdAndPartsIdAndStatusAndName(productTypeId,partsId,ConstUtil.ProductStatus.STATUS_ON_SALE,name,pageable);
         List<Product> productList=productPage.getContent();
         List<ProductWithDescAndHot> resultData=new ArrayList<>();
         for(Product p:productList){

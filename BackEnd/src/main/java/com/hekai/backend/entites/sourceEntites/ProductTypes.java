@@ -2,6 +2,7 @@ package com.hekai.backend.entites.sourceEntites;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -27,7 +28,7 @@ public class ProductTypes {
     private Integer sortOrder;
     @Basic
     @Column(name = "status")
-    private byte status;
+    private boolean status;
     @Basic
     @Column(name = "level")
     private Integer level;
@@ -70,11 +71,11 @@ public class ProductTypes {
         this.sortOrder = sortOrder;
     }
 
-    public byte getStatus() {
+    public boolean getStatus() {
         return status;
     }
 
-    public void setStatus(byte status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 
@@ -124,5 +125,5 @@ public class ProductTypes {
     }
 
     @Transient
-    private List<ProductTypes> children;
+    private List<ProductTypes> children=new ArrayList<>();
 }

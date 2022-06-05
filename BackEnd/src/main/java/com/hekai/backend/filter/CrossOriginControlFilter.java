@@ -11,7 +11,7 @@ import java.io.IOException;
  * @author: hekai
  * @Date: 2022/6/3
  */
-//@Component
+@Component
 public class CrossOriginControlFilter implements Filter {
 
     @Override
@@ -19,15 +19,13 @@ public class CrossOriginControlFilter implements Filter {
 
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
-        if(request.getHeader("Origin")!=null) {
-            response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
-            response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
-            response.setHeader("Access-Control-Max-Age", "3600");
-            response.setHeader("Access-Control-Allow-Headers", "Origin, No-Cache, X-Requested-With, If-Modified-Since, Pragma, Last-Modified, Cache-Control, Expires, Content-Type, X-E4M-With,userId,token");
-            response.setHeader("Access-Control-Allow-Credentials", "true"); //是否支持cookie跨域
-            System.out.println(request.getHeader("Origin"));
-        }
-        System.out.println("正在调用空过滤器");
+        response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Max-Age", "3600");
+        response.setHeader("Access-Control-Allow-Headers", "Origin, No-Cache, X-Requested-With, If-Modified-Since, Pragma, Last-Modified, Cache-Control, Expires, Content-Type, X-E4M-With,userId,token");
+        response.setHeader("Access-Control-Allow-Credentials", "true"); //是否支持cookie跨域
+        System.out.println(request.getHeader("Origin"));
+        System.out.println("正在调用过滤器+"+request.getSession().getId());
         filterChain.doFilter(servletRequest, servletResponse);
     }
 //    @Override

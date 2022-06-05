@@ -26,7 +26,7 @@ public class ActionUserPortalController {
 	 * @param password
 	 * @return
 	 */
-	@RequestMapping(value="/do_login",method=RequestMethod.POST)
+	@RequestMapping(value="/do_login.do",method=RequestMethod.POST)
 	@ResponseBody
 	public SverResponse<User> doLogin(HttpSession session, String account, String password){
 		SverResponse<User> response = userService.doLogin(account, password);
@@ -41,7 +41,7 @@ public class ActionUserPortalController {
 	 * @param user
 	 * @return
 	 */
-	@RequestMapping(value="/do_register",method=RequestMethod.POST)
+	@RequestMapping(value="/do_register.do",method=RequestMethod.POST)
 	@ResponseBody
 	public SverResponse<String> registerUser(User user){
 		return userService.doRegister(user);
@@ -51,7 +51,7 @@ public class ActionUserPortalController {
 	 * @param account
 	 * @return
 	 */
-	@RequestMapping(value="/getuserbyaccount",method=RequestMethod.POST)
+	@RequestMapping(value="/getuserbyaccount.do",method=RequestMethod.POST)
 	@ResponseBody
 	public SverResponse<User> getUserByAccount(String account){
 		return userService.findUserByAccount(account);
@@ -59,7 +59,7 @@ public class ActionUserPortalController {
 	/**
 	 * 得到用户信息
 	 */
-	@RequestMapping(value="/getuserinfo",method=RequestMethod.GET)
+	@RequestMapping(value="/getuserinfo.do",method=RequestMethod.GET)
 	@ResponseBody
 	public SverResponse<User> getUserInfo(HttpSession session){
 		User curUser = (User) session.getAttribute(ConstUtil.CUR_USER);
@@ -71,7 +71,7 @@ public class ActionUserPortalController {
 	/**
 	 * 得到用户密码问题
 	 */
-	@RequestMapping(value="/getuserquestion",method=RequestMethod.POST)
+	@RequestMapping(value="/getuserquestion.do",method=RequestMethod.POST)
 	@ResponseBody
 	public SverResponse<String> getUserQuestion(String account){
 		return userService.getUserQusetion(account);
@@ -83,7 +83,7 @@ public class ActionUserPortalController {
 	 * @param asw
 	 * @return
 	 */
-	@RequestMapping(value="/checkuserasw",method=RequestMethod.POST)
+	@RequestMapping(value="/checkuserasw.do",method=RequestMethod.POST)
 	@ResponseBody
 	public SverResponse<String> checkUserAnswer(String account,String question,String asw){
 		return userService.checkUserAnswer(account,question,asw);
@@ -94,7 +94,7 @@ public class ActionUserPortalController {
 	 * @param newPwd
 	 * @return
 	 */
-	@RequestMapping(value="/resetpassword",method=RequestMethod.POST)
+	@RequestMapping(value="/resetpassword.do",method=RequestMethod.POST)
 	@ResponseBody
 	public SverResponse<String> resetPassword(Integer userId,String newPwd){
 		return userService.resetPassword(userId,newPwd);
@@ -105,7 +105,7 @@ public class ActionUserPortalController {
 	 * @param actionUserVo
 	 * @return
 	 */
-	@RequestMapping(value="/updateuserinfo",method=RequestMethod.POST)
+	@RequestMapping(value="/updateuserinfo.do",method=RequestMethod.POST)
 	@ResponseBody
 	public SverResponse<User> updateUserInfo(HttpSession session, ActionUserVo actionUserVo){
 		User curUser = (User) session.getAttribute(ConstUtil.CUR_USER);
@@ -128,7 +128,7 @@ public class ActionUserPortalController {
 	 * @param oldPwd
 	 * @return
 	 */
-	@RequestMapping(value="/updatepassword",method=RequestMethod.POST)
+	@RequestMapping(value="/updatepassword.do",method=RequestMethod.POST)
 	@ResponseBody
 	public SverResponse<String> updatePassword(HttpSession session,String newPwd,String oldPwd){
 		//1.将session取出判断是否登陆
@@ -148,7 +148,7 @@ public class ActionUserPortalController {
 	 * @param session
 	 * @return
 	 */
-	@RequestMapping(value="/do_logout",method=RequestMethod.POST)
+	@RequestMapping(value="/do_logout.do",method=RequestMethod.POST)
 	@ResponseBody
 	public SverResponse<String> doLogout(HttpSession session){
 		//1.将session清空,退出登录
@@ -160,7 +160,7 @@ public class ActionUserPortalController {
 	 * @param session
 	 * @return
 	 */
-	@RequestMapping(value="/get_user",method=RequestMethod.POST)
+	@RequestMapping(value="/get_user.do",method=RequestMethod.POST)
 	@ResponseBody
 	public User getUser(HttpSession session){
 		Object user = session.getAttribute(ConstUtil.CUR_USER);
@@ -177,7 +177,7 @@ public class ActionUserPortalController {
 	 * @param type
 	 * @return
 	 */
-	@RequestMapping(value="/do_check_info",method=RequestMethod.POST)
+	@RequestMapping(value="/do_check_info.do",method=RequestMethod.POST)
 	@ResponseBody
 	public SverResponse<String> checkInfo(String info,String type){
 		return userService.checkValidation(info, type);

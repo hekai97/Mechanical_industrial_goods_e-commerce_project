@@ -22,7 +22,7 @@ public class ActionParamPortalController {
 	 * @param session
 	 * @return
 	 */
-	@RequestMapping(value="/findallparams",method=RequestMethod.GET)
+	@RequestMapping(value="/findallparams.do",method=RequestMethod.GET)
 	@ResponseBody
 	public SverResponse<List<ActionParam>> findAllParams(HttpSession session){
 		return actionParamsService.findAllParams();

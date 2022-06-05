@@ -26,7 +26,7 @@ public class ActionAddressPortalController {
 	 * @param addr
 	 * @return
 	 */
-	@RequestMapping(value="/saveaddr",method=RequestMethod.POST)
+	@RequestMapping(value="/saveaddr.do",method=RequestMethod.POST)
 	@ResponseBody
 	public SverResponse<List<ActionAddress>> saveAddress(HttpSession session, ActionAddress addr){
 		User user=(User) session.getAttribute(ConstUtil.CUR_USER);
@@ -53,7 +53,7 @@ public class ActionAddressPortalController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value="/deleteaddress",method=RequestMethod.POST)
+	@RequestMapping(value="/deleteaddress.do",method=RequestMethod.POST)
 	@ResponseBody
 	public SverResponse<List<ActionAddress>> deleteAddress(HttpSession session,Integer id){
 		User user=(User) session.getAttribute(ConstUtil.CUR_USER);
@@ -74,7 +74,7 @@ public class ActionAddressPortalController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value="/setdefault",method=RequestMethod.POST)
+	@RequestMapping(value="/setdefault.do",method=RequestMethod.POST)
 	@ResponseBody
 	public SverResponse<List<ActionAddress>> setDefault(HttpSession session,Integer id){
 		User user=(User) session.getAttribute(ConstUtil.CUR_USER);
@@ -92,7 +92,7 @@ public class ActionAddressPortalController {
 	 * @param session
 	 * @return
 	 */
-	@RequestMapping(value="/findaddrs",method=RequestMethod.POST)
+	@RequestMapping(value="/findaddrs.do",method=RequestMethod.POST)
 	@ResponseBody
 	public SverResponse<List<ActionAddress>> findAddrs(HttpSession session){
 		User user=(User) session.getAttribute(ConstUtil.CUR_USER);

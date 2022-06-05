@@ -24,13 +24,13 @@ public class AddressControllerFrontend {
     @Autowired
     private AddressService addressService;
 
-    @RequestMapping(value = "/findAddressById")
+    @RequestMapping(value = "/findAddressById.do")
     @ResponseBody
     public Result<Address> findAddressById(HttpSession httpSession,Integer id){
         return addressService.findAddressByAddrId(id);
     }
 
-    @RequestMapping(value = "/setdefault")
+    @RequestMapping(value = "/setdefault.do")
     public Result<List<Address>> setDefault(HttpSession httpSession,Integer id){
         User user= (User) httpSession.getAttribute(ConstUtil.CUR_USER);
         if(user==null){
@@ -39,7 +39,7 @@ public class AddressControllerFrontend {
         return addressService.setDefault(user,id);
     }
 
-    @RequestMapping(value = "/findaddrs")
+    @RequestMapping(value = "/findaddrs.do")
     public Result<List<Address>> findAddrs(HttpSession httpSession){
         User user=(User) httpSession.getAttribute(ConstUtil.CUR_USER);
         if(user==null){
@@ -48,7 +48,7 @@ public class AddressControllerFrontend {
         return addressService.findAddressByUserId(user.getId());
     }
 
-    @RequestMapping(value = "/deladdr")
+    @RequestMapping(value = "/deladdr.do")
     public Result<List<Address>> delAddr(HttpSession httpSession,Integer id){
         User user=(User) httpSession.getAttribute(ConstUtil.CUR_USER);
         if(user==null){
@@ -57,7 +57,7 @@ public class AddressControllerFrontend {
         return addressService.deleteAddressById(user,id);
     }
 
-    @RequestMapping(value = "/saveaddr")
+    @RequestMapping(value = "/saveaddr.do")
     public Result<List<Address>> saveAddr(HttpSession httpSession,Address address){
         User user=(User) httpSession.getAttribute(ConstUtil.CUR_USER);
         if(user==null){

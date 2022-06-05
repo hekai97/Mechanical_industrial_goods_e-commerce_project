@@ -24,23 +24,23 @@ public class OrderControllerBackend {
     @Autowired
     private OrderServiceImp orderServiceImp;
 
-    @RequestMapping(value = "/findorders_nopages")
+    @RequestMapping(value = "/findorders_nopages.do")
     public Result<List<OrderWithOrderItemList>> findOrdersNoPages(HttpSession httpSession, @RequestBody @Nullable Long orderNo){
         return orderServiceImp.findOrderNoPages(orderNo);
     }
 
-    @RequestMapping(value = "/search")
+    @RequestMapping(value = "/search.do")
     public Result<PageBean<OrderWithOrderItemList>> searchOrderAndItem(HttpSession httpSession,@RequestBody Long orderNo, @RequestBody int pageNum, @RequestBody int pageSize){
         return orderServiceImp.searchOrderAndItem(orderNo,pageNum,pageSize);
     }
 
-    @RequestMapping(value = "/findorders")
+    @RequestMapping(value = "/findorders.do")
     public Result<PageBean<List<OrderWithOrderItemList>>> findOrders(HttpSession httpSession,@RequestBody int pageNum, @RequestBody int pageSize){
 
         return orderServiceImp.findOrders(pageNum,pageSize);
     }
 
-    @RequestMapping(value = "/getdetail")
+    @RequestMapping(value = "/getdetail.do")
     public Result<OrderWithOrderItemList> getDetail(HttpSession httpSession,@RequestBody Long orderNo){
         return orderServiceImp.getDetail(orderNo);
     }

@@ -28,22 +28,22 @@ public class ProductControllerFrontend {
     @Autowired
     private ProductService productService;
 
-    @RequestMapping(value = "/findfloors")
+    @RequestMapping(value = "/findfloors.do")
     public Result<List<Floor>> findFloors(HttpSession httpSession){
         return productService.findFloors();
     }
 
-    @RequestMapping(value = "/findhotproducts")
+    @RequestMapping(value = "/findhotproducts.do")
     public Result<List<Product>> findHotProducts(HttpSession httpSession,Integer num){
         return productService.findHotProducts(num);
     }
 
-    @RequestMapping(value = "/getdetail")
+    @RequestMapping(value = "/getdetail.do")
     public Result<Product> getDetail(HttpSession httpSession,Integer productId){
         return productService.getDetailByProductId(productId);
     }
 
-    @RequestMapping(value = "/findproducts")
+    @RequestMapping(value = "/findproducts.do")
     public Result<PageBean<List<ProductWithDescAndHot>>> findProducts(HttpSession httpSession,
                                                                       Integer productTypeId,
                                                                       Integer partsId,

@@ -20,7 +20,7 @@ public class ProductTypesControllerFrontend {
     @Autowired
     private ProductTypesService productTypesService;
 
-    @RequestMapping(value = "findallparams")
+    @RequestMapping(value = "findallparams.do")
     public Result<List<ProductTypes>> findAllParams(HttpSession httpSession){
         return productTypesService.findAllParams();
     }

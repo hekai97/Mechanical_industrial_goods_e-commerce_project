@@ -29,7 +29,7 @@ public class ActionOrderPortalController {
 	 * @param pageSize
 	 * @return
 	 */
-	@RequestMapping(value="/getlist",method=RequestMethod.POST)
+	@RequestMapping(value="/getlist.do",method=RequestMethod.POST)
 	@ResponseBody
 	public SverResponse<PageBean<ActionOrderVo>> getList(HttpSession session, Integer status,
 														 @RequestParam(value="pageNum",defaultValue="1") int pageNum,
@@ -47,7 +47,7 @@ public class ActionOrderPortalController {
 	 * @param orderNo
 	 * @return
 	 */
-	@RequestMapping(value="/cancelorder",method=RequestMethod.POST)
+	@RequestMapping(value="/cancelorder.do",method=RequestMethod.POST)
 	@ResponseBody
 	public SverResponse<String> cancelOrder(HttpSession session,Long orderNo){
 		//判断用户是否登陆
@@ -63,7 +63,7 @@ public class ActionOrderPortalController {
 	 * @param orderNo
 	 * @return
 	 */
-	@RequestMapping(value="/confirmreceipt",method=RequestMethod.POST)
+	@RequestMapping(value="/confirmreceipt.do",method=RequestMethod.POST)
 	@ResponseBody
 	public SverResponse<String> confirmOrder(HttpSession session,Long orderNo){
 		//判断用户是否登陆
@@ -79,7 +79,7 @@ public class ActionOrderPortalController {
 	 * @param orderNo
 	 * @return
 	 */
-	@RequestMapping(value="/getdetail",method=RequestMethod.POST)
+	@RequestMapping(value="/getdetail.do",method=RequestMethod.POST)
 	@ResponseBody
 	public SverResponse<ActionOrderVo> getDetail(HttpSession session,Long orderNo){
 		//判断用户是否登陆
@@ -95,7 +95,7 @@ public class ActionOrderPortalController {
 	 * @param addrId
 	 * @return
 	 */
-	@RequestMapping(value="/createorder",method=RequestMethod.POST)
+	@RequestMapping(value="/createorder.do",method=RequestMethod.POST)
 	@ResponseBody
 	public SverResponse<ActionOrderVo> createOrder(HttpSession session,Integer addrId){
 		//判断用户是否登陆
