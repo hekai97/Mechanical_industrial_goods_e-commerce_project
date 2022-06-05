@@ -1,0 +1,87 @@
+.pay_box{
+    height: 670px;
+    width: 1000px;
+    margin-top: 20px;
+    overflow: hidden;
+    margin-left: 200px;
+}
+.pay_box>img{
+    margin-top: 25px;
+    width: 100px;
+}
+.pay_box>p:nth-child(2){
+    margin-right: 460px;
+    margin-top: 50px;
+}
+.pox_box>p:nth-child(3){
+    margin-left: 122px;
+    margin-top: -80px;
+}
+.pay_box>p:nth-child(4){
+    color: #ff8208;
+    font-weight: 700;
+    font-size: 22px;
+    margin-top: -50px;
+}
+.pay_content{
+    width: 998px;
+    height: 360px;
+    border-top: 4px solid #b3b3b3;
+    border-bottom: 4px solid #b3b3b3;
+    border-left: 1px solid #b3b3b3;
+    border-right: 1px solid #b3b3b3;
+    margin-top: 30px;
+}
+.pay_content>div:nth-child(1){
+    margin-top: 15px;
+    height: 50px;
+    width: 950px;
+    margin: 15px auto;
+    border: 4px solid #85a1d4;
+}
+.pay_content>div:nth-child(1)>p:nth-of-type(1){
+    margin-top: -37px;
+    margin-left: 80px;
+}
+.pay_content>div:nth-child(1)>p:nth-of-type(2){
+    margin: -24px 20px;
+}
+.pay_content>div:nth-child(1) span{
+    font-size: 16px;
+    color: #ff8208;
+    font-weight: 700;
+}
+.pay_content>div:nth-child(1) input{
+    margin-left: 25px;
+    margin-top: 18px;
+}
+.pay_content>div:nth-child(1) img{
+    width: 25px;
+    margin: 14px 15px;
+}
+.pay_content>div:nth-child(2){
+    font-size: 18px;
+    padding: 20px 25px;
+}
+.pay_content>div:nth-child(3) input{
+    width: 150px;
+    height: 35px;
+    outline: none;
+    margin-left: 25px;
+    padding-left: 10px;
+    font-size: 30px;
+}
+.pay_content>p{
+    color:#b2b2b2;
+    margin: 0px 25px;
+}
+.pay_content>input{
+    color: #fff;
+    border: 1px solid #0ac;
+    background-color: #0ac;
+    height: 36px;
+    width: 80px;
+    border-radius: 2px;
+    font-weight: 700;
+    margin: 25px 25px;
+}

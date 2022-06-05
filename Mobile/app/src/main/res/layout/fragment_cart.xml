@@ -1,0 +1,86 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".Fragment.ShoppingcartFragment">
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimaryBlue">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="购物车"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/big_font" />
+        <TextView
+            android:id="@+id/edit_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:gravity="center_vertical"
+            android:text="编辑"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/normal_font" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorWhite"
+        android:paddingLeft="20dp"
+        tools:visibility="visible">
+
+        <TextView
+            android:id="@+id/total"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="合计：￥0.00"
+            android:textColor="@color/font_color_red"
+            android:textSize="@dimen/normal_font" />
+
+        <TextView
+            android:id="@+id/buy_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="@color/buy_bg_color"
+            android:gravity="center_vertical"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:text="结算"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/big_font" />
+    </RelativeLayout>
+    <com.cjj.MaterialRefreshLayout
+        android:layout_below="@+id/toolbar"
+        android:layout_above="@+id/bottomBar"
+        android:id="@+id/refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:overlay="false"
+        app:isLoadMore="true"
+        app:wave_show="false"
+        app:wave_height_type="higher"
+        app:progress_show_circle_backgroud="false">
+
+    </com.cjj.MaterialRefreshLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cart_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottomBar"
+        android:layout_below="@id/toolbar" />
+
+</RelativeLayout>

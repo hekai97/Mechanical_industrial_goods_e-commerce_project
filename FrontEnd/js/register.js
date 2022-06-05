@@ -1,4 +1,3 @@
-var baseUrl="http://10.20.138.118:8080/actionmall/";
 define(['jquery','common'],function(jquery,common){
     //用户名是否有效
     var isUserNameValidate=false;

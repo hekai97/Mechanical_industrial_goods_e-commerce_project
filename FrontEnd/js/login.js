@@ -26,7 +26,7 @@ define(['common'],function(common){
             }
             //成功进入接口登录
             $.ajax({
-                url:baseUrl+"user/do_login",
+                url:baseUrl+"user/do_login.do",
                 type:"post",
                 data:{account:$("#username").val(),password:$("#password").val()},
                 xhrFields:{withCredential:true},   //允许跨域请求时携带cookie属性
@@ -39,6 +39,7 @@ define(['common'],function(common){
                             $(window).attr("location","html/admin/index.html");
                         }
                         else{
+                            alert("登录成功")
                             $(window).attr("location","../html/index.html");
                         }
                     }else{

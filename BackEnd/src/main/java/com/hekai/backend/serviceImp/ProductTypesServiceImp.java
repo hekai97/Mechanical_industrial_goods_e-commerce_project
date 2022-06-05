@@ -123,6 +123,7 @@ public class ProductTypesServiceImp implements ProductTypesService {
 
     private void findChildrenToParent(ProductTypes productTypes) {
         List<ProductTypes> parentList=productTypesRepository.findAllByParentId(productTypes.getId());
+        productTypes.setChildren(parentList);
         for(ProductTypes p:parentList){
             findChildrenToParent(p);
         }

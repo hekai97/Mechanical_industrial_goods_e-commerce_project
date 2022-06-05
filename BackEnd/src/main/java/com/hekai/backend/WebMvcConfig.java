@@ -18,16 +18,20 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void configurePathMatch(PathMatchConfigurer configurer) {
-        configurer.addPathPrefix("actionmall", HandlerTypePredicate.forAnnotation(RestController.class));
+        configurer.addPathPrefix("mall", HandlerTypePredicate.forAnnotation(RestController.class));
     }
 
 //    @Override
 //    public void addCorsMappings(CorsRegistry registry) {
 //        registry.addMapping("/**")
+//                //设置允许跨域请求的域名
 //                .allowedOriginPatterns("*")
-//                .allowedMethods("GET", "HEAD", "POST", "PUT", "DELETE", "OPTIONS")
+//                //是否允许证书 不再默认开启
 //                .allowCredentials(true)
-//                .maxAge(3600)
-//                .allowedHeaders("*");
+//                //设置允许的方法
+//                .allowedMethods("*")
+//                //跨域允许时间
+//                .maxAge(3600);
+//        System.out.println("MVCConfig");
 //    }
 }

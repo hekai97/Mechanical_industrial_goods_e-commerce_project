@@ -1,14 +1,36 @@
 package com.example.mechanical_industrial_goods_eommerce_project_for_android.Fragment;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.R;
+import com.example.mechanical_industrial_goods_eommerce_project_for_android.Utils.JsonUtils;
+import com.example.mechanical_industrial_goods_eommerce_project_for_android.config.Constant;
+import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.ResponseCode;
+import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.SverResponse;
+import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.User;
+import com.example.mechanical_industrial_goods_eommerce_project_for_android.ui.LoginActivity;
+import com.google.gson.reflect.TypeToken;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
+
+import java.lang.reflect.Type;
+import java.util.PrimitiveIterator;
+
+import okhttp3.Call;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +38,13 @@ import com.example.mechanical_industrial_goods_eommerce_project_for_android.R;
  * create an instance of this fragment.
  */
 public class PersonalFragment extends Fragment {
+
+    private TextView user;
+
+    //本地广播
+    private LocalBroadcastManager localBroadcastManager;
+    private IntentFilter intentFilter;
+    private BroadcastReceiver broadcastReceiver;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -61,6 +90,82 @@ public class PersonalFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_personal, container, false);
+        View view = inflater.inflate(R.layout.fragment_user, container, false);
+        initView(view);
+
+        return view;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        localBroadcastManager = LocalBroadcastManager.getInstance(getActivity());
+        intentFilter = new IntentFilter();
+        intentFilter.addAction(Constant.ACTION.LOAD_CART_ACTION);
+        broadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                initUserInfo();
+            }
+        };
+        localBroadcastManager.registerReceiver(broadcastReceiver,intentFilter);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        localBroadcastManager.unregisterReceiver(broadcastReceiver);
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden){
+            initUserInfo();
+        }
+    }
+
+    private void initView(View view){
+
+        user = (TextView) view.findViewById(R.id.user);
+        view.findViewById(R.id.btn_addr).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //跳转
+            }
+        });
+
+        view.findViewById(R.id.btn_all).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //跳转
+            }
+        });
+    }
+
+    private void initUserInfo(){
+        OkHttpUtils.get()
+                .url(Constant.API.USER_INFO_URL)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        Type type = new TypeToken<SverResponse<User>>(){}.getType();
+                        SverResponse<User> result = JsonUtils.fromJson(response,type);
+                        Log.d("USER_INFO_URL", String.valueOf(result.getStatus()));
+                        if(result.getStatus()== ResponseCode.SUCCESS.getCode()){
+                            user.setText(result.getData().getAccount());
+                        }else{
+                            //跳转登录界面
+                            Intent intent = new Intent(getActivity(), LoginActivity.class);
+                            startActivity(intent);
+                        }
+                    }
+                });
     }
 }

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>购物车</title>
+            <link rel="stylesheet" type="text/css" href="../css/reset.css">
+            <link rel="stylesheet" type="text/css" href="../css/common.css">
+            <link rel="stylesheet" type="text/css" href="../css/cart.css">
+            <script src="../js/require.js" defer async="true" data-main="../js/cart_main"></script>
+        </head>
+<body>
+    <div class="content_box action_search_box">
+        <a class="logo" href="../html/index.html">
+        </a>
+    </div>
+    <hr style="width: 100%;color: whitesmoke;">
+
+
+
+
+    <div class="content_box clear_fix">
+        <div class="left_nav">
+            <!--个人信息-->
+            <div class="person_info clearfix">
+                <div class="head_img">
+                    <img src="../images/common/level.png" alt="">
+                </div>
+                <div class="welcome_info">
+                    hi，亲爱的  欢迎回来
+                </div>
+                <div class="level_score">
+                    <div class="clearfix">
+                        <div class="tt">会员等级：</div>
+                        <div class="level_value">菜鸟</div>
+                    </div>
+                    <div class="clearfix">
+                        <div class="tt">会员积分：</div>
+                        <div class="score_value">0</div>
+                    </div>
+                </div>
+            </div>
+            <!--我的交易-->
+            <div id="my-deal">
+                <a href="javascript:void(0);">
+                    <div class="row title">
+                        <div class="dashed">我的交易</div>
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="item">我的订单</div>
+                </a>
+                <a href="#">
+                    <div class="item  active">我的购物车</div>
+                </a>
+                <a href="#"><div class="item">我的积分购物车</div></a>
+                <a href="#"><div class="item">我的积分消费</div></a>
+                <a href="#"><div class="item">我的关注</div></a>
+                <a href="#"><div class="item">我的购买咨询</div></a>
+                <a href="#"><div class="item">我的优惠券</div></a>
+                <a href="#"><div class="item">收货地址管理</div></a>
+                <a href="#"><div class="item">我的推荐</div></a>
+            </div>
+            <!--我的账户-->
+            <div id="my-account">
+                <a href="javascript:;">
+                    <div class="title">
+                        <div class="dashed">我的账户</div>
+                    </div>
+                </a>
+                <a href="information_modification.html"><div class="item">个人资料</div></a>
+                <a href="password_modification.html"><div class="item">修改密码</div></a>
+            </div>
+        </div>
+
+
+        <div class="shopcar_right_box l">
+            <div id="cart-empty" class="shopcar_right_box no_product_cart" style="float: left; display:none">
+                <div class="empty_cart_container">
+                    <img src="../images/common/empty_cart.png" alt="">
+    
+                    <div class="empty_title">您的购物车是空的</div>
+                    <a href="index.html" class="empty_target">去商城</a>
+                </div>
+            </div>
+            <div id="cart-container">
+                <h1>
+                    商品信息
+                </h1>
+    
+                <div class="shopcar_righ_top clearfix">
+                    <div class="shopcar_infor00">
+                        <input type="checkbox" id="selectAll">全选
+                    </div>
+                    <div class="shopcar_infor01">
+                        商品名称
+                    </div>
+                    <div class="shopcar_infor02">
+                        单价（元）
+                    </div>
+                    <div class="shopcar_infor03">
+                        数量
+                    </div>
+                    <div class="shopcar_infor04">
+                        实付（元）
+                    </div>
+                    <div class="shopcar_infor05">
+                        操作
+                    </div>
+                </div>
+    
+                <div  class="shop_car_probox" id="cart-item-container">
+                    <!-- <div class="pro00">
+                        <input type="checkbox" class="all_checkbox">
+                    </div>
+                    <div class="pro01">
+                        <input type="hidden" name="id" value="9206">
+                        <a href="#" title="支腿/TC6517B10.15/4个" target="_blank">
+                            支腿/TC6517B10.15/4个
+                        </a>
+                    </div>
+                    <div class="pro02">
+                        ￥8280.00
+                    </div>
+                    <div class="pro03">
+                        <div class="product_select_num_value">
+                            <a href="javascript:void(0);" class="no_minus_btn" style="float: left;"></a>
+                            <input name="quantity" type="text" value="1" minquantity="1" maxlength="4" style="float:left;">
+                            <a href="javascript:void(0);" class="plus_btn" style="float:left;"></a>
+                        </div>
+                    </div>
+                    <div class="pro04">
+                        <span>￥8280.00</span>
+                    </div>
+                    <div class="pro05">
+                        <a href="#">删除</a>
+                    </div> -->
+                </div>
+    
+                <!--总计结算-->
+                <div class="shop_car_buy" style="margin-left: 170px;">
+                    <a class="shop_car_buy01" style="float: left;" href="javascript:void(0)" id="clear">
+                        清空购物车
+                    </a>
+                    <a class="shop_car_buy02" style="float: right;" href="javascript:void(0)" id="submit">
+                        提交订单
+                    </a>
+    
+                    <div class="shop_car_buy03" style="float: right;">
+                        <strong>
+                                    <span class="total_price" id="amount">
+                                        ￥8280.00
+                                    </span>
+                        </strong>
+                    </div>
+                    <div class="shop_car_buy04" style="float: right;">
+                        商品金额：
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="content_box" id="product_service">
+        <ul>
+            <li class="item">
+                <p class="item_icon icon1"></p>
+                <div class="item_text">
+                    <p class="text_tit">真实货源</p>
+                    <p class="text_info">一手货源&nbsp;真实存在</p>
+                </div>
+            </li>
+            <li class="item">
+                <p class="item_icon icon2"></p>
+                <div class="item_text">
+                    <p class="text_tit">品质保障</p>
+                    <p class="text_info">垂直专业&nbsp;优选厂商</p>
+                </div>
+            </li>
+            <li class="item l">
+                <p class="item_icon icon3"></p>
+                <div class="item_text" style="float: left;">
+                    <p class="text_tit">服务保障</p>
+                    <p class="text_info">专业服务团队</p>
+                </div>
+            </li>
+            <li class="item">
+                <p class="item_icon icon4"></p>
+                <div class="item_text">
+                    <p class="text_tit">交通透明</p>
+                    <p class="text_info">买卖双方面谈价格</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+
+    <div class="footerbox">
+        <div class="footer">
+            <div class="content_box clearfix">
+                <div class="footerinside">
+                    <h1>新手指南</h1>
+                    <a href="#" target="_blank">免费注册</a>
+                    <a href="#" target="_blank">个人资料及密码</a>
+                    <a href="#" target="_blank">商品关注</a>
+                    <a href="#" target="_blank">查询订单</a>
+                    <a href="#" target="_blank">购物流程</a>
+                </div>
+                <div class="footerinside">
+                    <h1>付款/退款</h1>
+                    <a href="#" target="_blank">在线支付</a>
+                    <a href="#" target="_blank">银行转账</a>
+                    <a href="#" target="_blank">发票办理</a>
+                </div>
+                <div class="footerinside">
+                    <h1>配送方式</h1>
+                    <a href="#" target=" _blank">快递配送</a>
+                    <a href="#" target="_blank">零担物流</a>
+                </div>
+                <div class="footerinside">
+                    <h1>售后服务</h1>
+                    <a href="#" target="_blank">退货流程</a>
+                    <a href="#" target="_blank">退货政策</a>
+                </div>
+                <div id="currentfooterInside" class="footerinside">
+                    <h1>帮助中心</h1>
+                    <a href="#" target="_blank">常见热点问题</a>
+                    <a href="#" target="_blank">联系我们</a>
+                    <a href="#" target="_blank">投诉与建议</a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright_bgcolor">
+            <div class="copyright">
+                Copyright © 2022 516数字科技有限公司 版权所有 保留一切权力 鲁ICP备XXXXXXXX号-X
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<!--购物中商品的模板-->
+<script id="cart-item-tpl" type="text/x-handlebars-template">
+    {{#each this}}
+    <div class="shop_car_probox">
+        <div class="pro00">
+            <input type="checkbox" class="all_checkbox" data-product-id={{productId}}>
+        </div>
+        <div class="pro01">
+            <input name="id" type="hidden" value="9206">
+            <a href="product_detail.html?pid={{goodsId}}" target="_blank">
+                {{name}}
+            </a>
+            </input>
+        </div>
+        <div class="pro02">
+            ￥{{price}}
+        </div>
+        <div class="pro03">
+            <div class="product_select_num_value clearfix">
+                <a class="minus_btn  l" href="javascript:void(0);" data-product-id={{productId}}></a>
+                <input autocomplete="off" class="l" id="quantity{{productId}}" data-stock={{stock}} maxlength="4"
+                       minquantity="1" name="quantity" type="text" value="{{quantity}}"></input>
+                <a class="plus_btn l " href="javascript:void(0);" data-product-id={{productId}}></a>
+            </div>
+        </div>
+        <div class="pro04">
+            <span class="single_total">
+                ￥{{totalPrice}}
+            </span>
+        </div>
+        <div class="pro05">
+            <a class="delete" data-product-id={{productId}} href="javascript:void(0);">
+                删除
+            </a>
+        </div>
+    </div>
+    {{/each}}
+</script>

@@ -21,6 +21,8 @@ define(['jquery_SuperSlide','common','handlebar'],function(jquery_SuperSlide,com
 	function getHotProduct(){
 		$.ajax({
 			url:baseUrl+"product/findhotproducts",
+			type:"post",
+			data:{num:5},
 			xhrFields:{withCredentials:true},
 			crossDomain:true,
 			success:function(rs){

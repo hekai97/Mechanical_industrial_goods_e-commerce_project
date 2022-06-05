@@ -1,13 +1,25 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="RadioGroupButtonStyle" >
+        <!-- 这个属性是去掉button 默认样式-->
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@drawable/main_tab_color_selector</item>
+    </style>
+
+    <!--toolbar上的搜索框-->
     <style name="search_view">
         <item name="android:textSize">@dimen/big_font</item>
         <item name="android:textColor">@color/colorWhite</item>
@@ -25,6 +37,7 @@
         <item name="android:maxLines">1</item>
     </style>
 
+
     <style name="line">
         <item name="android:background">@color/colorBackground</item>
     </style>
@@ -33,5 +46,35 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1dp</item>
     </style>
+
+    <style name="ToolbarTheme" parent="Theme.AppCompat.Light">
+        <item name="colorButtonNormal">@android:color/white</item>
+        <item name="colorControlNormal">@android:color/white</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="SearchView">
+        <item name="android:singleLine">true</item>
+        <item name="android:paddingTop">6dp</item>
+        <item name="android:paddingLeft">4dp</item>
+        <item name="android:paddingBottom">6dp</item>
+        <item name="android:textSize">@dimen/big_font</item>
+        <item name="android:textColorHint">@color/colorWhite</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:background">@drawable/tool_bar_seachview_background</item>
+    </style>
+    <style name="toolbarStyle" parent="Theme.AppCompat.Light">
+        <item name="colorButtonNormal">@color/colorWhite</item>
+        <item name="colorControlNormal">@color/colorWhite</item>
+
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 
 </resources>
