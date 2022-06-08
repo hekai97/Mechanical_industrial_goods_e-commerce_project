@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class OrderWithOrderItemList {
     private Long orderNo;
-    private BigDecimal amount;
+    private BigDecimal amount=new BigDecimal(0);
     private int type;
     private String typeDesc;
     private int freight;

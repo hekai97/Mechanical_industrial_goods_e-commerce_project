@@ -10,6 +10,6 @@ import java.util.List;
 
 @Repository
 public interface OrderItemRepository extends JpaRepository<OrderItem, Integer> {
-    List<OrderItem> findAllByOrderId(Long orderNo);
+    List<OrderItem> findByOrderId(Long orderNo);
     Page<OrderItem> findByOrderId(Long orderNo, Pageable pageable);
 }

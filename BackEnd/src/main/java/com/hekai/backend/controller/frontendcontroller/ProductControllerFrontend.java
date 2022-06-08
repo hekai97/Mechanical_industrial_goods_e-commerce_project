@@ -9,10 +9,7 @@ import com.hekai.backend.entites.reConstruction.compositeEntities.Result;
 import com.hekai.backend.service.ProductService;
 import com.hekai.backend.serviceImp.ProductServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -28,22 +25,25 @@ public class ProductControllerFrontend {
     @Autowired
     private ProductService productService;
 
-    @RequestMapping(value = "/findfloors.do")
-    public Result<List<Floor>> findFloors(HttpSession httpSession){
+    //PASS
+    @RequestMapping(value = "/findfloors.do",method = RequestMethod.POST)
+    public Result<Floor> findFloors(HttpSession httpSession){
         return productService.findFloors();
     }
-
-    @RequestMapping(value = "/findhotproducts.do")
+    //PASS
+    @RequestMapping(value = "/findhotproducts.do",method = RequestMethod.POST)
     public Result<List<Product>> findHotProducts(HttpSession httpSession,Integer num){
         return productService.findHotProducts(num);
     }
-
-    @RequestMapping(value = "/getdetail.do")
+    //PASS
+    @RequestMapping(value = "/getdetail.do",method = RequestMethod.POST)
     public Result<Product> getDetail(HttpSession httpSession,Integer productId){
         return productService.getDetailByProductId(productId);
     }
 
-    @RequestMapping(value = "/findproducts.do")
+
+    //NOT-PASS
+    @RequestMapping(value = "/findproducts.do",method = RequestMethod.POST)
     public Result<PageBean<List<ProductWithDescAndHot>>> findProducts(HttpSession httpSession,
                                                                       Integer productTypeId,
                                                                       Integer partsId,

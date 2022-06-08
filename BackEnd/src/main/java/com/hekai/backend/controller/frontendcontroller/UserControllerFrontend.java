@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 /**
  * @author: hekai
  * @Date: 2022/5/29
+ * @Status:PASS
  */
 @RestController
 @RequestMapping(value = "/user")
@@ -20,22 +21,22 @@ public class UserControllerFrontend {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/getUserByAccount.do")
+    @RequestMapping(value = "/getUserByAccount.do",method = RequestMethod.POST)
     @ResponseBody
     public Result<User> getUserByAccount(String account){
         return userService.findUserByAccount(account);
     }
 
-    @RequestMapping(value = "/do_logout.do")
+    @RequestMapping(value = "/do_logout.do",method = RequestMethod.POST)
     @ResponseBody
     public Result<User> doLogOut(HttpSession httpSession){
         httpSession.removeAttribute(ConstUtil.CUR_USER);
         return Result.createRespBySuccess();
     }
 
-    @RequestMapping(value = "/updateuserinfo.do")
+    @RequestMapping(value = "/updateuserinfo.do",method = RequestMethod.POST)
     @ResponseBody
-    public Result<User> updateUserInfo(HttpSession httpSession,@RequestBody User user){
+    public Result<User> updateUserInfo(HttpSession httpSession,User user){
         User curUser = (User) httpSession.getAttribute(ConstUtil.CUR_USER);
         if(curUser == null) {
             return Result.createByErrorMessage("用户尚未登录!");
@@ -50,7 +51,7 @@ public class UserControllerFrontend {
         return result;
     }
 
-    @RequestMapping(value = "/updatepassword.do")
+    @RequestMapping(value = "/updatepassword.do",method = RequestMethod.POST)
     @ResponseBody
     public Result<String> updatePassword(HttpSession httpSession,String newpwd,String oldpwd){
         User curUser = (User) httpSession.getAttribute(ConstUtil.CUR_USER);
@@ -64,25 +65,25 @@ public class UserControllerFrontend {
         return result;
     }
 
-    @RequestMapping(value = "/resetpassword.do")
+    @RequestMapping(value = "/resetpassword.do",method = RequestMethod.POST)
     @ResponseBody
     public Result<String> resetPassword(String newpwd,Integer userid){
         return userService.resetPassword(newpwd,userid);
     }
 
-    @RequestMapping(value = "/checkuserasw.do")
+    @RequestMapping(value = "/checkuserasw.do",method = RequestMethod.POST)
     @ResponseBody
     public Result<String> checkUserAsw(String account,String question,String asw){
         return userService.checkUserAnswer(account,question,asw);
     }
 
-    @RequestMapping(value = "/getuserquestion.do")
+    @RequestMapping(value = "/getuserquestion.do",method = RequestMethod.POST)
     @ResponseBody
     public Result<String> getUserQuestion(String account){
         return userService.getUserQuestion(account);
     }
 
-    @RequestMapping(value = "/getuserinfo.do")
+    @RequestMapping(value = "/getuserinfo.do",method = RequestMethod.GET)
     @ResponseBody
     public Result<User> getUserInfo(HttpSession httpSession){
         User curUser = (User) httpSession.getAttribute(ConstUtil.CUR_USER);
@@ -94,7 +95,7 @@ public class UserControllerFrontend {
         return userService.findUserByAccount(curUser.getAccount());
     }
 
-    @RequestMapping(value = "/do_register.do")
+    @RequestMapping(value = "/do_register.do",method = RequestMethod.POST)
     @ResponseBody
     public Result<User> doRegister(User user){
         Result<User> result=userService.doRegister(user);
@@ -103,7 +104,7 @@ public class UserControllerFrontend {
         return result;
     }
 
-    @RequestMapping(value = "/do_login.do")
+    @RequestMapping(value = "/do_login.do",method = RequestMethod.POST)
     @ResponseBody
     public Result<User> doLogin(HttpSession httpSession,String account,String password){
         Result<User> user=userService.doLogin(account,password);
@@ -114,7 +115,7 @@ public class UserControllerFrontend {
         return user;
     }
 
-    @RequestMapping(value = "/do_check_info.do")
+    @RequestMapping(value = "/do_check_info.do",method = RequestMethod.POST)
     @ResponseBody
     public Result<User> doCheckInfo(String info,String type){
         return userService.doCheckInfo(info,type);

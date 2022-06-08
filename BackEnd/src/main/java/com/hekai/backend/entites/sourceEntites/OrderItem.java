@@ -21,7 +21,7 @@ public class OrderItem {
     private int uid;
     @Basic
     @Column(name = "order_id")
-    private int orderId;
+    private Long orderId;
     @Basic
     @Column(name = "goods_id")
     private int goodsId;
@@ -63,11 +63,11 @@ public class OrderItem {
         this.uid = uid;
     }
 
-    public int getOrderId() {
+    public Long getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(int orderId) {
+    public void setOrderId(Long orderId) {
         this.orderId = orderId;
     }
 

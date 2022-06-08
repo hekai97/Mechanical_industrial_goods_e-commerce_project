@@ -145,9 +145,11 @@ public class OrderServiceImp implements OrderService {
 
     @Override
     public Result<PageBean<List<OrderWithOrderItemList>>> getOrderLists(User user, Integer status, int pageNum, int pageSize) {
-        Pageable pageable=PageRequest.of(pageNum,pageSize);
-        Page<Order> orderPage=orderRepository.findByUidAndStatus(user.getId(),status,pageable);
-        List<Order> orderList=orderPage.getContent();
+        Pageable pageable=PageRequest.of(pageNum-1,pageSize);
+        int startIndex=(pageNum-1)*pageSize;
+        List<Order> orderList=orderRepository.findOrdersByUidAndStatus(user.getId(),status,startIndex,pageSize);
+        Integer totalOrderCount= orderRepository.findTotalOrderCount(user.getId(),status,startIndex,pageSize);
+
         List<OrderWithOrderItemList> orderWithOrderItemLists=new ArrayList<>();
         for(Order order:orderList){
             OrderWithOrderItemList orderWithOrderItemList=getOrderWithOrderItemListFromOrder(order);
@@ -157,21 +159,55 @@ public class OrderServiceImp implements OrderService {
         pageBean.setPageNum(pageNum);
         pageBean.setPageSize(pageSize);
         pageBean.setData(orderWithOrderItemLists);
-        pageBean.setTotalPage(orderPage.getTotalPages());
-        pageBean.setTotalRecord((int)orderPage.getTotalElements());
-        if(orderPage.hasPrevious()){
-            pageBean.setPrePage(pageNum-1);
-        }else{
-            pageBean.setPrePage(pageNum);
-        }
+        pageBean.setTotalPage(totalOrderCount/pageSize+1);
+        pageBean.setTotalRecord(totalOrderCount);
 
-        if(orderPage.hasNext()){
-            pageBean.setNextPage(pageNum+1);
-        }else{
+        if(pageNum*pageSize>totalOrderCount){
             pageBean.setNextPage(pageNum);
+        }else{
+            pageBean.setNextPage(pageNum+1);
         }
-        pageBean.setStartIndex(pageSize*(pageNum-1));
+        pageBean.setPrePage(pageNum-1);
+//        if()
+//        if(orderPage.hasPrevious()){
+//            pageBean.setPrePage(pageNum-1);
+//        }else{
+//            pageBean.setPrePage(pageNum);
+//        }
+//
+//        if(orderPage.hasNext()){
+//            pageBean.setNextPage(pageNum+1);
+//        }else{
+//            pageBean.setNextPage(pageNum);
+//        }
+        pageBean.setStartIndex(startIndex);
         return Result.createRespBySuccess(pageBean);
+//        Page<Order> orderPage=orderRepository.findOrdersByUidAndStatus(user.getId(),status,pageable);
+//        List<Order> orderList=orderPage.getContent();
+//        List<OrderWithOrderItemList> orderWithOrderItemLists=new ArrayList<>();
+//        for(Order order:orderList){
+//            OrderWithOrderItemList orderWithOrderItemList=getOrderWithOrderItemListFromOrder(order);
+//            orderWithOrderItemLists.add(orderWithOrderItemList);
+//        }
+//        PageBean<List<OrderWithOrderItemList>> pageBean=new PageBean<>();
+//        pageBean.setPageNum(pageNum);
+//        pageBean.setPageSize(pageSize);
+//        pageBean.setData(orderWithOrderItemLists);
+//        pageBean.setTotalPage(orderPage.getTotalPages());
+//        pageBean.setTotalRecord((int)orderPage.getTotalElements());
+//        if(orderPage.hasPrevious()){
+//            pageBean.setPrePage(pageNum-1);
+//        }else{
+//            pageBean.setPrePage(pageNum);
+//        }
+//
+//        if(orderPage.hasNext()){
+//            pageBean.setNextPage(pageNum+1);
+//        }else{
+//            pageBean.setNextPage(pageNum);
+//        }
+//        pageBean.setStartIndex(pageSize*(pageNum-1));
+//        return Result.createRespBySuccess(pageBean);
     }
 
     @Override
@@ -219,7 +255,7 @@ public class OrderServiceImp implements OrderService {
 
     //从订单转换成订单和订单项的集合
     private OrderWithOrderItemList getOrderWithOrderItemListFromOrder(Order order){
-        List<OrderItem> orderItems=orderItemRepository.findAllByOrderId(order.getOrderNo());
+        List<OrderItem> orderItems=orderItemRepository.findByOrderId(order.getOrderNo());
         List<SimplifyOrderItem> simplifyOrderItems=new ArrayList<>();
         for(OrderItem t:orderItems){
             SimplifyOrderItem simplifyOrderItem=new SimplifyOrderItem(order.getOrderNo(),t);

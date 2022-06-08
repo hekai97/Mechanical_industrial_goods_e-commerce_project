@@ -27,5 +27,5 @@ public interface ProductService {
 
     Result<PageBean<List<ProductWithDescAndHot>>> findProducts(Integer productTypeId, Integer partsId, int pageNum, int pageSize, String name);
 
-    Result<List<Floor>> findFloors();
+    Result<Floor> findFloors();
 }

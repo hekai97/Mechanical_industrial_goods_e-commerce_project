@@ -15,5 +15,5 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     Product findProductById(Integer id);
     Page<Product> findByNameLike(String name, Pageable pageable);
     List<Product> findAllByIsHot(int hot);
-    Page<Product> findByProductIdAndPartsIdAndStatusAndName(Integer productId, Integer partsId, Integer status, String name, Pageable pageable);
+    Page<Product> findByProductIdAndPartsIdAndStatusAndName(Pageable pageable,Integer productId, Integer partsId, Integer status, String name);
 }
