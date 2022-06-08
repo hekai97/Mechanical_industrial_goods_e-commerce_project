@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <meta name="viewport" content="width=640, user-scalable=no">
+</head>
+<body style="width:640px;margin:0px;font-size: 24px;">
+<div style="width:calc(100vw - 20px); margin-left: 10px;margin-top: 10px;">
+    <form action="/alipay/pay" method="post">
+        订单编号：<input style="width:400px;font-size: 22px;" type="text" name="out_trade_no" required><br/>
+        订单名称：<input style="width:400px;font-size: 22px;" type="text" name="subject" required><br/>
+        付款金额：<input style="width:400px;font-size: 22px;" type="text" name="total_amount" required><br/>
+        b o d y：<input style="width:400px;font-size: 22px;" type="text" name="body"><br/>
+        <input style="width:150px;height:30px;margin-top: 10px;" type="submit" value="下单">
+        <input style="width:150px;height:30px;margin-top: 10px;" type="reset" value="重置">
+    </form>
+</div>
+</body>
+</html>
