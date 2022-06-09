@@ -5,6 +5,7 @@ define(['jquery_SuperSlide','common','handlebar'],function(jquery_SuperSlide,com
 			url:baseUrl+"param/findallparams.do",
 			xhrFields:{withCredentials:true},
 			crossDomain:true,
+			type:"",
 			success:function(rs){
 				//创建对象 预编译插件
 				var tpl = $("#param_tpl").html();
