@@ -53,7 +53,7 @@ public class ActionUserBackController {
 	 * @param session
 	 * @return
 	 */
-	@RequestMapping("/finduserlist.do")
+	@RequestMapping(value = "/finduserlist.do",method = RequestMethod.GET)
 	@ResponseBody
 	public SverResponse<List<ActionUserVo>> getUserDetail(HttpSession session) {
 		//1.判断用户是否登陆

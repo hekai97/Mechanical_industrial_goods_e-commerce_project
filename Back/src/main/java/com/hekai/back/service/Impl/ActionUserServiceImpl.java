@@ -14,6 +14,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -56,7 +57,7 @@ public class ActionUserServiceImpl implements ActionUserService {
 	@Override
 	public SverResponse<List<ActionUserVo>> findUserList() {
 		// TODO 自动生成的方法存根
-		List<ActionUserVo> vos=Lists.newArrayList();
+		List<ActionUserVo> vos=new ArrayList<>();
 		//1.调用dao层类的方法
 		List<User> users=actionUserDao.findAllUser();
 		//2.处理:user对象转换成ActionUserVo对象
@@ -78,10 +79,14 @@ public class ActionUserServiceImpl implements ActionUserService {
 		vo.setId(user.getId());
 		vo.setName(user.getName());
 		vo.setPhone(user.getPhone());
-		if(user.getSex()==1) {
-			vo.setSex("男");
-		}else {
-			vo.setSex("女");
+		if(user.getSex()!=null) {
+			if (user.getSex() == 1) {
+				vo.setSex("男");
+			} else {
+				vo.setSex("女");
+			}
+		}else{
+			vo.setSex("未知");
 		}
 		return vo;
 	}
@@ -105,11 +110,12 @@ public class ActionUserServiceImpl implements ActionUserService {
 		user.setEmail(actionUserVo.getEmail());
 		user.setName(actionUserVo.getName());
 		user.setPhone(actionUserVo.getPhone());
-		if(actionUserVo.getSex().equals("男")) {
-			user.setSex(1);
-		}else {
-			user.setSex(0);
-		}
+//		if(actionUserVo.getSex().equals("男")) {
+//			user.setSex(1);
+//		}else {
+//			user.setSex(0);
+//		}
+		user.setSex(Integer.parseInt(actionUserVo.getSex()));
 		user.setUpdate_time(new Date());
 		//3.调用dao层的方法
 		int rs=actionUserDao.updateUserInfo(user);

@@ -19,10 +19,10 @@ public class AliPayConfig {
     public static String ALIPAY_PUBLIC_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkhKbcbyTGkYXYlh92TUrrkvnLcEjIsTAWsz8qv3CxSbIazpANwtvzisnlOFfD/ThOflqETBQF8yRbsryaxzgFiNG9TwUbDpRkLkQuMlsbhYYVewQE2fMtP62mBxsneUlNaTu40iqzj33r1valBhwb4JEfjjwz7LhoiNVioc/eid7en11JViqFCrKEACpMZGSx6EomF8Nu0hzaa6BxM+j/kFoR5aGvhswra+QliVF09utLTAxXux6WnLPz0g9uDZa7Km0bu6Ybm+qO968N9TxRxbV9autLjXWj3yX/wzHwwenBxZIdUNVHf+P3Gln4DyY54jNclRQxv17mKbGHIFf8QIDAQAB";
 
     // 服务器异步通知页面路径,需要用http://格式的完整路径，不要加自定义参数，需要外网可以正常访问
-    public static String notify_url = "http://alipay.paydemo.net/alipay/notify";
+    public static String notify_url = "http://www.baidu.com";
 
     // 同步通知页面跳转路径 需要用http://格式的完整路径，不要加自定义参数，用来显示支付成功后返回的页面
-    public static String return_url = "http://alipay.paydemo.net/alipay/return";
+    public static String return_url = "http://www.baidu.com";
 
     // 签名方式
     public static String sign_type = "RSA2";
