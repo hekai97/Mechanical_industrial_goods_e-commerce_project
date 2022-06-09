@@ -1,4 +1,4 @@
-var baseUrl="http://localhost:8080/mall/";
+var baseUrl="http://10.20.79.73:8080/mall/";
 define(function(){
 	//获取url中的参数
 	function getParam(name){
@@ -14,11 +14,11 @@ define(function(){
 		//向服务器请求数据
 		$.ajax({
 			url:baseUrl+"user/getuserinfo.do",
-			xhrFields:{withCredentials:true},
 			crossDomain:true,
+			type:"get",
+			xhrFields:{withCredentials:true},
 			success:function(user){
 				//判断是否成功
-				alert(user.status+user.data.account);
 				if(user.status==0){
 					//隐藏登录时span标签
 					$("#register_info").css({display:"none"});
@@ -39,6 +39,7 @@ define(function(){
 			type:"post",
 			xhrFields:{withCredentials:true},
 			crossDomain:true,
+			type:"get",
 			success:function(rs){
 				//判断是否成功
 				if(rs.status==0){
@@ -58,6 +59,7 @@ define(function(){
 				xhrFields:{withCredentials:true},
 				type:"post",
 				crossDomain:true,
+				type:"post",
 				success:function(rs){
 					 if(rs.status==0){
 						//显示登录时span标签

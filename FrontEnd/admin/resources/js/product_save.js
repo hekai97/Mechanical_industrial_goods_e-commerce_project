@@ -2,9 +2,10 @@ define(['common'],function(common){
 	//1.获取产品类型参数
 	function getParams(){
 		$.ajax({
-			"xhrFields":{withCredentials:true},
-			"crossDomain":true,
-			"url":baseUrl+"mgr/param/findptype",
+			xhrFields:{withCredentials:true},
+			crossDomain:true,
+			url:baseUrl+"mgr/param/findptype.do",
+			type:"get",
 			success:function(rs){
 				//插入数据 
 				if(rs.status==0){
@@ -51,9 +52,9 @@ define(['common'],function(common){
 			var images = $("#images").val();
 			var detail = $("#preview").html();
 			$.ajax({
-				"xhrFields":{withCredentials:true},
-				"crossDomain":true,
-				"url":baseUrl+"mgr/product/saveproduct",
+				xhrFields:{withCredentials:true},
+				crossDomain:true,
+				url:baseUrl+"mgr/product/saveproduct.do",
 				type:"post",
 				data:{"name":goodsName,"productId":productType,"partsId":partsType,"detail":detail,"price":goodsPrice,
 					"stock":goodsStock,"subImages":images},
@@ -81,10 +82,11 @@ define(['common'],function(common){
 	//根据产品类型加载配件类型
 	function loadPartsType(productTypeId){
 		$.ajax({
-			"xhrFields":{withCredentials:true},
-			"crossDomain":true,
-			"url":baseUrl+"mgr/param/findpartstype",
+			xhrFields:{withCredentials:true},
+			crossDomain:true,
+			url:baseUrl+"mgr/param/findpartstype.do",
 			data:{"productTypeId":productTypeId},
+			type:"post",
 			success:function(rs){
 				//插入数据 
 				if(rs.status==0){

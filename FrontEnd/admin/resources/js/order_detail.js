@@ -4,9 +4,9 @@ define(['common'],function(common){
 	//2.获取订单详情
 	function getOrderDetail(){
 		$.ajax({
-			"xhrFields":{withCredentials:true},
-			"crossDomain":true,
-			"url":baseUrl+"mgr/order/getdetail",
+			xhrFields:{withCredentials:true},
+			crossDomain:true,
+			url:baseUrl+"mgr/order/getdetail.do",
 			data:{"orderNo":orderNo},
 			type:"get",
 			success:function(rs){

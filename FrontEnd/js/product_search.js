@@ -16,6 +16,7 @@ define(['jquery','common','handlebar'],function(jquery,common,Handlebars){
 			url:baseUrl+"param/findallparams.do",
 			xhrFields:{withCredentials:true},
 			crossDomain:true,
+			type:"get",
 			success:function(rs){
 				//将json转化为数组，参数编号作为键，对象为值
 				$.each(rs.data,function(index,value){
@@ -87,6 +88,7 @@ define(['jquery','common','handlebar'],function(jquery,common,Handlebars){
 			url:baseUrl+"product/findproducts.do",
 			xhrFields:{withCredentials:true},
 			crossDomain:true,
+			type:"post",
 			data:{'productTypeId':productTypeId,'partsId':partsTypeId,'name':conditon,'pageNum':pageNum,'pageSize':pageSize},
 			success:function(rs){
 					//设定图片地址

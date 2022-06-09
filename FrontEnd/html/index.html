@@ -7,8 +7,7 @@
             <link rel="stylesheet" type="text/css" href="../css/common.css">
             <link rel="stylesheet" type="text/css" href="../css/common_header.css">
             <link rel="stylesheet" type="text/css" href="../css/index.css">
-            <script src="../js/require.js" defer async="true" data-main="../js/home_main"></script>
-
+            <script src="../js/require.js" async="true" data-main="../js/home_main"></script>
         </head>
     <body>
         <!--头部导航栏+头部搜索栏-->
@@ -22,7 +21,7 @@
                         <img src="../images/common/header_line.jpg">
                         <a href="register.html" class="login">&nbsp;&nbsp;免费注册&nbsp;&nbsp;&nbsp;&nbsp;</a>
                     </span>
-                    <span id="login_info">
+                    <span id="login_info" class="yin">
                         <a href="information_modification.html" id="headerUsername" class="login"></a>
                         <img src="../images/common/header_line.jpg">
                         <a href="#" id="headerLogout" class="login">&nbsp;&nbsp;退出</a>
@@ -84,7 +83,7 @@
 				<div class="mall_left">
 					<div class="category_container">
 						<h2 class="category_title">全部配件分类</h2>
-						<div class="menu" style="margin-top:-30px ;">
+						<div class="menu" >
 							<ul id="paramContainer">
 								
 							</ul>
@@ -120,6 +119,7 @@
 			</div>
 		</div>
 		<!--楼层内容-->
+        
 		<div class="wrapper_box" >
 			<!--热销商品-->
 			<div class="lmf_t" style="float:left;margin-left: 190px">
@@ -127,7 +127,7 @@
     		</div>
     		<div class="lmf_main">
 		        <div class="prodea">
-                    <div class="b_box1">
+                    <div class="b_box1" style="margin-left: 190px;">
                         <ul id="hotContainer">
                         	
                         </ul>
@@ -143,7 +143,7 @@
 				    <a class="current_a" href="product_search.html?parentId=10023">查看更多 &gt;&gt;</a>
 				</div>
 				<div class="wrapper_box clearfix">
-					<a href="product_detail.html" class="floor_left_banner" target="_blank">
+					<a href="#" class="floor_left_banner" target="_blank">
 						<img src="../images/products/f1_left_big.jpg">
 					</a>
 				    <div id="floor_one_m">
@@ -338,7 +338,7 @@
 		                    </a>
 			                    <div class="menu02_box">
 			                    	{{#each children}}
-			                        <a href="product_search.html?parentId={{../../id}}&partsId={{id}}" class="menu02">{{name}}</a>
+			                        <a href="product_search.html?parentId={{../id}}&partsId={{id}}" class="menu02">{{name}}</a>
 			                       	{{/each}}
 			                    </div>
 		                </div>
@@ -385,7 +385,7 @@
 		            {{name}}
 		        </div>
 		        <div class="product_price">
-		             ${{price}}
+		             ￥{{price}}
 		        </div>
 		    </div>
 		</a>
