@@ -1,10 +1,10 @@
 require.config({
 	 paths: {
-			 "jquery": "/mall/admin/adminlte/bower_components/jquery/dist/jquery.min",
-			 "bootstrap":"/mall/admin/adminlte/bower_components/bootstrap/dist/js/bootstrap.min",
-			 "datatables.net":"/mall/admin/adminlte/bower_components/datatables.net/js/jquery.dataTables.min",
-			 "bsdataTables":"/mall/admin/adminlte/bower_components/datatables.net-bs/js/dataTables.bootstrap.min",
-			 "adminlte":"/mall/admin/adminlte/dist/js/adminlte.min"
+			 "jquery": "../js/jquery.min",
+			 "bootstrap":"../js/bootstrap.min",
+			 "datatables.net":"../js/jquery.dataTables.min",
+			 "bsdataTables":"../js/dataTables.bootstrap.min",
+			 "adminlte":"../js/adminlte.min",
 			 },
 	 shim:{
 			 'bootstrap':['jquery'],

@@ -38,6 +38,7 @@ define(['jquery','common','handlebar'],function(jquery,common,Handlebars){
 				xhrFields:{withCredentials:true},
 				crossDomain:true,
 				data:{'orderNo':orderNo},
+				type:'post',
 				success:function(rs){
 					//判断方法是否成功
 					if(rs.status==0){
@@ -70,6 +71,7 @@ define(['jquery','common','handlebar'],function(jquery,common,Handlebars){
 			xhrFields:{withCredentials:true},
 			crossDomain:true,
 			data:{'status':status,'pageNum':pageNum,'pageSize':pageSize},
+			type:'get',
 			success:function(rs){
 				//方法成功时
 				if(rs.status==0){

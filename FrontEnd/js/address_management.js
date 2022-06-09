@@ -125,6 +125,7 @@ define(['jquery','ChineseDistricts','distpicker','handlebar','common'], function
 			url:baseUrl+"addr/findaddrs.do",
 			xhrFields:{withCredentials:true},
 			crossDomain:true,
+			type:'get',
 			success:function(rs){
 				//数据成功返回，将后台信息添加到前端
 				updatePageInfo(rs);

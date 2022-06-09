@@ -13,7 +13,7 @@ define(['common'],function(common){
 			"ajax":{
 				"xhrFields":{withCredentials:true},
 				"crossDomain":true,
-				"url":baseUrl+"mgr/product/productlist",
+				"url":baseUrl+"mgr/product/productlist.do",
 			},
 			"columns":[
 				{"data":"id"},
@@ -139,9 +139,10 @@ define(['common'],function(common){
 	//更改商品状态
 	function changeStatus(pid,newStatus){
 		$.ajax({
-			"xhrFields":{withCredentials:true},
-			"crossDomain":true,
-			"url":baseUrl+"mgr/product/setstatus",
+			xhrFields:{withCredentials:true},
+			crossDomain:true,
+			url:baseUrl+"mgr/product/setstatus.do",
+			type:"post",
 			data:{"productId":pid,"status":newStatus,"hot":-1},
 			success:function(rs){
 				if(rs.status==0){
@@ -164,10 +165,11 @@ define(['common'],function(common){
 			return ;
 		}
 		$.ajax({
-			"xhrFields":{withCredentials:true},
-			"crossDomain":true,
-			"url":baseUrl+"mgr/product/setstatus",
+			xhrFields:{withCredentials:true},
+			crossDomain:true,
+			url:baseUrl+"mgr/product/setstatus.do",
 			data:{"productId":pid,"status":-1,"hot":newStatus},
+			type:"post",
 			success:function(rs){
 				if(rs.status==0){
 					//成功重新加载数据

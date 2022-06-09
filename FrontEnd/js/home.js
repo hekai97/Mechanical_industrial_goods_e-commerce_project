@@ -5,7 +5,7 @@ define(['jquery_SuperSlide','common','handlebar'],function(jquery_SuperSlide,com
 			url:baseUrl+"param/findallparams.do",
 			xhrFields:{withCredentials:true},
 			crossDomain:true,
-			type:"",
+			type:"get",
 			success:function(rs){
 				//创建对象 预编译插件
 				var tpl = $("#param_tpl").html();
@@ -23,7 +23,7 @@ define(['jquery_SuperSlide','common','handlebar'],function(jquery_SuperSlide,com
 		$.ajax({
 			url:baseUrl+"product/findhotproducts.do",
 			type:"post",
-			data:{num:5},
+			//data:{num:5},
 			xhrFields:{withCredentials:true},
 			crossDomain:true,
 			success:function(rs){
@@ -33,8 +33,11 @@ define(['jquery_SuperSlide','common','handlebar'],function(jquery_SuperSlide,com
 				//获取数据 处理数据（图片）
 				var data = new Array();
 				for(var i=0;i<rs.data.length;i++){
-					rs.data[i].icon_url=baseUrl+rs.data[i].icon_url;
+					//alert(rs.data[i].iconUrl);
+					rs.data[i].iconUrl=baseUrl+"/"+rs.data[i].iconUrl;
+					// alert(rs.data[i].iconUrl);
 					data[i]=rs.data[i];
+					// alert(data[i].iconUrl);
 					if(i>=4){
 						//前台只展示5条
 						break;
@@ -54,6 +57,7 @@ define(['jquery_SuperSlide','common','handlebar'],function(jquery_SuperSlide,com
 			url:baseUrl+"product/findfloors.do",
 			xhrFields:{withCredentials:true},
 			crossDomain:true,
+			type:"post",
 			success:function(rs){
 				//判断是否成功
 				if(rs.status==1){

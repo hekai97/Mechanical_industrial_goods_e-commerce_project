@@ -8,6 +8,7 @@ define(['jquery','handlebar','common'],function(jquery,Handlebars,common){
 			$.ajax({
 				url:baseUrl+"cart/delcarts.do",
 				data:{"productId":productId},
+				type:"post",
 				xhrFields:{withCredentials:true},
 				crossDomain:true,
 				success:function(rs){
@@ -22,6 +23,7 @@ define(['jquery','handlebar','common'],function(jquery,Handlebars,common){
 			$.ajax({
 				url:baseUrl+"cart/clearcarts.do",
 				xhrFields:{withCredentials:true},
+				type:"get",
 				crossDomain:true,
 				success:function(rs){
 					//判断方法是否成功
@@ -132,6 +134,7 @@ define(['jquery','handlebar','common'],function(jquery,Handlebars,common){
 			url:baseUrl+"cart/updatecarts.do",
 			xhrFields:{withCredentials:true},
 			crossDomain:true,
+			type:"get",
 			data:{'count':count,'productId':productId,'checked':checked},
 			async:false,
 			success:function(rs){
@@ -146,6 +149,7 @@ define(['jquery','handlebar','common'],function(jquery,Handlebars,common){
 			url:baseUrl+"cart/findallcarts.do",
 			xhrFields:{withCredentials:true},
 			crossDomain:true,
+			type:"get",
 			async:false,
 			success:function(rs){
 				//数据返回成功
