@@ -10,11 +10,16 @@ import com.hekai.back.utils.ConstUtil;
 import com.hekai.back.vo.ActionProductListVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 @RequestMapping("/mgr/product")
@@ -94,5 +99,17 @@ public class ActionProductBackController {
 		}
 		
 		return SverResponse.createByErrorMessage("您无操作权限!");
+	}
+	//图片上传接口
+	@RequestMapping(value = "pic_upload.do")
+	@ResponseBody
+	public void pictureUpLoad(@RequestBody MultipartFile image){
+		String filePath="upload";
+		System.out.println(image.getName()+" "+image.getContentType());
+		try {
+			image.transferTo(new File(filePath, Objects.requireNonNull(image.getOriginalFilename())));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

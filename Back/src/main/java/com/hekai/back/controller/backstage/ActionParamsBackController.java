@@ -10,9 +10,7 @@ import com.hekai.back.service.ActionUserService;
 import com.hekai.back.utils.ConstUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -120,6 +118,40 @@ public class ActionParamsBackController {
 			return actionParamsService.findParamChildren(id);
 		}
 				
+		return SverResponse.createByErrorMessage("您无操作权限!");
+	}
+
+	@RequestMapping(value = "/findptype.do",method = RequestMethod.GET)
+	@ResponseBody
+	public SverResponse<List<ActionParam>> findPType(HttpSession session){
+		User user=(User)session.getAttribute(ConstUtil.CUR_USER);
+		if(user==null) {
+			return SverResponse.createByErrorCodeMessage(ResponseCode.UNLOGIN.getCode(), "请登录后再进行操作!");
+		}
+		//2.用户是不是管理员
+		SverResponse<String> response=userService.isAdmin(user);
+		if(response.isSuccess()) {
+			//3.调用Service中的方法:获得子类型
+			return actionParamsService.findPType();
+		}
+
+		return SverResponse.createByErrorMessage("您无操作权限!");
+	}
+
+	@RequestMapping(value = "/findpartstype.do",method = RequestMethod.GET)
+	@ResponseBody
+	public SverResponse<List<ActionParam>> findPartsType(HttpSession session,Integer productTypeId){
+		User user=(User)session.getAttribute(ConstUtil.CUR_USER);
+		if(user==null) {
+			return SverResponse.createByErrorCodeMessage(ResponseCode.UNLOGIN.getCode(), "请登录后再进行操作!");
+		}
+		//2.用户是不是管理员
+		SverResponse<String> response=userService.isAdmin(user);
+		if(response.isSuccess()) {
+			//3.调用Service中的方法:获得子类型
+			return actionParamsService.findPartsType(productTypeId);
+		}
+
 		return SverResponse.createByErrorMessage("您无操作权限!");
 	}
 	

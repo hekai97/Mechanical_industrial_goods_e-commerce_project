@@ -35,4 +35,8 @@ public interface ActionParamsService {
 	 * @return
 	 */
 	public SverResponse<List<ActionParam>> findParamChildren(Integer id);
+
+    SverResponse<List<ActionParam>> findPType();
+
+	SverResponse<List<ActionParam>> findPartsType(Integer productTypeId);
 }

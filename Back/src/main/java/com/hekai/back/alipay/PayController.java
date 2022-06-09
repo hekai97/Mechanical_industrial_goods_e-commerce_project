@@ -21,8 +21,8 @@ import java.util.Iterator;
 import java.util.Map;
 
 /**
- * @author: hekai
- * @Date: 2022/6/8
+ * {@code @author:} hekai
+ * {@code @Date:} 2022/6/8
  */
 @Controller
 @RequestMapping("/alipay")
@@ -30,7 +30,7 @@ public class PayController {
 
     //wap:QUICK_WAP_WAY
     //web:FAST_INSTANT_TRADE_PAY
-    private static final String PRODUCT_CODE = "QUICK_WAP_WAY";
+    private static final String PRODUCT_CODE = "FAST_INSTANT_TRADE_PAY";
     //表单页面
     @RequestMapping("/home")
     public String index(ModelMap modelMap) {
@@ -82,7 +82,6 @@ public class PayController {
             response.getWriter().flush();
             response.getWriter().close();
         } catch (AlipayApiException e) {
-
             e.printStackTrace();
         }
     }

@@ -134,4 +134,14 @@ public class ActionParamsServiceImpl implements ActionParamsService {
 		
 		return SverResponse.createRespBySuccess(params);
 	}
+
+	@Override
+	public SverResponse<List<ActionParam>> findPType() {
+		return SverResponse.createRespBySuccess(actionParamsDao.findParamsByParentId(0));
+	}
+
+	@Override
+	public SverResponse<List<ActionParam>> findPartsType(Integer productTypeId) {
+		return SverResponse.createRespBySuccess(actionParamsDao.findParamsByParentId(productTypeId));
+	}
 }
