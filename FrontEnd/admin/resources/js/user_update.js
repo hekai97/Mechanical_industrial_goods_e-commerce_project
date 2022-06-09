@@ -4,10 +4,11 @@ define(['common'],function(common){
 	//1.获取用户参数
 	function getUserInfo(){
 		$.ajax({
-			"xhrFields":{withCredentials:true},
-			"crossDomain":true,
-			"url":baseUrl+"mgr/user/finduser.do",
+			xhrFields:{withCredentials:true},
+			crossDomain:true,
+			url:baseUrl+"mgr/user/finduser.do",
 			data:{"id":id},
+			type:"post",
 			success:function(rs){
 				//判断是否成功
 				if(rs.status==0){
@@ -48,9 +49,9 @@ define(['common'],function(common){
 			var useremail = $("#useremail").val();
 			//ajax修改
 			$.ajax({
-				"xhrFields":{withCredentials:true},
-				"crossDomain":true,
-				"url":baseUrl+"mgr/user/updateuser.do",
+				xhrFields:{withCredentials:true},
+				crossDomain:true,
+				url:baseUrl+"mgr/user/updateuser.do",
 				data:{"id":userId,"name":username,"account":useraccount,
 					"age":userage,"phone":userphone,"email":useremail,"sex":sex},
 				type:"post",

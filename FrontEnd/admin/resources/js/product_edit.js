@@ -8,9 +8,10 @@ define(['common','handlebars-v4.0.11','simditor_product'],function(common,Handle
 		var pid = common.getParam("productId");
 		//获取产品类型参数和产品信息
 		$.ajax({
-			"xhrFields":{withCredentials:true},
-			"crossDomain":true,
-			"url":baseUrl+"mgr/param/findptype.do",
+			xhrFields:{withCredentials:true},
+			crossDomain:true,
+			url:baseUrl+"mgr/param/findptype.do",
+			post:"get",
 			success:function(rs){
 				//插入数据 
 				if(rs.status==0){
@@ -60,9 +61,9 @@ define(['common','handlebars-v4.0.11','simditor_product'],function(common,Handle
 			}
 			var detail = editor.getValue();
 			$.ajax({
-				"xhrFields":{withCredentials:true},
-				"crossDomain":true,
-				"url":baseUrl+"mgr/product/saveproduct.do",
+				xhrFields:{withCredentials:true},
+				crossDomain:true,
+				url:baseUrl+"mgr/product/saveproduct.do",
 				type:"post",
 				data:{"id":goodsId,"name":goodsName,"productId":productType,
 					"partsId":partsType,"detail":detail,"price":goodsPrice,"stock":goodsStock,"subImages":images},
@@ -84,9 +85,9 @@ define(['common','handlebars-v4.0.11','simditor_product'],function(common,Handle
 	//加载商品详情
 	function loadProductDetail(pid){
 		$.ajax({
-			"xhrFields":{withCredentials:true},
-			"crossDomain":true,
-			"url":baseUrl+"mgr/product/getdetail.do",
+			xhrFields:{withCredentials:true},
+			crossDomain:true,
+			url:baseUrl+"mgr/product/getdetail.do",
 			data:{"productId":pid},
 			type:"post",
 			success:function(rs){
@@ -115,9 +116,9 @@ define(['common','handlebars-v4.0.11','simditor_product'],function(common,Handle
 	//根据产品类型加载配件类型  是否初始化调用
 	function loadPartsType(productTypeId,isInit){
 		$.ajax({
-			"xhrFields":{withCredentials:true},
-			"crossDomain":true,
-			"url":baseUrl+"mgr/param/findpartstype.do",
+			xhrFields:{withCredentials:true},
+			crossDomain:true,
+			url:baseUrl+"mgr/param/findpartstype.do",
 			data:{"productTypeId":productTypeId},
 			success:function(rs){
 				if(rs.status==0){
@@ -170,6 +171,7 @@ function initEditor(){
         fileKey: 'files', //服务器端获取文件数据的参数名  
         connectionCount: 3,  
         leaveConfirm: '正在上传文件',  
+		type:"post",
       },
       success:function(data){
         alert(data);

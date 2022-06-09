@@ -5,6 +5,7 @@ define(['jquery_SuperSlide','handlebar'],function(jquery,Handlebars){
 			url:baseUrl+"cart/findallcarts.do",
 			xhrFields:{withCredentials:true},
 			crossDomain:true,
+			type:'get',
 			success:function(rs){
 				//更新页面
 				updatePageInfo(rs);

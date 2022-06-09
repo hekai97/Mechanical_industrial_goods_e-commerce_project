@@ -325,7 +325,7 @@ a{
     z-index:1;
 }
 .ts_slide_list li img{
-    height: 435px;
+    height: 465px;
     width:1000px;
     position: relative;
 }
@@ -391,7 +391,7 @@ a{
 }
 .b_box1 li{
     width: 19.8%;
-    height:300px; 
+    height:310px; 
     float:left;
     display:inline;
     background:#FCFCFC;

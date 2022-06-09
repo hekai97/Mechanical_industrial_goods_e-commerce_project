@@ -2,9 +2,10 @@ define(['common','handlebars-v4.0.11'],function(common,Handlebars){
 	//1.获得产品类型参数
 	function getParams(){
 		$.ajax({
-			"xhrFields":{withCredentials:true},
-			"crossDomain":true,
-			"url":baseUrl+"mgr/param/findpathparam.do",
+			xhrFields:{withCredentials:true},
+			crossDomain:true,
+			url:baseUrl+"mgr/param/findpathparam.do",
+			type:"get",
 			success:function(rs){
 				if(rs.status==0){
 					//清空数据
@@ -26,9 +27,9 @@ define(['common','handlebars-v4.0.11'],function(common,Handlebars){
 			var parentId = $("#parent").val();
 			var name = $("#paramName").val();
 			$.ajax({
-				"xhrFields":{withCredentials:true},
-				"crossDomain":true,
-				"url":baseUrl+"mgr/param/saveparam.do",
+				xhrFields:{withCredentials:true},
+				crossDomain:true,
+				url:baseUrl+"mgr/param/saveparam.do",
 				data:{"name":name,"parent_id":parentId},
 				type:"post",
 				success:function(rs){

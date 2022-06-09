@@ -1,3 +1,5 @@
+const { get } = require("jquery");
+
 define(function(){
 	//1.订单表格初始化
 	function initialization(){
@@ -14,6 +16,7 @@ define(function(){
 				"xhrFields":{withCredentials:true},
 				"crossDomain":true,
 				"url":baseUrl+"mgr/order/findorders_nopages.do",
+				//"type":"get",
 			},
 			"columns":[
 				{"data":"orderNo"},

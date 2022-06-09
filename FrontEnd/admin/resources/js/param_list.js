@@ -15,6 +15,7 @@ define(['common'],function(common){
 				"xhrFields":{withCredentials:true},
 				"crossDomain":true,
 				"url":baseUrl+"mgr/param/findptype.do",
+				"type":"get",
 			},
 			"columns":[
 				{"data":"id"},
@@ -82,9 +83,9 @@ function delParams(id){
 	//提示确定删除
 	if(confirm("确定删除吗？")){
 		$.ajax({
-			"xhrFields":{withCredentials:true},
-			"crossDomain":true,
-			"url":baseUrl+"mgr/param/delparam.do",
+			xhrFields:{withCredentials:true},
+			crossDomain:true,
+			url:baseUrl+"mgr/param/delparam.do",
 			data:{"id":id},
 			type:"post",
 			dataType:'json',

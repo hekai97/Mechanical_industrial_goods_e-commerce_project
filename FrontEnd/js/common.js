@@ -1,4 +1,5 @@
-var baseUrl="http://10.20.200.19:8080/mall/";
+var baseUrl="http://192.168.43.74:8080/mall/";
+// var baseUrl="http://10.20.151.202:8080/mall/upload/aa2e590f-c4eb-42e0-8260-54af15ed4760.jpg"
 define(function(){
 	//获取url中的参数
 	function getParam(name){
@@ -14,11 +15,11 @@ define(function(){
 		//向服务器请求数据
 		$.ajax({
 			url:baseUrl+"user/getuserinfo.do",
-			xhrFields:{withCredentials:true},
 			crossDomain:true,
+			type:"get",
+			xhrFields:{withCredentials:true},
 			success:function(user){
 				//判断是否成功
-				alert(user.status+user.data.account);
 				if(user.status==0){
 					//隐藏登录时span标签
 					$("#register_info").css({display:"none"});
@@ -38,6 +39,7 @@ define(function(){
 			url:baseUrl+"cart/getcartcount.do",
 			xhrFields:{withCredentials:true},
 			crossDomain:true,
+			type:"get",
 			success:function(rs){
 				//判断是否成功
 				if(rs.status==0){
@@ -56,6 +58,7 @@ define(function(){
 				url:baseUrl+"user/do_logout.do",
 				xhrFields:{withCredentials:true},
 				crossDomain:true,
+				type:"post",
 				success:function(rs){
 					 if(rs.status==0){
 						//显示登录时span标签

@@ -1,7 +1,7 @@
 require.config({
     paths: {
             "jquery": "../js/jquery-1.6.2.min",
-            "handlebar": "/mall/dy2/js/handlebars-v4.0.11",
+            "handlebar": "../js/handlebars-v4.0.11",
             }
 });
 

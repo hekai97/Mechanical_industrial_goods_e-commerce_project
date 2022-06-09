@@ -7,6 +7,7 @@ define(['jquery','common'],function(jquery,common){
 			url:baseUrl+"product/getdetail.do",
 			xhrFields:{withCredentials:true},
 			crossDomain:true,
+			type:"post",
 			data:{'productId':pid},
 			success:function(result){
 				//数据加载成功时
