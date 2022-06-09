@@ -46,6 +46,9 @@ body{position: relative;min-width: 1200px;background: #ffffff;}
 .my_action img{
     margin-top: 10px;
 }
+#login_info{
+    display: none;
+}
 
 
 /*头部搜索栏*/

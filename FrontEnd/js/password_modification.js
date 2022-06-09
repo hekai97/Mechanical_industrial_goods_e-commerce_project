@@ -46,7 +46,7 @@ define(['jquery','common'],function(jquery,common){
 		//保存按钮事件
 		$("#btnSave").click(function(){
 			$.ajax({
-				url:baseUrl+"user/updatepassword",
+				url:baseUrl+"user/updatepassword.do",
 				xhrFields:{withCredentials:true},
 				crossDomain:true,
 				type:"post",

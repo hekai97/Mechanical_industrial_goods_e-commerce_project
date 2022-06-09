@@ -30,7 +30,7 @@ define(['common'],function(common){
                 type:"post",
                 data:{account:$("#username").val(),password:$("#password").val()},
                 xhrFields:{withCredential:true},   //允许跨域请求时携带cookie属性
-                crossDomain:true,           //允许跨域请求
+               // crossDomain:true,           //允许跨域请求
                 success:function(data){
                     //判断是否登录成功
                     if(data.status==0){

@@ -4,7 +4,7 @@ define(['jquery','common'],function(jquery,common){
 	//1.获取商品数据
 	function ready(){
 		$.ajax({
-			url:baseUrl+"product/getdetail",
+			url:baseUrl+"product/getdetail.do",
 			xhrFields:{withCredentials:true},
 			crossDomain:true,
 			data:{'productId':pid},

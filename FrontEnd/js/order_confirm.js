@@ -2,7 +2,7 @@ define(['jquery_SuperSlide','handlebar'],function(jquery,Handlebars){
 	//读取用户生成的订单购物车商品信息
 	function getCartInfo(){
 		$.ajax({
-			url:baseUrl+"cart/findallcarts",
+			url:baseUrl+"cart/findallcarts.do",
 			xhrFields:{withCredentials:true},
 			crossDomain:true,
 			success:function(rs){
@@ -19,7 +19,7 @@ define(['jquery_SuperSlide','handlebar'],function(jquery,Handlebars){
 			var id =$(this).attr("data-id");
 			//提交订单
 			$.ajax({
-				url:baseUrl+"order/createorder",
+				url:baseUrl+"order/createorder.do",
 				xhrFields:{withCredentials:true},
 				crossDomain:true,
 				data:{"addrId":id},

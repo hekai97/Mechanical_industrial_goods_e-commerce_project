@@ -4,7 +4,7 @@ define(['jquery','handlebar','common'],function(jquery,Handlebars,common){
 	//2.获取订单详情
 	function getDetail(){
 		$.ajax({
-			url:baseUrl+"order/getdetail",
+			url:baseUrl+"order/getdetail.do",
 			xhrFields:{withCredentials:true},
 			crossDomain:true,
 			data:{"orderNo":orderNo},
@@ -49,7 +49,7 @@ define(['jquery','handlebar','common'],function(jquery,Handlebars,common){
 		//取消按钮挂单击事件
 		$("#order_cancel").click(function(){
 			$.ajax({
-				url:baseUrl+"order/cancelorder",
+				url:baseUrl+"order/cancelorder.do",
 				xhrFields:{withCredentials:true},
 				crossDomain:true,
 				data:{'orderNo':orderNo},
