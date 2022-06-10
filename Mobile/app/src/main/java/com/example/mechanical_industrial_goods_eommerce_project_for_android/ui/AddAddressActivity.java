@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.R;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.Utils.JsonUtils;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.config.Constant;
+import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.Address;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.ResponseCode;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.SverResponse;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.User;
@@ -20,6 +21,8 @@ import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.Call;
 
@@ -90,6 +93,14 @@ public class AddAddressActivity extends AppCompatActivity implements View.OnClic
             Toast.makeText(this,"请输入邮编！",Toast.LENGTH_LONG).show();
             return;
         }
+        if(youbian.length()!=6){
+            Toast.makeText(this,"请输入正确的邮编！",Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(num.length() != 11){
+            Toast.makeText(this,"请输入正确的电话号码！",Toast.LENGTH_LONG).show();
+            return;
+        }
         OkHttpUtils.post()
                 .url(Constant.API.USER_ADDR_ADD_URL)
                 .addParams("name",name)
@@ -105,16 +116,29 @@ public class AddAddressActivity extends AppCompatActivity implements View.OnClic
                     @Override
                     public void onError(Call call, Exception e, int id) {
                         Toast.makeText(AddAddressActivity.this,"网络问题，请稍后重试！",Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(AddAddressActivity.this,AddressListActivity.class);
-                        startActivity(intent);
+//                        Intent intent = new Intent(AddAddressActivity.this,AddressListActivity.class);
+//                        startActivity(intent);
                     }
 
                     @Override
                     public void onResponse(String response, int id) {
-                        Type type = new TypeToken<SverResponse<User>>(){}.getType();
-                        SverResponse<User> result = JsonUtils.fromJson(response,type);
+                        /*Type type = new TypeToken<SverResponse<List<User>>>(){}.getType();
+                        SverResponse<List<User>> result = JsonUtils.fromJson(response,type);
                         if(result.getStatus()== ResponseCode.SUCCESS.getCode()){
                             Toast.makeText(AddAddressActivity.this,"添加成功！",Toast.LENGTH_SHORT).show();
+                            AddAddressActivity.this.finish();
+                        }else{
+                            Toast.makeText(AddAddressActivity.this,"添加失败！",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddAddressActivity.this,result.getMsg(),Toast.LENGTH_SHORT).show();
+                        }*/
+
+                        Type type = new TypeToken<SverResponse<List<Address>>>(){}.getType();
+                        SverResponse<List<Address>> result = JsonUtils.fromJson(response,type);
+                        if(result.getStatus()== ResponseCode.SUCCESS.getCode()){
+                            /*List<Address> mData = new ArrayList<>();
+                            mData.clear();
+                            mData.addAll(result.getData());
+                            addressAdapter.notifyDataSetChanged();*/
                             AddAddressActivity.this.finish();
                         }else{
                             Toast.makeText(AddAddressActivity.this,"添加失败！",Toast.LENGTH_SHORT).show();

@@ -20,7 +20,7 @@
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:id="@+id/icon_url"
+            android:id="@+id/icon_url_c_right"
             android:layout_alignParentLeft="true"
             android:layout_gravity="center">
         </ImageView>

@@ -31,15 +31,20 @@ public class ResetPwActivity extends AppCompatActivity implements View.OnClickLi
     private EditText et_resetpw_new;
     private EditText et_resetpw_question;
     private EditText et_resetpw_ans;
+    private String[] params;
     private String Userquestion;
+    private Integer UserId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         Intent intent = getIntent();
-        Userquestion = intent.getStringExtra("Userquestion");
+        Bundle bundle = intent.getBundleExtra("params");
+        Userquestion = bundle.getString("question");
+        UserId = bundle.getInt("userid");
         Log.d("questiont", "questiont:"+Userquestion);
+        Log.d("questiont", "questiont:"+UserId);
         setContentView(R.layout.activity_reset_pw);
         et_resetpw_name = (EditText) findViewById(R.id.et_resetpw_name);
         et_resetpw_new = (EditText) findViewById(R.id.et_resetpw_new);
@@ -74,6 +79,7 @@ public class ResetPwActivity extends AppCompatActivity implements View.OnClickLi
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
+
                         Toast.makeText(ResetPwActivity.this,"网络问题，请稍后重试！",Toast.LENGTH_SHORT).show();
 
                     }
@@ -106,9 +112,10 @@ public class ResetPwActivity extends AppCompatActivity implements View.OnClickLi
             Toast.makeText(this,"请输入新密码！",Toast.LENGTH_LONG).show();
             return;
         }
+
         OkHttpUtils.post()
                 .url(Constant.API.REGISTER_RESETPW_URL)
-                .addParams("userId",name)
+                .addParams("userId", String.valueOf(UserId))
                 .addParams("newpwd",newpw)
                 .build()
                 .execute(new StringCallback() {

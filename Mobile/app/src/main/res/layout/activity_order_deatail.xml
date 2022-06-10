@@ -4,16 +4,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:id="@+id/header"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp">
 
         <TextView
-            android:id="@+id/orderNo"
+            android:id="@+id/orderNo_D"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
@@ -22,45 +23,44 @@
             android:textSize="@dimen/big_font" />
 
         <TextView
-            android:id="@+id/created"
+            android:id="@+id/created_D"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/orderNo"
             android:padding="5dp"
             android:text="订单时间:"
             android:textColor="@color/font_color"
             android:textSize="@dimen/big_font" />
 
         <TextView
-            android:id="@+id/type"
+            android:id="@+id/type_D"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/created"
             android:padding="5dp"
             android:text="支付类型:"
             android:textColor="@color/font_color"
             android:textSize="@dimen/big_font" />
 
         <TextView
-            android:id="@+id/status"
+            android:id="@+id/status_D"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/type"
             android:padding="5dp"
             android:text="订单状态:"
             android:textColor="@color/font_color"
             android:textSize="@dimen/big_font" />
 
         <TextView
-            android:id="@+id/deliveryName"
+            android:id="@+id/deliveryName_D"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/status"
             android:padding="5dp"
             android:text="收货人:"
             android:textColor="@color/font_color"
             android:textSize="@dimen/big_font" />
-    </RelativeLayout>
+    </LinearLayout>
+
+
+
     <RelativeLayout
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
@@ -77,18 +77,19 @@
             android:text="合计：￥0.00"
             android:textColor="@color/font_color_red"
             android:textSize="@dimen/normal_font"/>
+
         <TextView
             android:id="@+id/buy_btn"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:gravity="center_vertical"
             android:layout_alignParentRight="true"
-            android:paddingRight="50dp"
+            android:background="@color/buy_bg_color"
+            android:gravity="center_vertical"
             android:paddingLeft="50dp"
-            android:textColor="@color/font_color"
-            android:background="@color/colorBackground"
+            android:paddingRight="50dp"
             android:text="结算"
-            android:textSize="@dimen/big_font"/>
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/big_font" />
 
     </RelativeLayout>
     <RelativeLayout

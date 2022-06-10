@@ -7,7 +7,7 @@ public class Product {
     private String name;
     private Integer productId;
     private Integer partsId;
-    private String iconURL;
+    private String iconUrl;
     private String subImages;
     private String detail;
     private String specParam;
@@ -50,12 +50,12 @@ public class Product {
         this.partsId = partsId;
     }
 
-    public String getIconURL() {
-        return iconURL;
+    public String getIconUrl() {
+        return iconUrl;
     }
 
-    public void setIconURL(String iconURL) {
-        this.iconURL = iconURL;
+    public void setIconUrl(String iconUrl) {
+        this.iconUrl = iconUrl;
     }
 
     public String getSubImages() {

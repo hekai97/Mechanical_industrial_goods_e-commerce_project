@@ -25,6 +25,7 @@ import com.example.mechanical_industrial_goods_eommerce_project_for_android.mode
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.User;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.ui.AddressListActivity;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.ui.LoginActivity;
+import com.example.mechanical_industrial_goods_eommerce_project_for_android.ui.OrderListActivity;
 import com.google.gson.reflect.TypeToken;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -142,9 +143,10 @@ public class PersonalFragment extends Fragment {
         view.findViewById(R.id.btn_all).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //跳转
-//                Intent intent = new Intent(getActivity(), AllListActivity.class);
-//                startActivity(intent);
+                //跳转跳转到所有订单
+                Intent intent = new Intent(getActivity(), OrderListActivity.class);
+                intent.putExtra("status","0");
+                startActivity(intent);
             }
         });
 
@@ -156,6 +158,57 @@ public class PersonalFragment extends Fragment {
                 exit();
             }
         });
+
+        view.findViewById(R.id.fg_user_dfk).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //跳转跳转到待付款订单
+                Intent intent = new Intent(getActivity(), OrderListActivity.class);
+                intent.putExtra("status","1");
+                startActivity(intent);
+            }
+        });
+
+        view.findViewById(R.id.fg_user_dfh).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //跳转跳转到待付款订单
+                Intent intent = new Intent(getActivity(), OrderListActivity.class);
+                intent.putExtra("status","2");
+                startActivity(intent);
+            }
+        });
+
+        view.findViewById(R.id.fg_user_dsh).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //跳转跳转到待付款订单
+                Intent intent = new Intent(getActivity(), OrderListActivity.class);
+                intent.putExtra("status","3");
+                startActivity(intent);
+            }
+        });
+
+        view.findViewById(R.id.fg_user_dpj).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //跳转跳转到待付款订单
+                Intent intent = new Intent(getActivity(), OrderListActivity.class);
+                intent.putExtra("status","4");
+                startActivity(intent);
+            }
+        });
+
+        view.findViewById(R.id.fg_user_sh).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //跳转跳转到待付款订单
+                Intent intent = new Intent(getActivity(), OrderListActivity.class);
+                intent.putExtra("status","5");
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void exit() {
