@@ -77,7 +77,7 @@ public class Constant {
         //用户退出登录
         public static final String USER_EXIT_URL = BASE_URL+"user/do_logout.do";
         //获取用户密码问题
-        public static final String USER_QUE_URL = BASE_URL+"user/getuserquestion.do";
+        public static final String USER_QUE_URL = BASE_URL+"user/getUserByAccount.do";
 
         //用户注册
         public static final String REGISTER_INFO_URL = BASE_URL+"user/do_register.do";
@@ -105,5 +105,8 @@ public class Constant {
         //订单列表
         public static final String ORDER_LIST_URL=BASE_URL+"order/getlist.do";
         public static final String ORDER_CANCEL_URL=BASE_URL+"order/cancelorder.do";
+
+        //支付接口
+        public static final String PAY_URL=BASE_URL+"alipay/getorderinfo.do";
     }
 }

@@ -31,6 +31,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private EditText mailEdit;
     private EditText questionEdit;
     private EditText answerEdit;
+
+    private long verificationCode=0; //生成的验证码
+    private String email; //邮箱
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -128,4 +132,28 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     }
                 });
     }
+
+    //发送验证码
+    /*private void sendVerificationCode(final String email) {
+        try {
+            new Thread() {
+                @Override
+                public void run() {
+                    super.run();
+                    try {
+                        RandomNumber rn = new RandomNumber();
+                        verificationCode = rn.getRandomNumber(6);
+                        SendEmail se = new SendEmail(email);
+                        se.sendHtmlEmail(verificationCode);//发送html邮件
+                        Toast.makeText(RegisterActivity.this,"发送成功",Toast.LENGTH_LONG).show();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }*/
+
 }

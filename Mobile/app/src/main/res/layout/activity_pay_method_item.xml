@@ -1,0 +1,68 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context=".Fragment.ShoppingcartFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/img_constrainLayout"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="10dp">
+
+        <ImageView
+            android:id="@+id/icon_url"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@mipmap/alipay_logo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <LinearLayout
+        android:id="@+id/rl"
+        android:layout_width="240dp"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@id/img_constrainLayout"
+        android:orientation="vertical"
+        android:paddingLeft="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:text="支付宝"
+            android:textSize="20sp"
+            android:gravity="center_vertical"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:text="10亿用户都在用，真安全，更放心"
+            android:gravity="center_vertical"
+            android:textSize="15sp"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+    <RadioButton
+        android:id="@+id/radio_btn_checked"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@id/rl"
+        android:gravity="center"
+        android:button="@drawable/selector_radio_check"
+        android:textColor="@color/font_color" />
+
+</RelativeLayout>

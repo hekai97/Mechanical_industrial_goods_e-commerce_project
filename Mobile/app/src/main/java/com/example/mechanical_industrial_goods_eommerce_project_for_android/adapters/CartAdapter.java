@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -54,6 +56,34 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         holder.price.setText(cartItem.getPrice()+"");
         holder.edit_num.setText(cartItem.getQuantity()+"");
         Glide.with(context).load(Constant.API.BASE_URL + cartItem.getIconUrl()).into(holder.icon_url);
+
+        if(cartItem.getChecked()==1)
+        {
+            holder.checkBox.setChecked(true);
+        }
+        else {
+            holder.checkBox.setChecked(false);
+        }
+
+        holder.edit_num.setEnabled(false);
+        holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                System.out.println("change");
+                if(onCartOptListener!=null)
+                {
+                    if(isChecked)
+                    {
+                        onCartOptListener.updateProductCount(cartItem.getProductId(),cartItem.getQuantity(),1);
+                    }
+                    else{
+                        onCartOptListener.updateProductCount(cartItem.getProductId(),cartItem.getQuantity(),0);
+                    }
+                }
+            }
+        });
+
         //绑定监听
         holder.itemView.setTag(position);
         holder.itemView.setOnClickListener(this);
@@ -63,7 +93,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             public void onClick(View view) {
                 if(cartItem.getQuantity() + 1 <= cartItem.getStock()){
                     if(onCartOptListener != null){
-                        onCartOptListener.updateProductCount(cartItem.getProductId(),cartItem.getQuantity()+1);
+                        onCartOptListener.updateProductCount(cartItem.getProductId(),cartItem.getQuantity()+1,cartItem.getChecked());
                     }
                 }
             }
@@ -74,7 +104,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             public void onClick(View view) {
                 if(cartItem.getQuantity() - 1 >= 1){
                     if(onCartOptListener != null){
-                        onCartOptListener.updateProductCount(cartItem.getProductId(),cartItem.getQuantity()-1);
+                        onCartOptListener.updateProductCount(cartItem.getProductId(),cartItem.getQuantity()-1,cartItem.getChecked());
                     }
                 }
             }
@@ -120,6 +150,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         public EditText edit_num;
         public TextView btn_jia;
         public TextView btn_del;
+        private CheckBox checkBox;
 
         public CartViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -131,12 +162,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             btn_jia=(TextView)itemView.findViewById(R.id.btn_jia);
             btn_jian=(TextView)itemView.findViewById(R.id.btn_jian);
             edit_num=(EditText) itemView.findViewById(R.id.edit_num);
+            checkBox=(CheckBox)itemView.findViewById(R.id.btn_checked);
         }
     }
 
     public interface OnCartOptListener{
         //更新商品数量
-        public void updateProductCount(int productId, int count);
+        public void updateProductCount(int productId, int count, Integer checked);
 
         //删除商品
         public void delProductFromCart(int productId);

@@ -16,7 +16,6 @@ import com.example.mechanical_industrial_goods_eommerce_project_for_android.R;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.config.Constant;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.Product;
 
-import java.security.PublicKey;
 import java.util.List;
 
 public class CategoryRightAdapter extends RecyclerView.Adapter<CategoryRightAdapter.ProductViewHolder> implements View.OnClickListener {
@@ -39,8 +38,6 @@ public class CategoryRightAdapter extends RecyclerView.Adapter<CategoryRightAdap
     public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(context).inflate(R.layout.fragment_category_right_list_item,null,false);
-
-
         return new ProductViewHolder(view);
     }
 
@@ -50,7 +47,7 @@ public class CategoryRightAdapter extends RecyclerView.Adapter<CategoryRightAdap
         Product product = mData.get(position);
         holder.name.setText(product.getName());
         holder.price.setText(product.getPrice()+"");
-        Glide.with(context).load(Constant.API.BASE_URL+product.getIconURL()).into(holder.icon_url);
+        Glide.with(context).load(Constant.API.BASE_URL+product.getIconUrl()).into(holder.icon_url);
         //
         holder.itemView.setTag(position);
         holder.itemView.setOnClickListener(this);
@@ -82,7 +79,7 @@ public class CategoryRightAdapter extends RecyclerView.Adapter<CategoryRightAdap
             this.itemView = itemView;
             name = (TextView)itemView.findViewById(R.id.name);
             price =(TextView)itemView.findViewById(R.id.price);
-            icon_url=(ImageView)itemView.findViewById(R.id.icon_url);
+            icon_url=(ImageView)itemView.findViewById(R.id.icon_url_c_right);
         }
     }
 }

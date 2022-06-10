@@ -170,8 +170,8 @@ public class ShoppingcartFragment extends Fragment {
 
         cartAdapter.setOnCartOptListener(new CartAdapter.OnCartOptListener() {
             @Override
-            public void updateProductCount(int productId, int count) {
-                updateProduct(productId,count);
+            public void updateProductCount(int productId, int count,Integer checked) {
+                updateProduct(productId,count,checked);
             }
 
             @Override
@@ -240,7 +240,7 @@ public class ShoppingcartFragment extends Fragment {
     //加载购物车数据
     private void loadCartData(){
         Log.d("tiaozhuanlogin","loadcartdata");
-        OkHttpUtils.post()
+        OkHttpUtils.get()
                 .url(Constant.API.CART_LIST_URL)
                 .build()
                 .execute(new StringCallback() {
@@ -274,11 +274,12 @@ public class ShoppingcartFragment extends Fragment {
 
     }
 
-    private void updateProduct(int productId,int count) {
+    private void updateProduct(int productId,int count,Integer checked) {
         OkHttpUtils.get()
                 .url(Constant.API.CART_UPDATE_URL)
                 .addParams("productId",productId+"")
                 .addParams("count",count+"")
+                .addParams("checked",checked+"")
                 .build()
                 .execute(new StringCallback() {
                     @Override
@@ -303,7 +304,7 @@ public class ShoppingcartFragment extends Fragment {
 
     //删除商品
     private void delProductById(int productId){
-        OkHttpUtils.get()
+        OkHttpUtils.post()
                 .url(Constant.API.CART_DEL_URL)
                 .addParams("productId",productId+"")
                 .build()

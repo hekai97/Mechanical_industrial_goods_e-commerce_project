@@ -49,10 +49,14 @@ public class OrderListActivity extends AppCompatActivity {
     private MaterialRefreshLayout refreshLayout;
     private SverResponse<PageBean<Order>> result;
     private String cancelOrderNo;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_list);
+
+        Intent intent = getIntent();
+        orderType = Integer.parseInt(intent.getStringExtra("status"));
 
         initView();
         bindRefreshListener();
@@ -125,7 +129,6 @@ public class OrderListActivity extends AppCompatActivity {
                         loadData(pageBean.getNextPage(),pageBean.getPageSize(),orderType,false);
                     }
                     else {
-                        System.out.println("2");
                         refreshLayout.finishRefreshLoadMore();
                         Toast.makeText(OrderListActivity.this,"已经到底了",Toast.LENGTH_SHORT).show();
                     }
@@ -154,7 +157,7 @@ public class OrderListActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(OrderListActivity.this);
 
         recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.addItemDecoration(new SpaceItemDecoration(DpToPx.dpTopx(this,10), DpToPx.dpTopx(this,10)));
+        recyclerView.addItemDecoration(new SpaceItemDecoration(DpToPx.dpTopx(this,10), DpToPx.dpTopx(this,0)));
         recyclerView.setAdapter(listOrderAdapter);
         listOrderAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
@@ -197,7 +200,7 @@ public class OrderListActivity extends AppCompatActivity {
     }
 
     private void cancelOrder() {
-        OkHttpUtils.get()
+        OkHttpUtils.post()
                 .url(Constant.API.ORDER_CANCEL_URL)
                 .addParams("orderNo", String.valueOf(cancelOrderNo))
                 .build()

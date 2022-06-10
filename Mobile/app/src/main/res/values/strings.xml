@@ -2,4 +2,8 @@
     <string name="app_name">mechanical_industrial_goods_Eommerce_project_for_android</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="pay_failed">Payment failed:</string>
+    <string name="pay_success">Payment success:</string>
+    <string name="confirm">Confirm</string>
+    <string name="error_missing_appid_rsa_private">Error: Missing \"APPID\" or \"RSA_PRIVATE\" in PayDemoActivity.</string>
 </resources>

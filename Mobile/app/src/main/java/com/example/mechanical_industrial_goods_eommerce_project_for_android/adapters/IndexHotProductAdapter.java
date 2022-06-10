@@ -19,8 +19,6 @@ import com.example.mechanical_industrial_goods_eommerce_project_for_android.R;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.config.Constant;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.Product;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 public class IndexHotProductAdapter extends DelegateAdapter.Adapter<IndexHotProductAdapter.HotProductViewHolder>{
@@ -66,7 +64,7 @@ public class IndexHotProductAdapter extends DelegateAdapter.Adapter<IndexHotProd
         holder.price.setText("价格：￥"+product.getPrice());
         holder.stock.setText("库存："+ product.getStock());
         holder.contentContainer.setTag(position);
-        Glide.with(context).load(Constant.API.BASE_URL+product.getIconURL()).into(holder.icon_URL);
+        Glide.with(context).load(Constant.API.BASE_URL+product.getIconUrl()).into(holder.icon_URL);
         holder.contentContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
