@@ -1,6 +1,7 @@
 define(['jquery','handlebar','common'],function(jquery,Handlebars,common){
 	//1.获取订单编号
 	var orderNo = common.getParam("orderNo");
+	var orderAmount;
 	//2.获取订单详情
 	function getDetail(){
 		$.ajax({
@@ -19,6 +20,7 @@ define(['jquery','handlebar','common'],function(jquery,Handlebars,common){
 					$("#order-status-container").html(rs.data.statusDesc);
 					$("#order-ptype-container").html(rs.data.typeDesc);
 					$("#order-paytime-container").html(rs.data.paymentTime);
+					orderAmount=rs.data.amount;
 					//拼接地址信息
 					var address = rs.data.address.province+" "
 					 	+rs.data.address.city+" "
@@ -45,6 +47,38 @@ define(['jquery','handlebar','common'],function(jquery,Handlebars,common){
 		});
 	}
 	
+
+    //支付
+	$("#order_pay").click(function(){
+		 var parames = new Array();
+		 parames.push({ name: "out_trade_no", value: orderNo});
+		 parames.push({ name: "subject", value: orderNo+"金额："+orderAmount});
+		 parames.push({ name: "total_amount", value: orderAmount});
+		 Post(baseUrl+"alipay/pay.do", parames);
+		 return false;
+
+	});
+
+	function Post(URL, PARAMTERS) {
+		//创建form表单
+		var temp_form = document.createElement("form");
+		temp_form.action = URL;
+		//如需打开新窗口，form的target属性要设置为'_blank'
+		temp_form.target = "_blank";
+		temp_form.method = "post";
+		temp_form.style.display = "none";
+		//添加参数
+		for (var item in PARAMTERS) {
+			var opt = document.createElement("textarea");
+			opt.name = PARAMTERS[item].name;
+			opt.value = PARAMTERS[item].value;
+			temp_form.appendChild(opt);
+		}
+		document.body.appendChild(temp_form);
+		//提交数据
+		temp_form.submit();
+	}
+
 	//点击取消订单按钮
 	function orderCancel(){
 		//取消按钮挂单击事件

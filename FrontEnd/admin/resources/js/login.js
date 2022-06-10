@@ -20,7 +20,7 @@ define(['common'],function(common){
 			}
 			
 			$.ajax({
-				url:baseUrl+"mgr/user/login",
+				url:baseUrl+"mgr/user/login.do",
 				xhrFields:{withCredentials:true},
 				crossDomain:true,
 				type:"post",
