@@ -103,13 +103,15 @@ public class ActionProductBackController {
 	//图片上传接口
 	@RequestMapping(value = "pic_upload.do")
 	@ResponseBody
-	public void pictureUpLoad(@RequestBody MultipartFile image){
+	public SverResponse<String> pictureUpLoad(@RequestBody MultipartFile image){
 		String filePath="upload";
 		System.out.println(image.getName()+" "+image.getContentType());
 		try {
 			image.transferTo(new File(filePath, Objects.requireNonNull(image.getOriginalFilename())));
+			return SverResponse.createRespBySuccessMessage(image.getName());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		return null;
 	}
 }

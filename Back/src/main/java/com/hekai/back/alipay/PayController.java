@@ -6,10 +6,15 @@ import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.domain.AlipayTradeWapPayModel;
 import com.alipay.api.internal.util.AlipaySignature;
 import com.alipay.api.request.AlipayTradeWapPayRequest;
+import com.hekai.back.common.SverResponse;
+import com.hekai.back.service.ActionOrderService;
+import com.hekai.back.vo.PayOrder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,19 +30,22 @@ import java.util.Map;
  * {@code @Date:} 2022/6/8
  */
 @Controller
-@RequestMapping("/alipay")
+@RequestMapping(value = "/alipay")
 public class PayController {
 
+    @Autowired
+    private ActionOrderService actionOrderService;
     //wap:QUICK_WAP_WAY
     //web:FAST_INSTANT_TRADE_PAY
-    private static final String PRODUCT_CODE = "FAST_INSTANT_TRADE_PAY";
+    private static final String PRODUCT_CODE = "QUICK_WAP_WAY";
     //表单页面
+
     @RequestMapping("/home")
     public String index(ModelMap modelMap) {
         return "home/home";
     }
     //调起支付
-    @RequestMapping("/pay")
+    @RequestMapping(value = "/pay.do",method = RequestMethod.POST)
     @ResponseBody
     public void pay(HttpServletRequest request, HttpServletResponse response) throws IOException {
         // 商户订单号，商户网站订单系统中唯一订单号，必填
@@ -48,7 +56,6 @@ public class PayController {
         String subject = request.getParameter("subject");
         // 商品描述，可空
         String body = request.getParameter("body");
-
         AlipayClient client = new DefaultAlipayClient(AliPayConfig.gatewayUrl, AliPayConfig.APP_ID, AliPayConfig.APP_PRIVATE_KEY, AliPayConfig.FORMAT, AliPayConfig.CHARSET, AliPayConfig.ALIPAY_PUBLIC_KEY,AliPayConfig.sign_type);
         AlipayTradeWapPayRequest alipay_request=new AlipayTradeWapPayRequest();
 
@@ -87,7 +94,7 @@ public class PayController {
     }
 
     //支付完成后的返回
-    @RequestMapping("/return")
+    @RequestMapping("/return.do")
     @ResponseBody
     public String returnCall(HttpServletRequest request, HttpSession session, Model model) throws Exception {
         // 获取支付宝GET过来反馈信息
@@ -109,6 +116,17 @@ public class PayController {
 
         boolean signVerified = AlipaySignature.rsaCheckV1(params, AliPayConfig.ALIPAY_PUBLIC_KEY, AliPayConfig.CHARSET, AliPayConfig.sign_type); //调用SDK验证签名
         if (signVerified) {
+            ////////////    设置用户订单状态
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    System.out.println(params.get("out_trade_no"));
+
+                    actionOrderService.updateOrderToSuccessPay(Long.parseLong(params.get("out_trade_no")));
+                }
+            }).start();
+
+            ////////////
             System.out.println("return sign  success");
             return "验证签名成功，现在跳转到订单详情页面";
         } else {
@@ -131,7 +149,7 @@ public class PayController {
     *
     *
     * */    //异步通知
-    @RequestMapping("/notify")
+    @RequestMapping("/notify.do")
     @ResponseBody
     public String notifyCall(HttpServletRequest request, HttpSession session, Model model) throws Exception {
         // 获取支付宝反馈信息
@@ -169,5 +187,48 @@ public class PayController {
             System.out.println("notify sign  failed");
             return "fail";
         }
+    }
+    @RequestMapping(value = "/getorderinfo.do",method = RequestMethod.POST)
+    @ResponseBody
+    public SverResponse<String> getOrderInfo(PayOrder order){
+//        StringBuilder stringBuilder=new StringBuilder();
+//        stringBuilder.append("app_id=").append(AliPayConfig.APP_ID);
+//        stringBuilder.append("method=").append(AliPayConfig.APP_ID);
+//        stringBuilder.append("&out_trade_no=").append(order.getOut_trade_no());
+//        stringBuilder.append("&subject=").append(order.getSubject());
+//        stringBuilder.append("&total_amount=").append(order.getTotal_amount());
+//        stringBuilder.append("&charset=").append("utf-8");
+//        stringBuilder.append("&seller_id=").append("2088621959359744");
+//        stringBuilder.append("&product_code=").append(PRODUCT_CODE);
+//        stringBuilder.append("&timeout_express=").append("2m");
+////        stringBuilder.append("&sign=").append(AliPayConfig.ALIPAY_PUBLIC_KEY);
+////        stringBuilder.append("&sign_type=").append(AliPayConfig.sign_type);
+//        if(order.getBody()!=null) {
+//            stringBuilder.append("&body=").append(order.getBody());
+//        }
+//
+//        AlipayTradeWapPayRequest alipay_request=new AlipayTradeWapPayRequest();
+//
+//        String timeout_express="2m";
+//
+//        // 封装请求支付信息
+//        AlipayTradeWapPayModel model=new AlipayTradeWapPayModel();
+//        model.setOutTradeNo(order.getOut_trade_no());
+//        model.setSubject(order.getSubject());
+//        model.setTotalAmount(order.getTotal_amount().toString());
+//        model.setTimeoutExpress(timeout_express);
+//        model.setProductCode(PRODUCT_CODE);
+//        alipay_request.setBizModel(model);
+//        // 设置异步通知地址
+//        alipay_request.setNotifyUrl(AliPayConfig.notify_url);
+//        // 设置同步地址
+//        alipay_request.setReturnUrl(AliPayConfig.return_url);
+//        System.out.println(alipay_request);
+//        System.out.println(stringBuilder);
+//        return SverResponse.createRespBySuccess(stringBuilder.toString());
+        SverResponse<String> sverResponse= SverResponse.createRespBySuccess(OrderInfoUtil.buildOrderParam(OrderInfoUtil.buildOrderParamMap(AliPayConfig.APP_ID,order.getOut_trade_no(),true)));
+        System.out.println(sverResponse.getData());
+        SverResponse<String> result=SverResponse.createRespBySuccess("alipay_sdk=alipay-sdk-java-dynamicVersionNo&"+sverResponse.getData());
+        return result;
     }
 }
