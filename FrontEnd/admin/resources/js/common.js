@@ -15,7 +15,7 @@ define(function(){
 		}
 		//加载登录用户信息
 		$.ajax({
-			url:baseUrl+"user/getuserinfo",
+			url:baseUrl+"user/getuserinfo.do",
 			xhrFields:{withCredentials:true},
 			crossDomain:true,
 			type:"get",
