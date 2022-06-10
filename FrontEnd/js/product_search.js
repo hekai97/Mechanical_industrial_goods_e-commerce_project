@@ -13,9 +13,10 @@ define(['jquery','common','handlebar'],function(jquery,common,Handlebars){
 	//1.加载  获取所有产品类型
 	function ready(){
 		$.ajax({
-			url:baseUrl+"param/findallparams",
+			url:baseUrl+"param/findallparams.do",
 			xhrFields:{withCredentials:true},
 			crossDomain:true,
+			type:"get",
 			success:function(rs){
 				//将json转化为数组，参数编号作为键，对象为值
 				$.each(rs.data,function(index,value){
@@ -84,9 +85,10 @@ define(['jquery','common','handlebar'],function(jquery,common,Handlebars){
 		}
 		//向服务器发送请求查询数据
 		$.ajax({
-			url:baseUrl+"product/findproducts",
+			url:baseUrl+"product/findproducts.do",
 			xhrFields:{withCredentials:true},
 			crossDomain:true,
+			type:"post",
 			data:{'productTypeId':productTypeId,'partsId':partsTypeId,'name':conditon,'pageNum':pageNum,'pageSize':pageSize},
 			success:function(rs){
 					//设定图片地址

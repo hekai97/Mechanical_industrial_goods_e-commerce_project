@@ -15,7 +15,7 @@ public class Product {
     private Integer stock;
     private Integer status;
     private Integer hot;
-    private String created; //cteated???
+    private String created;
     private String updated;
 
     public Integer getId() {

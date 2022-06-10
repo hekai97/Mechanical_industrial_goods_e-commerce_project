@@ -87,7 +87,7 @@ public class ProductServiceImp implements ProductService {
     @Override
     public Result<PageBean<List<ProductWithDescAndHot>>> findProducts(Integer productTypeId, Integer partsId, int pageNum, int pageSize, String name) {
         Pageable pageable= PageRequest.of(pageNum,pageSize);
-        Page<Product> productPage=productRepository.findProductByProductIdAndPartsIdAndStatusAndNameLike(productTypeId,partsId,ConstUtil.ProductStatus.STATUS_ON_SALE,name,pageable);
+        Page<Product> productPage=productRepository.findByProductIdAndPartsIdAndStatusAndName(pageable,productTypeId,partsId,ConstUtil.ProductStatus.STATUS_ON_SALE,name);
         List<Product> productList=productPage.getContent();
         List<ProductWithDescAndHot> resultData=new ArrayList<>();
         for(Product p:productList){
@@ -118,20 +118,29 @@ public class ProductServiceImp implements ProductService {
     }
 
     @Override
-    public Result<List<Floor>> findFloors() {
-        List<Product> productList=productRepository.findAll();
-        productList.sort((o1, o2) -> {
-            if(o1.getProductId()<o2.getProductId()){
-                return -1;
-            }else if(o1.getProductId()>o2.getProductId()){
-                return 1;
-            }
-            return 0;
-        });
+    public Result<Floor> findFloors() {
+//        List<Product> productList=productRepository.findAll();
+//        productList.sort((o1, o2) -> {
+//            if(o1.getProductId()<o2.getProductId()){
+//                return -1;
+//            }else if(o1.getProductId()>o2.getProductId()){
+//                return 1;
+//            }
+//            return 0;
+//        });
         //这个数值决定了每个类型的返回多少个结果回去
-        int number=8;
+//        int number=8;
         //TODO 非常恶臭的功能，直接写死了
 
-        return null;
+        List<Product> product1=productRepository.findAllByProductId(ConstUtil.ProductType.TYPE_HNTJX);
+        List<Product> product2=productRepository.findAllByProductId(ConstUtil.ProductType.TYPE_JZQZJJX);
+        List<Product> product3=productRepository.findAllByProductId(ConstUtil.ProductType.TYPE_GCQZJJX);
+        List<Product> product4=productRepository.findAllByProductId(ConstUtil.ProductType.TYPE_LMJX);
+        Floor floor=new Floor();
+        floor.setOneFloor(product1);
+        floor.setTwoFloor(product2);
+        floor.setThreeFloor(product3);
+        floor.setFourFloor(product4);
+        return Result.createRespBySuccess(floor);
     }
 }

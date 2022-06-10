@@ -5,6 +5,7 @@ import com.hekai.backend.entites.reConstruction.compositeEntities.Result;
 import com.hekai.backend.service.ProductTypesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
@@ -13,14 +14,16 @@ import java.util.List;
 /**
  * @author: hekai
  * @Date: 2022/5/29
+ * @Status:PASS
  */
+
 @RestController
 @RequestMapping(value = "/param")
 public class ProductTypesControllerFrontend {
     @Autowired
     private ProductTypesService productTypesService;
 
-    @RequestMapping(value = "findallparams")
+    @RequestMapping(value = "findallparams.do",method = RequestMethod.GET)
     public Result<List<ProductTypes>> findAllParams(HttpSession httpSession){
         return productTypesService.findAllParams();
     }

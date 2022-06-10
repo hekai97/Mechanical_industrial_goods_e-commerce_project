@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import android.util.Log;
@@ -22,6 +23,7 @@ import com.example.mechanical_industrial_goods_eommerce_project_for_android.conf
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.ResponseCode;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.SverResponse;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.User;
+import com.example.mechanical_industrial_goods_eommerce_project_for_android.ui.AddressListActivity;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.ui.LoginActivity;
 import com.google.gson.reflect.TypeToken;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -125,13 +127,15 @@ public class PersonalFragment extends Fragment {
         }
     }
 
-    private void initView(View view){
+    private void initView(View view) {
 
         user = (TextView) view.findViewById(R.id.user);
         view.findViewById(R.id.btn_addr).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //跳转
+                Intent intent = new Intent(getActivity(), AddressListActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -139,8 +143,40 @@ public class PersonalFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 //跳转
+//                Intent intent = new Intent(getActivity(), AllListActivity.class);
+//                startActivity(intent);
             }
         });
+
+
+        view.findViewById(R.id.btn_exit).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //跳转
+                exit();
+            }
+        });
+    }
+
+    private void exit() {
+        OkHttpUtils.post()
+                .url(Constant.API.USER_EXIT_URL)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        user.setText("未登录");
+                        user.setClickable(true);
+                        Intent intent;
+                        intent = new Intent(getActivity(), LoginActivity.class);
+                        startActivity(intent);
+                    }
+                });
     }
 
     private void initUserInfo(){

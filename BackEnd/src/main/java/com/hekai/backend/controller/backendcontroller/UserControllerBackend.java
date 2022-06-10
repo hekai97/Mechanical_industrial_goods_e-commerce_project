@@ -24,28 +24,28 @@ public class UserControllerBackend {
     private UserService userServiceImp;
 
 
-    @RequestMapping(value = "/updateuser")
+    @RequestMapping(value = "/updateuser.do")
     public Result<User> updateUser(HttpSession httpSession, @RequestBody User user){
         User currentUser=(User)httpSession.getAttribute("CurrentUser");
         return userServiceImp.updateUser(user);
     }
 
-    @RequestMapping(value = "/finduser")
+    @RequestMapping(value = "/finduser.do")
     public Result<SimplifyUser> findUser(HttpSession httpSession,@RequestBody Integer id){
         return userServiceImp.findUserById(id);
     }
 
-    @RequestMapping(value = "/deleteusers")
+    @RequestMapping(value = "/deleteusers.do")
     public Result<User> deleteUsers(HttpSession httpSession,@RequestBody Integer id){
         return userServiceImp.deleteUserById(id);
     }
 
-    @RequestMapping(value = "/finduserlist")
+    @RequestMapping(value = "/finduserlist.do")
     public Result<List<SimplifyUser>> findUserList(HttpSession httpSession){
         return userServiceImp.findUserList();
     }
 
-    @RequestMapping(value = "/login")
+    @RequestMapping(value = "/login.do")
     public Result<User> loginAdmin(HttpSession httpSession,@RequestBody String account,@RequestBody String password){
         return userServiceImp.getLoginAdmin(account,password);
     }

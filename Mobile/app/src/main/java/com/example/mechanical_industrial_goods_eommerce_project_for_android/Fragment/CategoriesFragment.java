@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -65,6 +66,8 @@ public class CategoriesFragment extends Fragment {
     private SverResponse<PageBean<Product>> result;
 //    private List<SverResponse<PageBean<Product>>> resultList;
     private String typeId;
+    private String name;
+    private Integer partsId;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -140,7 +143,16 @@ public class CategoriesFragment extends Fragment {
             @Override
             public void onItemClick(View view, int pos) {
                 typeId = leftCategoryData.get(pos).getId()+"";
-                findProductByParam(typeId,1,10,true);
+                name = leftCategoryData.get(pos).getName();
+                partsId = leftCategoryData.get(pos).getParent_id();
+//                findProductByParam(typeId,1,10,true);
+                findProductByParam(typeId,1,10,leftCategoryData.get(pos).getName(),true,leftCategoryData.get(pos).getParent_id());
+
+            }
+
+            @Override
+            public void onItemLongClick(View v, int pos) {
+
             }
         });
 
@@ -153,6 +165,11 @@ public class CategoriesFragment extends Fragment {
                 Intent intent=new Intent(getActivity(), DetailActivity.class);
                 intent.putExtra("id",id);
                 startActivity(intent);
+            }
+
+            @Override
+            public void onItemLongClick(View v, int pos) {
+
             }
         });
 
@@ -180,7 +197,7 @@ public class CategoriesFragment extends Fragment {
                     Log.d("loadingMMMMM","notNull");
                     PageBean pageBean = result.getData();
                     if(pageBean.getPageNum()!=pageBean.getNextPage()){
-                        findProductByParam(typeId,pageBean.getNextPage(),pageBean.getPageSize(),false);
+                        findProductByParam(typeId,pageBean.getNextPage(),pageBean.getPageSize(),name,false,partsId);
                     }
                 }else {
                     Log.d("loadingMMMMM","Null");
@@ -222,8 +239,8 @@ public class CategoriesFragment extends Fragment {
 
                             typeId = leftCategoryData.get(0).getId()+"";
                             leftCategoryData.get(0).setPressed(true);
-                            findProductByParam(typeId,1,10,true);
-
+//                            findProductByParam(typeId,1,10,true);
+                            findProductByParam(typeId,1,10,leftCategoryData.get(0).getName(),true,leftCategoryData.get(0).getParent_id());
                             categoryLeftAdapter.notifyDataSetChanged();
                         }
 
@@ -232,14 +249,16 @@ public class CategoriesFragment extends Fragment {
 
     }
 
-    private void findProductByParam(String productTypeId, int pageNum, int pageSize, boolean flag){
-        OkHttpUtils.get()
+    private void findProductByParam(String productTypeId, int pageNum, int pageSize, @Nullable String name, boolean flag, int partsId){
+        Log.d("allproduct",name);
+        Log.d("allproduct",productTypeId);
+        OkHttpUtils.post()
                 .url(Constant.API.CATEGORY_PRODUCT_URL)
-                .addParams("name","")
+                .addParams("name",name)
                 .addParams("productTypeId",productTypeId)
                 .addParams("pageNum",pageNum+"")
                 .addParams("pageSize",pageSize+"")
-                .addParams("partsId",0+"")
+                .addParams("partsId",partsId+"")
                 .build()
                 .execute(new StringCallback() {
                     @Override
@@ -256,7 +275,7 @@ public class CategoriesFragment extends Fragment {
 //                        result = resultList.get(0);
                         if(result.getStatus()==ResponseCode.SUCCESS.getCode()){
 
-                            Log.d("allproduct","000");
+                            Log.d("allproduct","findproductIsOk");
 
                             if(result.getData()!=null){
                                 if(flag){

@@ -4,9 +4,9 @@ define(['common'],function(common){
 	//2.获取订单详情
 	function getOrderDetail(){
 		$.ajax({
-			"xhrFields":{withCredentials:true},
-			"crossDomain":true,
-			"url":baseUrl+"mgr/order/getdetail",
+			xhrFields:{withCredentials:true},
+			crossDomain:true,
+			url:baseUrl+"mgr/order/getdetail.do",
 			data:{"orderNo":orderNo},
 			type:"get",
 			success:function(rs){
@@ -19,6 +19,10 @@ define(['common'],function(common){
 					$("#statusDesc-container").html(rs.data.statusDesc);
 					$("#typeDesc-container").html(rs.data.typeDesc);
 					$("#amount-container").html(rs.data.amount);
+					if(rs.data.status==2)
+					{
+						$("#send").css("display","block");
+					}
 					//商品列表
 					initTable(rs.data.orderItems);
 				}else{
@@ -28,11 +32,36 @@ define(['common'],function(common){
 			}
 		});
 	}
+
+
+	$("#send").click(function(){
+		$.ajax({
+			xhrFields:{withCredentials:true},
+			crossDomain:true,
+			url:baseUrl+"mgr/order/updatetoship.do",
+			data:{"orderId":orderNo},
+			type:"post",
+			success:function(rs){
+				//判断查询是否成功
+				if(rs.status==0){
+					alert(rs.msg);
+				}else{
+					alert(rs.msg);
+				}
+			}
+		});
+	});
+
 	
 	return{
 		getOrderDetail:getOrderDetail,
 	};
 });
+
+
+
+
+
 
 //商品列表
 function initTable(data){

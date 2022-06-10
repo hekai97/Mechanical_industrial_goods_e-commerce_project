@@ -22,7 +22,6 @@ body{position: relative;min-width: 1200px;background: #ffffff;}
     float: left;
     line-height: 36px;
     color: #666666;
-    text-decoration:none
 }
 .header_inbox img{
     float: left;
@@ -45,6 +44,12 @@ body{position: relative;min-width: 1200px;background: #ffffff;}
 }
 .my_action img{
     margin-top: 10px;
+}
+.yin{
+    display: none;
+}
+.chu{
+    display: block;
 }
 
 

@@ -104,7 +104,7 @@ define(['jquery','common'],function(jquery,common){
 	//显示当前用户信息
 	function showUser(){
 		$.ajax({
-			url:baseUrl+"user/getuserinfo",
+			url:baseUrl+"user/getuserinfo.do",
 			xhrFields:{withCredentials:true},
 			crossDomain:true,
 			success:function(rs){

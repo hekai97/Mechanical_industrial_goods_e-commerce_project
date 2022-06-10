@@ -9,6 +9,7 @@ import com.hekai.backend.utils.ConstUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
@@ -24,7 +25,7 @@ public class CartControllerFrontend {
     @Autowired
     private CartService cartService;
 
-    @RequestMapping(value = "/getcartcount")
+    @RequestMapping(value = "/getcartcount.do",method = RequestMethod.GET)
     public Result<Integer> getCardCount(HttpSession httpSession){
         User user=(User) httpSession.getAttribute(ConstUtil.CUR_USER);
         if(user==null){
@@ -33,8 +34,9 @@ public class CartControllerFrontend {
         return cartService.getCardCount(user.getId());
     }
 
-    @RequestMapping(value = "/updatecarts")
+    @RequestMapping(value = "/updatecarts.do",method = RequestMethod.GET)
     public Result<CartWithProductAndTotalPrice> updateCarts(HttpSession httpSession,Integer productId, Integer count, Integer checked){
+        System.out.println("productId="+productId+"count="+count+"checked="+checked);
         User user=(User) httpSession.getAttribute(ConstUtil.CUR_USER);
         if(user==null){
             return Result.createByErrorMessage("请登录后再操作");
@@ -42,7 +44,7 @@ public class CartControllerFrontend {
         return cartService.updateCarts(user,productId,count,checked);
     }
 
-    @RequestMapping(value = "/clearcarts")
+    @RequestMapping(value = "/clearcarts.do",method = RequestMethod.GET)
     public Result<Cart> clearCarts(HttpSession httpSession){
         User user=(User) httpSession.getAttribute(ConstUtil.CUR_USER);
         if(user==null){
@@ -51,7 +53,7 @@ public class CartControllerFrontend {
         return cartService.clearCarts(user);
     }
 
-    @RequestMapping(value = "/delcarts")
+    @RequestMapping(value = "/delcarts.do",method = RequestMethod.POST)
     public Result<CartWithProductAndTotalPrice> delCarts(HttpSession httpSession,Integer productId){
         User user=(User) httpSession.getAttribute(ConstUtil.CUR_USER);
         if(user==null){
@@ -60,7 +62,7 @@ public class CartControllerFrontend {
         return cartService.deleteCartsProductById(user,productId);
     }
 
-    @RequestMapping(value = "/findallcarts")
+    @RequestMapping(value = "/findallcarts.do",method = RequestMethod.GET)
     public Result<CartWithProductAndTotalPrice> findAllCarts(HttpSession httpSession){
         User user=(User) httpSession.getAttribute(ConstUtil.CUR_USER);
         if(user==null){
@@ -69,7 +71,7 @@ public class CartControllerFrontend {
         return cartService.findAllCarts(user);
     }
 
-    @RequestMapping(value = "/savecart")
+    @RequestMapping(value = "/savecart.do",method = RequestMethod.POST)
     public Result<Cart> saveCart(HttpSession httpSession,Integer productId,Integer count){
         User user=(User) httpSession.getAttribute(ConstUtil.CUR_USER);
         if(user==null){

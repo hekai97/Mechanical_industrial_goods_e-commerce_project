@@ -13,7 +13,8 @@ define(['common'],function(common){
 			"ajax":{
 				"xhrFields":{withCredentials:true},
 				"crossDomain":true,
-				"url":baseUrl+"mgr/user/finduserlist",
+				"url":baseUrl+"mgr/user/finduserlist.do",
+				"type":"get",
 			},
 			"columns":[
 				{"data":"id"},
@@ -76,9 +77,9 @@ function delUser(id){
 	if(confirm("确定删除吗？")){
 		//删除用户
 		$.ajax({
-			"xhrFields":{withCredentials:true},
-			"crossDomain":true,
-			"url":baseUrl+"mgr/user/deleteusers",
+			xhrFields:{withCredentials:true},
+			crossDomain:true,
+			url:baseUrl+"mgr/user/deleteusers.do",
 			data:{"id":id},
 			type:'post',
 			dataType:'json',

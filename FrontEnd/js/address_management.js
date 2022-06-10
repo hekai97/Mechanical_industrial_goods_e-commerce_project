@@ -24,7 +24,7 @@ define(['jquery','ChineseDistricts','distpicker','handlebar','common'], function
 			var addrId = $(this).attr("addr_id");
 			//后台请求
 			$.ajax({
-				url:baseUrl+"addr/setdefault",
+				url:baseUrl+"addr/setdefault.do",
 				xhrFields:{withCredentials:true},
 				crossDomain:true,
 				data:{"id":addrId},
@@ -42,7 +42,7 @@ define(['jquery','ChineseDistricts','distpicker','handlebar','common'], function
 			aId=addrId;
 			//后台请求
 			$.ajax({
-				url:baseUrl+"addr/findAddressById",
+				url:baseUrl+"addr/findAddressById.do",
 				xhrFields:{withCredentials:true},
 				crossDomain:true,
 				data:{"id":addrId},
@@ -125,6 +125,7 @@ define(['jquery','ChineseDistricts','distpicker','handlebar','common'], function
 			url:baseUrl+"addr/findaddrs.do",
 			xhrFields:{withCredentials:true},
 			crossDomain:true,
+			type:'get',
 			success:function(rs){
 				//数据成功返回，将后台信息添加到前端
 				updatePageInfo(rs);

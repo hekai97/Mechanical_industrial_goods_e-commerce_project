@@ -49,7 +49,7 @@ define(['jquery','common'],function(jquery,common){
         //请求服务器验证用户名是否存在 同步
         var flag=false;
         $.ajax({
-            url:baseUrl+"user/do_check_info?number="+Math.random(),
+            url:baseUrl+"user/do_check_info.do?number="+Math.random(),
             type:"post",
             data:{info:userName,type:"account"},
             async:false,
@@ -127,6 +127,7 @@ define(['jquery','common'],function(jquery,common){
         if(rePwd=="")
         {
             $("#repasswordError").css({display:"block"});
+            $("#repasswordError").html("请确认密码！");
             return false;
         }
         return true;
@@ -158,7 +159,7 @@ define(['jquery','common'],function(jquery,common){
         $("#phoneError").css({display:"none"});
         if(phone==""){
             $("#phoneError").css({display:"block"});
-            $("#rphoneError").html("请输入手机号码！");
+            $("#phoneError").html("请输入手机号码！");
             return false;
         }
         //手机格式验证判断是否为手机号
@@ -275,7 +276,7 @@ define(['jquery','common'],function(jquery,common){
                 };
             //请求服务器
             $.ajax({
-                url:baseUrl+"user/do_register",
+                url:baseUrl+"user/do_register.do",
                 type:"post",
                 data:formData,
                 success:function(rs){

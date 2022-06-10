@@ -16,6 +16,33 @@
         android:theme="@style/Theme.Mechanical_industrial_goods_Eommerce_project_for_android"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.OrderDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.OrderListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.UpdateAddrActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.AddAddressActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.ResetPwGetAcActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.ResetPwActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.AddressListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.ConfirmOrderActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.DetailActivity"
             android:exported="false" />
         <activity android:name=".ui.LoginActivity" />

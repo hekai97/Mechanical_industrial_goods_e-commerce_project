@@ -5,6 +5,7 @@ define(['jquery','handlebar'],function(jquery,Handlebars){
 			url:baseUrl+"addr/findaddrs.do",
 			xhrFields:{withCredentials:true},
 			crossDomain:true,
+			type:'get',
 			success:function(rs){
 				if(rs.status==0){
 					//预编译模板 将信息添加到页面
@@ -44,6 +45,7 @@ define(['jquery','handlebar'],function(jquery,Handlebars){
 				xhrFields:{withCredentials:true},
 				crossDomain:true,
 				data:{"id":id},
+				type:'get',
 				success:function(rs){
 					if(rs.status==0){
 						//删除成功从新获取数据
@@ -65,7 +67,7 @@ define(['jquery','handlebar'],function(jquery,Handlebars){
 				xhrFields:{withCredentials:true},
 				crossDomain:true,
 				data:{"id":id},
-				type:'post',
+				type:'get',
 				success:function(rs){
 					//判断方法是否成功
 					if(rs.status==0){

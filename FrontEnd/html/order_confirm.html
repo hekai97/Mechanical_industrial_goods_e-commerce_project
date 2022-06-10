@@ -17,11 +17,11 @@
                     <p>欢迎光临516配件商城</p>
                     <a href="#" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[访问官网]</a>
                     <span id="register_info">
-                        <a href="#" class="login">&nbsp;&nbsp;&nbsp;登录&nbsp;&nbsp;</a>
+                        <a href="login.html" class="login">&nbsp;&nbsp;&nbsp;登录&nbsp;&nbsp;</a>
                         <img src="../images/common/header_line.jpg">
-                        <a href="#" class="login">&nbsp;&nbsp;免费注册&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                        <a href="register.html" class="login">&nbsp;&nbsp;免费注册&nbsp;&nbsp;&nbsp;&nbsp;</a>
                     </span>
-                    <span id="login_info" style="display: none;">
+                    <span id="login_info">
                         <a href="#" id="headerUsername" class="login"></a>
                         <img src="../images/common/header_line.jpg">
                         <a href="#" id="headerLogout" class="login">&nbsp;&nbsp;退出</a>
@@ -33,7 +33,7 @@
                     </li>
                     <li>
                         <img src="../images/common/mix_car.png">
-                        <a href="#">购物车<span id="cartQuantity">[0]</span></a>
+                        <a href="cart.html">购物车<span id="cartQuantity">[0]</span></a>
                     </li>
                     <li>
                         <a href="#">我的商城</a>
@@ -86,10 +86,10 @@
                         <div class="dashed">我的交易</div>
                     </div>
                 </a>
-                <a href="#">
-                    <div class="item">我的订单</div>
+                <a href="order_list.html">
+                    <div class="item active">我的订单</div>
                 </a>
-                <a href="#">
+                <a href="cart.html">
                     <div class="item">我的购物车</div>
                 </a>
                 <a href="#"><div class="item">我的积分购物车</div></a>
@@ -97,7 +97,7 @@
                 <a href="#"><div class="item">我的关注</div></a>
                 <a href="#"><div class="item">我的购买咨询</div></a>
                 <a href="#"><div class="item">我的优惠券</div></a>
-                <a href="#"><div class="item">收货地址管理</div></a>
+                <a href="address_management.html"><div class="item">收货地址管理</div></a>
                 <a href="#"><div class="item">我的推荐</div></a>
             </div>
             <!--我的账户-->
@@ -107,7 +107,7 @@
                         <div class="dashed">我的账户</div>
                     </div>
                 </a>
-                <a href="information_modification.html"><div class="item active">个人资料</div></a>
+                <a href="information_modification.html"><div class="item">个人资料</div></a>
                 <a href="password_modification.html"><div class="item">修改密码</div></a>
             </div>
         </div>
@@ -117,7 +117,7 @@
 
         <!--右侧订单信息-->
 	    <div class="shopcar_right_box l">
-	    	<div id="address-info clearfix" style="margin-left:50px;">
+	    	<div id="address-info clearfix" style="margin-left: 450px;margin-top: -800px;">
 	    		<div class="address_list">
 			        <p class="content_tit">选择收货地址</p>
 			        <ul>
@@ -130,7 +130,7 @@
 
 	    	</div>
 	    	
-	    	<div id="order-info clearfix" style="margin-left:50px;">
+	    	<div id="order-info clearfix" style="margin-left: 450px;">
 		    	<h1>确认订单信息</h1>
 		        <div class="shopcar_righ_top clearfix">
 		            <div class="shopcar_infor01">
@@ -246,4 +246,51 @@
 </html>
 
 
-
+<!--地址Item模板-->
+<script id="addr-item-tpl" type="text/x-handlebars-template">
+    {{#each this}}
+        {{#if default_addr}}
+        <li class="address_item selected l">
+        {{else}}
+        <li class="address_item  l">
+        {{/if}}
+            <div class="box user_address">
+                {{#if default_addr}}
+                <span class="moren_tip" data-default=true data-id="{{id}}">默认地址</span>
+                {{else}}
+                <span class="moren_tip" data-default=false data-id="{{id}}"></span>
+                {{/if}}
+                <strong class="name">{{name}}&nbsp;&nbsp;收</strong>
+                <div class="text address">{{province}} {{city}} {{district}} {{addr}};{{mobile}}</div>
+                <div class="links">
+                    <a href="javascript:void(0);" data-id="{{id}}" id="del"class="_del">删除</a>
+                    {{#unless default_addr}}
+                    <a href="javascript:void(0);" data-id="{{id}}" id="default" class="_del">设置默认地址</a>
+                     {{/unless}}
+                </div>
+            </div>
+        </li>
+     {{/each}}
+    </script>
+    <!--购物车中商品列表模板-->
+    <script id="product-item-tpl" type="text/x-handlebars-template">
+    {{#each this}}
+        <div class="shop_car_probox">
+            <div class="pro01">
+              <input type="hidden" name="id" value="9206">
+              <a href="product_detail.html?pid={{productId}}"  target="_blank">
+                  {{name}}
+              </a>
+            </div>
+            <div class="pro02">
+                ￥{{price}}
+            </div>
+            <div class="pro03">
+                x{{quantity}}
+            </div>
+            <div class="pro04">
+                <span class="single_total">￥{{totalPrice}}</span>
+            </div>
+        </div>
+     {{/each}}
+    </script>

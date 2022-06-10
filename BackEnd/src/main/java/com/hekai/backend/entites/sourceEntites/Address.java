@@ -44,7 +44,7 @@ public class Address {
     private String zip;
     @Basic
     @Column(name = "dfault")
-    private Byte dfault;
+    private boolean dfault;
     @Basic
     @Column(name = "is_del")
     private byte isDel;
@@ -135,11 +135,11 @@ public class Address {
         this.zip = zip;
     }
 
-    public Byte getDfault() {
+    public boolean getDfault() {
         return dfault;
     }
 
-    public void setDfault(Byte dfault) {
+    public void setDfault(boolean dfault) {
         this.dfault = dfault;
     }
 
