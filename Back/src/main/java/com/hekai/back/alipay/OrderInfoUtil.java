@@ -187,5 +187,4 @@ public class OrderInfoUtil {
 		key = key.substring(0, 15);
 		return key;
 	}
-
 }
