@@ -14,6 +14,7 @@ import com.example.mechanical_industrial_goods_eommerce_project_for_android.R;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.Utils.JsonUtils;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.Utils.ToastUtils;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.config.Constant;
+import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.Cart;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.ResponseCode;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.SverResponse;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.User;
@@ -65,13 +66,17 @@ public class ResetPwGetAcActivity extends AppCompatActivity implements View.OnCl
 
                     @Override
                     public void onResponse(String response, int id) {
-                        Type type = new TypeToken<SverResponse<String>>(){}.getType();
-                        //??借用一下user中存在data属性
-                        SverResponse<String> result = JsonUtils.fromJson(response,type);
-                        if(result.getStatus()== ResponseCode.SUCCESS.getCode()){
-                            Log.d("question","getData:"+result.getData());
+                        Type type = new TypeToken<SverResponse<User>>(){}.getType();
+                        SverResponse<User> result = JsonUtils.fromJson(response,type);
+//                        Log.d("question","getData:"+result);
+                        if(result.getStatus() == ResponseCode.SUCCESS.getCode()){
+//                            Log.d("question","getData:"+result.getData());
                             Intent intent = new Intent(ResetPwGetAcActivity.this,ResetPwActivity.class);
-                            intent.putExtra("Userquestion",result.getData());
+                            Bundle bundle = new Bundle();
+                            bundle.putString("question",result.getData().getQuestion());
+                            bundle.putInt("userid",result.getData().getId());
+                            intent.putExtra("params",bundle);
+
                             startActivity(intent);
                             ResetPwGetAcActivity.this.finish();
                         }else{

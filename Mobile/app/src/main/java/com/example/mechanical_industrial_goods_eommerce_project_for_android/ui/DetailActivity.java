@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alipay.sdk.app.EnvUtils;
 import com.bumptech.glide.Glide;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.R;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.Utils.JsonUtils;
@@ -136,7 +137,8 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void loadProductById(String id) {
-        OkHttpUtils.get()
+        EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX);
+        OkHttpUtils.post()
                 .url(Constant.API.PRODUCT_DETAIL_URL)
                 .addParams("productId",id)
                 .build()
@@ -156,7 +158,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
                             }
                             product = result.getData();
                             //显示配件信息
-                            Glide.with(DetailActivity.this).load(Constant.API.BASE_URL + product.getIconURL())
+                            Glide.with(DetailActivity.this).load(Constant.API.BASE_URL + product.getIconUrl())
                                     .into(icon_url);
                             name.setText(product.getName());
                             parts.setText("配件类型" + product.getPartsId());

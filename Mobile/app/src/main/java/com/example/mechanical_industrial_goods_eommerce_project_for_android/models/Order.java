@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Order {
     private String orderNo;//订单编号
-    private BigDecimal amount;//订单编号
+    private BigDecimal amount;//订单总价
     private Integer type;//支付类型
     private String typeDesc;//支付类型描述
     private Integer freight;//邮费
@@ -17,11 +17,15 @@ public class Order {
     private String closeTime;
     private String created;
     private Integer addrId;
-    private String deliverName;
+    private String deliveryName;
     private List<OrderItem> orderItems;
 
     public List<OrderItem> getOrderItems() {
         return orderItems;
+    }
+
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
 
     public String getOrderNo() {
@@ -129,10 +133,10 @@ public class Order {
     }
 
     public String getDeliverName() {
-        return deliverName;
+        return deliveryName;
     }
 
     public void setDeliverName(String deliverName) {
-        this.deliverName = deliverName;
+        this.deliveryName = deliverName;
     }
 }

@@ -9,7 +9,7 @@
     android:layout_height="match_parent"
     android:paddingStart="30dp"
     android:paddingEnd="30dp"
-    android:paddingTop="160dp"
+    android:paddingTop="100dp"
     tools:context=".ui.RegisterActivity">
     <LinearLayout
         android:orientation="horizontal"
@@ -78,27 +78,12 @@
             android:lines="1"
             android:padding="10dp" />
     </LinearLayout>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:paddingTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-        <EditText
-            android:id="@+id/register_mail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/login_input_background"
-            android:hint="邮箱"
-            android:inputType="text"
-            android:lines="1"
-            android:padding="10dp" />
-    </LinearLayout>
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         >
         <EditText
             android:id="@+id/register_question"
@@ -106,7 +91,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp"
             android:background="@drawable/login_input_background"
-            android:hint="邮箱提示问题"
+            android:hint="密保提示问题"
             android:inputType="text"
             android:lines="1"
             android:padding="10dp" />
@@ -122,11 +107,55 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp"
             android:background="@drawable/login_input_background"
-            android:hint="邮箱提示问题"
+            android:hint="密保问题答案"
             android:inputType="text"
             android:lines="1"
             android:padding="10dp" />
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:orientation="horizontal"
+        android:paddingTop="10dp">
+
+        <EditText
+            android:id="@+id/register_mail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_weight="4"
+            android:background="@drawable/login_input_background"
+            android:hint="邮箱"
+            android:inputType="text"
+            android:lines="1"
+            android:padding="10dp" />
+
+        <Button
+            android:id="@+id/btn_mail_verification_code"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical"
+            android:layout_weight="2"
+            android:text="发送验证码" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/register_mail_verification_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/login_input_background"
+            android:hint="邮箱验证码"
+            android:inputType="text"
+            android:lines="1"
+            android:padding="10dp" />
+    </LinearLayout>
+
 
     <Button
         android:id="@+id/register_button"

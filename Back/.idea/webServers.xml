@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="ee6aead6-4b62-46e5-a865-da1bd78c2a0f" name="gcp" url="http://35.236.132.159:8080/mall">
+        <fileTransfer rootFolder="/opt/tomcat/apache-tomcat-9.0.64/webapps" accessType="SFTP" host="35.236.132.159" port="22" sshConfigId="1706987d-f5f1-4313-bc71-cab285615d6f" sshConfig="root@35.236.132.159:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

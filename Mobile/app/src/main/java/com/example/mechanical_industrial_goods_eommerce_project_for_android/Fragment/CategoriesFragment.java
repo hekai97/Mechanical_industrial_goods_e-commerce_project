@@ -190,14 +190,16 @@ public class CategoriesFragment extends Fragment {
                 refreshLayout.finishRefresh();
             }
 
+            //上拉刷新
             @Override
             public void onRefreshLoadMore(MaterialRefreshLayout materialRefreshLayout) {
                 //super.onRefreshLoadMore(materialRefreshLayout);
-                if(result!=null && result.getStatus()== ResponseCode.SUCCESS.getCode()){
-                    Log.d("loadingMMMMM","notNull");
+                if(result!=null && result.getStatus()== ResponseCode.SUCCESS.getCode() && result.getData().getNextPage() > result.getData().getPageNum()){
+                    Log.d("loadingMMMMM","notNull1");
                     PageBean pageBean = result.getData();
                     if(pageBean.getPageNum()!=pageBean.getNextPage()){
                         findProductByParam(typeId,pageBean.getNextPage(),pageBean.getPageSize(),name,false,partsId);
+                        Log.d("loadingMMMMM","notNull2");
                     }
                 }else {
                     Log.d("loadingMMMMM","Null");
@@ -252,9 +254,12 @@ public class CategoriesFragment extends Fragment {
     private void findProductByParam(String productTypeId, int pageNum, int pageSize, @Nullable String name, boolean flag, int partsId){
         Log.d("allproduct",name);
         Log.d("allproduct",productTypeId);
+        Log.d("allproduct", String.valueOf(pageNum));
+        Log.d("allproduct", String.valueOf(pageSize));
+        Log.d("allproduct", String.valueOf(partsId));
         OkHttpUtils.post()
                 .url(Constant.API.CATEGORY_PRODUCT_URL)
-                .addParams("name",name)
+                .addParams("name","")
                 .addParams("productTypeId",productTypeId)
                 .addParams("pageNum",pageNum+"")
                 .addParams("pageSize",pageSize+"")
@@ -284,6 +289,7 @@ public class CategoriesFragment extends Fragment {
 
                                 rightProductData.addAll(result.getData().getData());
                                 categoryRightAdapter.notifyDataSetChanged();
+                                refreshLayout.finishRefreshLoadMore();
                             }
                             if (!flag){
                                 refreshLayout.finishRefreshLoadMore();

@@ -391,4 +391,29 @@ public class ActionOrderServiceImpl implements ActionOrderService {
 		ActionOrderVo orderVo = this.createOrderVo(order, true);
 		return SverResponse.createRespBySuccess(orderVo);
 	}
+
+	@Override
+	public void updateOrderToSuccessPay(Long out_trade_no) {
+		ActionOrder order=actionOrderDao.findOrderDetailByOrderNo(out_trade_no);
+		order.setStatus(ConstUtil.OrderStatus.ORDER_PAID);
+		order.setPayment_time(new Date());
+		order.setUpdated(new Date());
+		order.setDelivery_time(new Date());
+		actionOrderDao.updateOrder(order);
+	}
+
+	@Override
+	public SverResponse<String> updateOrderToShip(Long orderId) {
+		try {
+			ActionOrder order=actionOrderDao.findOrderDetailByOrderNo(orderId);
+			order.setStatus(ConstUtil.OrderStatus.ORDER_SHIPPED);
+			order.setUpdated(new Date());
+			actionOrderDao.updateOrder(order);
+			return SverResponse.createRespBySuccessMessage("修改成功");
+		}catch (Exception e){
+			return SverResponse.createByErrorMessage("更新发货状态失败");
+		}
+
+	}
+
 }

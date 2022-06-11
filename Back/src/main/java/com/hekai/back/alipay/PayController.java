@@ -1,15 +1,22 @@
 package com.hekai.back.alipay;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.domain.AlipayTradeWapPayModel;
 import com.alipay.api.internal.util.AlipaySignature;
 import com.alipay.api.request.AlipayTradeWapPayRequest;
+import com.hekai.back.common.SverResponse;
+import com.hekai.back.service.ActionOrderService;
+import com.hekai.back.vo.PayOrder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,25 +26,30 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * {@code @author:} hekai
  * {@code @Date:} 2022/6/8
  */
 @Controller
-@RequestMapping("/alipay")
+@RequestMapping(value = "/alipay")
 public class PayController {
 
+    @Autowired
+    private ActionOrderService actionOrderService;
     //wap:QUICK_WAP_WAY
     //web:FAST_INSTANT_TRADE_PAY
-    private static final String PRODUCT_CODE = "FAST_INSTANT_TRADE_PAY";
+    private static final String PRODUCT_CODE = "QUICK_WAP_WAY";
     //表单页面
+
     @RequestMapping("/home")
     public String index(ModelMap modelMap) {
         return "home/home";
     }
     //调起支付
-    @RequestMapping("/pay")
+    @RequestMapping(value = "/pay.do",method = RequestMethod.POST)
     @ResponseBody
     public void pay(HttpServletRequest request, HttpServletResponse response) throws IOException {
         // 商户订单号，商户网站订单系统中唯一订单号，必填
@@ -48,7 +60,6 @@ public class PayController {
         String subject = request.getParameter("subject");
         // 商品描述，可空
         String body = request.getParameter("body");
-
         AlipayClient client = new DefaultAlipayClient(AliPayConfig.gatewayUrl, AliPayConfig.APP_ID, AliPayConfig.APP_PRIVATE_KEY, AliPayConfig.FORMAT, AliPayConfig.CHARSET, AliPayConfig.ALIPAY_PUBLIC_KEY,AliPayConfig.sign_type);
         AlipayTradeWapPayRequest alipay_request=new AlipayTradeWapPayRequest();
 
@@ -87,7 +98,7 @@ public class PayController {
     }
 
     //支付完成后的返回
-    @RequestMapping("/return")
+    @RequestMapping("/return.do")
     @ResponseBody
     public String returnCall(HttpServletRequest request, HttpSession session, Model model) throws Exception {
         // 获取支付宝GET过来反馈信息
@@ -109,6 +120,9 @@ public class PayController {
 
         boolean signVerified = AlipaySignature.rsaCheckV1(params, AliPayConfig.ALIPAY_PUBLIC_KEY, AliPayConfig.CHARSET, AliPayConfig.sign_type); //调用SDK验证签名
         if (signVerified) {
+            ////////////    设置用户订单状态
+            actionOrderService.updateOrderToSuccessPay(Long.parseLong(params.get("out_trade_no")));
+            ////////////
             System.out.println("return sign  success");
             return "验证签名成功，现在跳转到订单详情页面";
         } else {
@@ -131,10 +145,11 @@ public class PayController {
     *
     *
     * */    //异步通知
-    @RequestMapping("/notify")
+    @RequestMapping(value = "/notify.do",method = RequestMethod.POST)
     @ResponseBody
     public String notifyCall(HttpServletRequest request, HttpSession session, Model model) throws Exception {
         // 获取支付宝反馈信息
+        System.out.println("进入异步通知");
         Map<String, String> params = new HashMap<String, String>();
         Map<String, String[]> requestParams = request.getParameterMap();
         for (Iterator<String> iter = requestParams.keySet().iterator(); iter.hasNext(); ) {
@@ -164,10 +179,102 @@ public class PayController {
             } else if (trade_status.equals("TRADE_SUCCESS")){
             }
              */
+            ////////////    设置用户订单状态
+            new Thread(() -> {
+                System.out.println(params.get("out_trade_no"));
+
+                actionOrderService.updateOrderToSuccessPay(Long.parseLong(params.get("out_trade_no")));
+            }).start();
+
+            ////////////
             return "success";
         } else {
             System.out.println("notify sign  failed");
             return "fail";
         }
+    }
+    @RequestMapping(value = "/getorderinfo.do",method = RequestMethod.POST)
+    @ResponseBody
+    public SverResponse<String> getOrderInfo(PayOrder order){
+//        StringBuilder stringBuilder=new StringBuilder();
+//        stringBuilder.append("app_id=").append(AliPayConfig.APP_ID);
+//        stringBuilder.append("method=").append(AliPayConfig.APP_ID);
+//        stringBuilder.append("&out_trade_no=").append(order.getOut_trade_no());
+//        stringBuilder.append("&subject=").append(order.getSubject());
+//        stringBuilder.append("&total_amount=").append(order.getTotal_amount());
+//        stringBuilder.append("&charset=").append("utf-8");
+//        stringBuilder.append("&seller_id=").append("2088621959359744");
+//        stringBuilder.append("&product_code=").append(PRODUCT_CODE);
+//        stringBuilder.append("&timeout_express=").append("2m");
+//        stringBuilder.append("&sign=").append(AliPayConfig.ALIPAY_PUBLIC_KEY);
+//        stringBuilder.append("&sign_type=").append(AliPayConfig.sign_type);
+//        if(order.getBody()!=null) {
+//            stringBuilder.append("&body=").append(order.getBody());
+//        }
+//
+//        AlipayTradeWapPayRequest alipay_request=new AlipayTradeWapPayRequest();
+//
+//        String timeout_express="2m";
+//
+//        // 封装请求支付信息
+//        AlipayTradeWapPayModel model=new AlipayTradeWapPayModel();
+//        model.setOutTradeNo(order.getOut_trade_no());
+//        model.setSubject(order.getSubject());
+//        model.setTotalAmount(order.getTotal_amount().toString());
+//        model.setTimeoutExpress(timeout_express);
+//        model.setProductCode(PRODUCT_CODE);
+//        alipay_request.setBizModel(model);
+//        // 设置异步通知地址
+//        alipay_request.setNotifyUrl(AliPayConfig.notify_url);
+//        // 设置同步地址
+//        alipay_request.setReturnUrl(AliPayConfig.return_url);
+//        System.out.println(alipay_request);
+//        System.out.println(stringBuilder);
+//        return SverResponse.createRespBySuccess(stringBuilder.toString());
+
+
+//        SverResponse<String> sverResponse= SverResponse.createRespBySuccess(OrderInfoUtil.buildOrderParam(OrderInfoUtil.buildOrderParamMap(AliPayConfig.APP_ID,order.getOut_trade_no(),true)));
+//        System.out.println(sverResponse.getData());
+//        SverResponse<String> result=SverResponse.createRespBySuccess("alipay_sdk=alipay-sdk-java-dynamicVersionNo&"+sverResponse.getData());
+//        return result;
+        Map<String, String> params = OrderInfoUtil.buildOrderParamMap(AliPayConfig.APP_ID, order,true);
+        String orderParam = OrderInfoUtil.buildOrderParam(params);
+
+        String sign = OrderInfoUtil.getSign(params, AliPayConfig.APP_PRIVATE_KEY, true);
+        final String orderInfo = orderParam + "&" + sign;
+        System.out.println(orderInfo);
+        return SverResponse.createRespBySuccess(AliPayConfig.mobile_url,orderInfo);
+    }
+
+    @RequestMapping("/mobileresult.do")
+    @ResponseBody
+    public SverResponse<String> mobileResult(HttpServletRequest request, HttpSession session, Model model) throws Exception {
+        // 获取支付宝GET过来反馈信息
+        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String[]> requestParams = request.getParameterMap();
+        for (Iterator<String> iter = requestParams.keySet().iterator(); iter.hasNext(); ) {
+            String name = (String) iter.next();
+            String[] values = (String[]) requestParams.get(name);
+            String valueStr = "";
+            for (int i = 0; i < values.length; i++) {
+                valueStr = (i == values.length - 1) ? valueStr + values[i]
+                        : valueStr + values[i] + ",";
+            }
+            System.out.println(name+"   "+valueStr);
+            params.put(name, valueStr);
+        }
+        System.out.println("params");
+        System.out.println(params);
+        Pattern pattern=Pattern.compile("out_trade_no\":\"[0-9]*\"");
+        Matcher matcher = pattern.matcher(params.get("out_trade_no"));
+        if(matcher.find()){
+            String s1=matcher.group(0);
+            String[] res=s1.split(":");
+            String orderNo=res[1].substring(1,res[1].length()-1);
+            System.out.println(orderNo);
+            actionOrderService.updateOrderToSuccessPay(Long.parseLong(orderNo));
+            return SverResponse.createRespBySuccessMessage("success");
+        }
+        return SverResponse.createByErrorMessage("fail");
     }
 }

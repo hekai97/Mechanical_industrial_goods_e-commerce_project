@@ -119,7 +119,8 @@ public class ConfirmOrderActivity extends AppCompatActivity {
 
     /*加载默认地址*/
     private void initDefaultAddr(){
-        OkHttpUtils.get().url(Constant.API.USER_ADDR_LIST_URL)
+        OkHttpUtils.get()
+                .url(Constant.API.USER_ADDR_LIST_URL)
                 .build().execute(new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
@@ -161,7 +162,10 @@ public class ConfirmOrderActivity extends AppCompatActivity {
     /*加载购物车数据*/
     private void initCartProducts()
     {
-        OkHttpUtils.get().url(Constant.API.CART_LIST_URL).build().execute(new StringCallback() {
+        OkHttpUtils.get()
+                .url(Constant.API.CART_LIST_URL)
+                .build()
+                .execute(new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
 
@@ -219,6 +223,7 @@ public class ConfirmOrderActivity extends AppCompatActivity {
                             intent = new Intent(ConfirmOrderActivity.this, OrderDetailActivity.class);
 
                             intent.putExtra("id",result.getData().getOrderNo());
+                            intent.putExtra("total_amount",result.getData().getAmount());
 
                             startActivity(intent);
 

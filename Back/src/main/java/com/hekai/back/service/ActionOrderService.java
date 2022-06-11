@@ -1,6 +1,7 @@
 package com.hekai.back.service;
 
 import com.hekai.back.common.SverResponse;
+import com.hekai.back.pojo.ActionOrder;
 import com.hekai.back.utils.PageBean;
 import com.hekai.back.vo.ActionOrderVo;
 
@@ -10,7 +11,7 @@ public interface ActionOrderService {
 	/**
 	 * 订单分页列表
 	 * @param userId
-	 * @param status
+	 * @param status·
 	 * @param pageNum
 	 * @param pageSize
 	 * @return
@@ -50,4 +51,8 @@ public interface ActionOrderService {
 	 * @return
 	 */
 	public SverResponse<ActionOrderVo> mgrDetail(Long orderNo);
+
+	void updateOrderToSuccessPay(Long out_trade_no);
+
+	SverResponse<String> updateOrderToShip(Long orderId);
 }
