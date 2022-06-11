@@ -21,6 +21,7 @@ import com.google.gson.reflect.TypeToken;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
+import java.lang.annotation.ElementType;
 import java.lang.reflect.Type;
 
 import okhttp3.Call;
@@ -61,7 +62,15 @@ public class ResetPwActivity extends AppCompatActivity implements View.OnClickLi
         switch (view.getId()){
             case R.id.resetpw_button:
                 //验证问题
-                checkAns();
+                String name = et_resetpw_name.getText().toString();
+                String newpw= et_resetpw_new.getText().toString();
+                if(TextUtils.isEmpty(name)){
+                    Toast.makeText(this,"请输入登录账号！",Toast.LENGTH_LONG).show();
+                }else if(TextUtils.isEmpty(newpw)){
+                    Toast.makeText(this,"请输入新密码！",Toast.LENGTH_LONG).show();
+                }else{
+                    checkAns();
+                }
                 break;
         }
     }
@@ -91,7 +100,6 @@ public class ResetPwActivity extends AppCompatActivity implements View.OnClickLi
                         if(result.getStatus()== ResponseCode.SUCCESS.getCode()){
                             //调用重置方法
                             resetpw();
-                            ResetPwActivity.this.finish();
                         }else{
                             Toast.makeText(ResetPwActivity.this,result.getMsg(),Toast.LENGTH_SHORT).show();
 

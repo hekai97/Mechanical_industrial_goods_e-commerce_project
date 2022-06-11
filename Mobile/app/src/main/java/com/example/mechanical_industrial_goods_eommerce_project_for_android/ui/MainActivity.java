@@ -87,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
         mRadioButtonHome.setChecked(true);
     }
 
+    //重新加载
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);

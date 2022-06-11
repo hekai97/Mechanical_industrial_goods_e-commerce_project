@@ -10,10 +10,16 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.alibaba.android.vlayout.layout.GridLayoutHelper;
 import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
@@ -35,6 +41,7 @@ import com.example.mechanical_industrial_goods_eommerce_project_for_android.mode
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.SverResponse;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.Utils.JsonUtils;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.ui.DetailActivity;
+import com.example.mechanical_industrial_goods_eommerce_project_for_android.ui.SearchActivity;
 import com.google.gson.reflect.TypeToken;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -68,6 +75,7 @@ public class CategoriesFragment extends Fragment {
     private String typeId;
     private String name;
     private Integer partsId;
+    private EditText search_edit;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -124,6 +132,33 @@ public class CategoriesFragment extends Fragment {
 
 
     private void initView(View view){
+
+        search_edit=(EditText)view.findViewById(R.id.toolbar_searchview);
+        search_edit.setImeOptions(EditorInfo.IME_ACTION_SEARCH);
+        search_edit.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+
+                if(actionId == EditorInfo.IME_ACTION_SEARCH)
+                {
+                    String searchKey=search_edit.getText().toString();
+                    if(!TextUtils.isEmpty(searchKey))
+                    {
+                        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(v.getWindowToken() , 0);
+                        Intent intent=new Intent(getActivity(), SearchActivity.class);
+                        intent.putExtra("searchKey",searchKey);
+                        startActivity(intent);
+                    }
+                    else {
+                        ToastUtils.showShortToast(getActivity(),"搜索不能为空");
+                        //Toast.makeText(getActivity(),"搜索不能为空",Toast.LENGTH_SHORT).show();
+                    }
+                }
+                return false;
+            }
+        });
+
         //初始化
         leftRecycleView = (RecyclerView) view.findViewById(R.id.category_rv);
         leftCategoryData = new ArrayList<>();

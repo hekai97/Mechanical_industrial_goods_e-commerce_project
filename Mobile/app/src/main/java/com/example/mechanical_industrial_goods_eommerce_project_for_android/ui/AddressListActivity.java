@@ -42,6 +42,13 @@ public class AddressListActivity extends AppCompatActivity implements View.OnCli
         initView();
         loadAddressList();
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadAddressList();
+    }
+
     @Override
     public void onClick(View view) {
         Intent intent;

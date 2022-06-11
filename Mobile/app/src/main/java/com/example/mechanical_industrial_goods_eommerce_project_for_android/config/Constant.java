@@ -108,5 +108,7 @@ public class Constant {
 
         //支付接口
         public static final String PAY_URL=BASE_URL+"alipay/getorderinfo.do";
+        //发送邮箱验证码
+        public static final String MAIL_SEND_URL=BASE_URL+"mail/getcode.do";
     }
 }

@@ -21,6 +21,9 @@
             android:name=".ui.PayActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.SearchActivity"
+            android:exported="false"/>
+        <activity
             android:name=".ui.OrderDetailActivity"
             android:exported="false" />
         <activity

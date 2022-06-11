@@ -51,6 +51,8 @@ public class OrderDetailActivity extends AppCompatActivity {
     private Order order;
     private List<CartItem> cartItems;
 
+    private String id;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,14 +61,19 @@ public class OrderDetailActivity extends AppCompatActivity {
         initView();
 
         Intent intent=getIntent();
-        String id=intent.getStringExtra("id");
+        id=intent.getStringExtra("id");
         total_amount = intent.getStringExtra("total_amount");
         if(!TextUtils.isEmpty(id))
         {
             loadData(id);
         }
 
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadData(id);
     }
 
     private void initView() {
@@ -120,7 +127,7 @@ public class OrderDetailActivity extends AppCompatActivity {
                         Intent intent = new Intent(OrderDetailActivity.this,PayActivity.class);
                         intent.putExtra("orderInfo",result.getData());
                         intent.putExtra("notify_url",result.getMsg());
-                        intent.putExtra("total_amount",total_amount);
+                        intent.putExtra("total_amount",order.getAmount()+"");
                         startActivity(intent);
                     }
                 });

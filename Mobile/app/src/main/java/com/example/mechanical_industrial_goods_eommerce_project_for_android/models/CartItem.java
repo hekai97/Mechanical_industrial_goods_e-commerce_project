@@ -1,9 +1,10 @@
 package com.example.mechanical_industrial_goods_eommerce_project_for_android.models;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 
-public class CartItem {
+public class CartItem implements Serializable {
     private Integer id;
     private Integer userId;
     private Integer productId;
@@ -109,5 +110,9 @@ public class CartItem {
 
     public void setEdit(boolean edit) {
         isEdit = edit;
+    }
+
+    public void setChecked(int checked) {
+        this.checked = checked;
     }
 }

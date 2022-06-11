@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.R;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.Utils.JsonUtils;
+import com.example.mechanical_industrial_goods_eommerce_project_for_android.Utils.ToastUtils;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.adapters.ConfirmOrderProductAdapter;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.config.Constant;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.Address;
@@ -119,8 +120,7 @@ public class ConfirmOrderActivity extends AppCompatActivity {
 
     /*加载默认地址*/
     private void initDefaultAddr(){
-        OkHttpUtils.get()
-                .url(Constant.API.USER_ADDR_LIST_URL)
+        OkHttpUtils.get().url(Constant.API.USER_ADDR_LIST_URL)
                 .build().execute(new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
@@ -133,6 +133,13 @@ public class ConfirmOrderActivity extends AppCompatActivity {
                 SverResponse<List<Address>> result=new JsonUtils().fromJson(response,type);
                 if(result.getStatus()== ResponseCode.SUCCESS.getCode())
                 {
+                    if(result.getData().size() == 0 ){
+                        ToastUtils.showLongToast(ConfirmOrderActivity.this,"请先添加收货地址");
+                        Intent intent = new Intent(ConfirmOrderActivity.this,AddressListActivity.class);
+                        startActivity(intent);
+                        ConfirmOrderActivity.this.finish();
+                        return;
+                    }
                     if(result.getData()!=null)
                     {
                         for(Address adr: result.getData() )
@@ -162,10 +169,7 @@ public class ConfirmOrderActivity extends AppCompatActivity {
     /*加载购物车数据*/
     private void initCartProducts()
     {
-        OkHttpUtils.get()
-                .url(Constant.API.CART_LIST_URL)
-                .build()
-                .execute(new StringCallback() {
+        OkHttpUtils.get().url(Constant.API.CART_LIST_URL).build().execute(new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
 
@@ -223,7 +227,6 @@ public class ConfirmOrderActivity extends AppCompatActivity {
                             intent = new Intent(ConfirmOrderActivity.this, OrderDetailActivity.class);
 
                             intent.putExtra("id",result.getData().getOrderNo());
-                            intent.putExtra("total_amount",result.getData().getAmount());
 
                             startActivity(intent);
 
