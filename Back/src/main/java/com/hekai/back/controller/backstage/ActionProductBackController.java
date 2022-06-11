@@ -104,16 +104,37 @@ public class ActionProductBackController {
 	//图片上传接口
 	@RequestMapping(value = "/pic_upload.do",method = RequestMethod.POST)
 	@ResponseBody
-	public SverResponse<String> pictureUpLoad(@RequestBody MultipartFile image){
+	public SverResponse<String> pictureUpLoad(@RequestBody MultipartFile file){
 
 		String filePath="E:\\Codes\\JAVA_IDEA\\Mechanical_industrial_goods_e-commerce_project\\Back\\src\\main\\webapp\\upload";
-		System.out.println(image.getName()+" "+image.getContentType());
+		System.out.println(file.getName()+" "+ file.getContentType());
 		try {
-			image.transferTo(new File(filePath, Objects.requireNonNull(image.getOriginalFilename())));
-			return SverResponse.createRespBySuccessMessage(image.getName());
+			file.transferTo(new File(filePath, Objects.requireNonNull(file.getOriginalFilename())));
+			return SverResponse.createRespBySuccess("/upload/"+ file.getOriginalFilename());
 		} catch (IOException e) {
 			e.printStackTrace();
+			return SverResponse.createRespBySuccess("上传失败");
 		}
-		return null;
+	}
+	@RequestMapping(value = "/upload",method = RequestMethod.POST)
+	@ResponseBody
+	public SverResponse<String> pictureUpLoad2(@RequestBody MultipartFile image){
+		return pictureUpLoad(image);
+	}
+	@RequestMapping(value = "/getdetail.do",method = RequestMethod.POST)
+	@ResponseBody
+	public SverResponse<ActionProduct> getProductDetail(HttpSession session,Integer productId){
+		User user=(User)session.getAttribute(ConstUtil.CUR_USER);
+		if(user==null) {
+			return SverResponse.createByErrorCodeMessage(ResponseCode.UNLOGIN.getCode(), "请登录后再进行操作!");
+		}
+		//2.用户是不是管理员
+		SverResponse<String> response=userService.isAdmin(user);
+		if(response.isSuccess()) {
+			//3.调用Service中的方法更新状态信息
+			return actionProductService.findProductDetailForPortal(productId);
+		}
+
+		return SverResponse.createByErrorMessage("您无操作权限!");
 	}
 }
