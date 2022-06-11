@@ -51,7 +51,7 @@ define(['common'],function(common){
 			var goodsStock = $("#goodsStock").val();
 			var images = $("#images").val();
 			var detail = $("#preview").html();
-			alert(images);
+			//alert(images);
 			$.ajax({
 				xhrFields:{withCredentials:true},
 				crossDomain:true,
