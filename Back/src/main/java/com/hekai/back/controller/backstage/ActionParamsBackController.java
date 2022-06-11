@@ -154,5 +154,21 @@ public class ActionParamsBackController {
 
 		return SverResponse.createByErrorMessage("您无操作权限!");
 	}
+	@RequestMapping(value = "/findpathparam.do",method = RequestMethod.GET)
+	@ResponseBody
+	public SverResponse<List<ActionParam>> findPathParam(HttpSession session){
+		User user=(User)session.getAttribute(ConstUtil.CUR_USER);
+		if(user==null) {
+			return SverResponse.createByErrorCodeMessage(ResponseCode.UNLOGIN.getCode(), "请登录后再进行操作!");
+		}
+		//2.用户是不是管理员
+		SverResponse<String> response=userService.isAdmin(user);
+		if(response.isSuccess()) {
+			//3.调用Service中的方法:获得子类型
+			return actionParamsService.findAllParams();
+		}
+
+		return SverResponse.createByErrorMessage("您无操作权限!");
+	}
 	
 }
