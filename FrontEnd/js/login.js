@@ -77,7 +77,7 @@ define(['common'],function(common){
 	//检查密码
 	function checkPwd(){
 		//获取输入密码
-		var pwd = $("#username").val();
+		var pwd = $("#password").val();
 		$("#passwordError").css({display:"none"});
 		if(pwd == ""){
 			$("#passwordError").css({display:"block"});

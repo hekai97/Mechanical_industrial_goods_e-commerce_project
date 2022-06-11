@@ -20,7 +20,7 @@
       defaultImage: 'resources/simditor/assets/images/image.png',
       //图片上传
       upload:{
-        url: baseUrl+'mgr/product/pic_upload',
+        url: baseUrl+'mgr/product/pic_upload.do',
         xhrFields: {withCredentials: true},
         crossDomain: true,
         params: null, //键值对,指定文件上传接口的额外参数,上传的时候随文件一起提交  
