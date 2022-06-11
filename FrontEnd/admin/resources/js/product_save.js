@@ -51,6 +51,7 @@ define(['common'],function(common){
 			var goodsStock = $("#goodsStock").val();
 			var images = $("#images").val();
 			var detail = $("#preview").html();
+			alert(images);
 			$.ajax({
 				xhrFields:{withCredentials:true},
 				crossDomain:true,
@@ -86,7 +87,7 @@ define(['common'],function(common){
 			crossDomain:true,
 			url:baseUrl+"mgr/param/findpartstype.do",
 			data:{"productTypeId":productTypeId},
-			type:"post",
+			type:"get",
 			success:function(rs){
 				//插入数据 
 				if(rs.status==0){
