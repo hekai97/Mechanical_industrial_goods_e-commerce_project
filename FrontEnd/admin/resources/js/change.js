@@ -38,6 +38,7 @@ define(['jquery','common'],function(jquery,common){
 			if($("#apassword_confirmation").val()!=$("#anew_password").val()){
 				$("#apassword_confirmation+div").css("display","block");
 				$("#apassword_confirmation+div").html("两次密码不一致！");
+				
 				return;
 			}
 			$("#apassword_confirmation+div").css("display","none");
@@ -45,6 +46,8 @@ define(['jquery','common'],function(jquery,common){
 		
 		//保存按钮事件
 		$("#abtnSave").click(function(){
+			if($("#apassword_confirmation").val()==$("#anew_password").val())
+			{
 			$.ajax({
 				url:baseUrl+"user/updatepassword.do",
 				xhrFields:{withCredentials:true},
@@ -60,6 +63,10 @@ define(['jquery','common'],function(jquery,common){
 					}	
 				}
 			});
+		}
+		else{
+			$("#apassword_confirmation+div").html("两次密码不一致！");
+		}
 		});
 	
 	}
