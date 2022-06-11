@@ -20,6 +20,7 @@ import com.bumptech.glide.Glide;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.R;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.Utils.JsonUtils;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.config.Constant;
+import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.CartItem;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.Product;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.ResponseCode;
 import com.example.mechanical_industrial_goods_eommerce_project_for_android.models.SverResponse;
@@ -28,6 +29,7 @@ import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.lang.reflect.Type;
+import java.math.BigDecimal;
 
 import okhttp3.Call;
 
@@ -119,7 +121,8 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
                 addProduct2cart();
                 break;
             case R.id.buy_btn:
-                //buy();
+                buy();
+
                 break;
             case R.id.btn_jia:
                 if(inputNum+1<=product.getStock())
@@ -134,6 +137,26 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
                 }
                 break;
         }
+    }
+
+    private void buy(){
+
+        CartItem cartItem = new CartItem();
+        cartItem.setId(product.getId());
+        cartItem.setName(product.getName());
+        cartItem.setPrice(product.getPrice());
+        cartItem.setStock(product.getStock());
+        cartItem.setIconUrl(product.getIconUrl());
+        cartItem.setQuantity(Integer.valueOf(num.getText().toString()));
+        cartItem.setTotalPrice(BigDecimal.valueOf(Integer.valueOf(num.getText().toString())*product.getId()));
+        cartItem.setChecked(1);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("cartItem",cartItem);
+        Intent intent=new Intent(DetailActivity.this, ConfirmOrderActivity.class);
+        intent.putExtra("preA","detail");
+        intent.putExtras(bundle);
+//                intent.putExtra("detail",detailis);
+        startActivity(intent);
     }
 
     private void loadProductById(String id) {
@@ -162,7 +185,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
                                     .into(icon_url);
                             name.setText(product.getName());
                             parts.setText("配件类型" + product.getPartsId());
-                            price.setText("$" + product.getPrice());
+                            price.setText("￥" + product.getPrice());
                             stock.setText("库存" + product.getStock());
                             num.setText("1");
                             product_detail.loadDataWithBaseURL(Constant.API.BASE_URL,

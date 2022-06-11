@@ -207,6 +207,7 @@ public class ShoppingcartFragment extends Fragment {
                 if(!total.getText().toString().equals("合计：￥0"))
                 {
                     Intent intent=new Intent(getActivity(), ConfirmOrderActivity.class);
+                    intent.putExtra("preA","cart");
                     startActivity(intent);
                 }
                 else
