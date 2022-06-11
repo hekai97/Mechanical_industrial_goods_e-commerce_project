@@ -1,5 +1,7 @@
 package com.hekai.back.alipay;
 
+import com.hekai.back.vo.PayOrder;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
@@ -62,18 +64,19 @@ public class OrderInfoUtil {
 	/**
 	 * 构造支付订单参数列表
 	 */
-	public static Map<String, String> buildOrderParamMap(String app_id,String orderNo, boolean rsa2) {
+	public static Map<String, String> buildOrderParamMap(String app_id, PayOrder order, boolean rsa2) {
 		Map<String, String> keyValues = new HashMap<String, String>();
 
 		keyValues.put("app_id", app_id);
 
-		keyValues.put("biz_content", "{\"timeout_express\":\"30m\",\"product_code\":\"QUICK_WAP_WAY\",\"total_amount\":\"0.01\",\"subject\":\"1\",\"body\":\"我是测试数据\",\"out_trade_no\":\"" + orderNo +  "\"}");
+		keyValues.put("biz_content", "{\"timeout_express\":\"30m\",\"product_code\":\"QUICK_WAP_WAY\",\"total_amount\":\""+order.getTotal_amount()+"\",\"subject\":\""+order.getSubject()+"\",\"body\":\""+order.getBody()+"\",\"out_trade_no\":\"" + order.getOut_trade_no() +  "\"}");
 
 		keyValues.put("charset", "utf-8");
 
 		keyValues.put("method", "alipay.trade.app.pay");
 
-		keyValues.put("sign",AliPayConfig.APP_PRIVATE_KEY);
+//		keyValues.put("notify_url", AliPayConfig.notify_url);
+
 		keyValues.put("sign_type", rsa2 ? "RSA2" : "RSA");
 
 		SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
@@ -142,33 +145,33 @@ public class OrderInfoUtil {
 	 *
 	 * @return
 	 */
-//	public static String getSign(Map<String, String> map, String rsaKey, boolean rsa2) {
-//		List<String> keys = new ArrayList<String>(map.keySet());
-//		// key排序
-//		Collections.sort(keys);
-//
-//		StringBuilder authInfo = new StringBuilder();
-//		for (int i = 0; i < keys.size() - 1; i++) {
-//			String key = keys.get(i);
-//			String value = map.get(key);
-//			authInfo.append(buildKeyValue(key, value, false));
-//			authInfo.append("&");
-//		}
-//
-//		String tailKey = keys.get(keys.size() - 1);
-//		String tailValue = map.get(tailKey);
-//		authInfo.append(buildKeyValue(tailKey, tailValue, false));
-//
-//		String oriSign = SignUtils.sign(authInfo.toString(), rsaKey, rsa2);
-//		String encodedSign = "";
-//
-//		try {
-//			encodedSign = URLEncoder.encode(oriSign, "UTF-8");
-//		} catch (UnsupportedEncodingException e) {
-//			e.printStackTrace();
-//		}
-//		return "sign=" + encodedSign;
-//	}
+	public static String getSign(Map<String, String> map, String rsaKey, boolean rsa2) {
+		List<String> keys = new ArrayList<String>(map.keySet());
+		// key排序
+		Collections.sort(keys);
+
+		StringBuilder authInfo = new StringBuilder();
+		for (int i = 0; i < keys.size() - 1; i++) {
+			String key = keys.get(i);
+			String value = map.get(key);
+			authInfo.append(buildKeyValue(key, value, false));
+			authInfo.append("&");
+		}
+
+		String tailKey = keys.get(keys.size() - 1);
+		String tailValue = map.get(tailKey);
+		authInfo.append(buildKeyValue(tailKey, tailValue, false));
+
+		String oriSign = SignUtils.sign(authInfo.toString(), rsaKey, rsa2);
+		String encodedSign = "";
+
+		try {
+			encodedSign = URLEncoder.encode(oriSign, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return "sign=" + encodedSign;
+	}
 
 	/**
 	 * 要求外部订单号必须唯一。

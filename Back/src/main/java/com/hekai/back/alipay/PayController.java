@@ -1,5 +1,7 @@
 package com.hekai.back.alipay;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
@@ -24,6 +26,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * {@code @author:} hekai
@@ -117,15 +121,7 @@ public class PayController {
         boolean signVerified = AlipaySignature.rsaCheckV1(params, AliPayConfig.ALIPAY_PUBLIC_KEY, AliPayConfig.CHARSET, AliPayConfig.sign_type); //调用SDK验证签名
         if (signVerified) {
             ////////////    设置用户订单状态
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    System.out.println(params.get("out_trade_no"));
-
-                    actionOrderService.updateOrderToSuccessPay(Long.parseLong(params.get("out_trade_no")));
-                }
-            }).start();
-
+            actionOrderService.updateOrderToSuccessPay(Long.parseLong(params.get("out_trade_no")));
             ////////////
             System.out.println("return sign  success");
             return "验证签名成功，现在跳转到订单详情页面";
@@ -149,10 +145,11 @@ public class PayController {
     *
     *
     * */    //异步通知
-    @RequestMapping("/notify.do")
+    @RequestMapping(value = "/notify.do",method = RequestMethod.POST)
     @ResponseBody
     public String notifyCall(HttpServletRequest request, HttpSession session, Model model) throws Exception {
         // 获取支付宝反馈信息
+        System.out.println("进入异步通知");
         Map<String, String> params = new HashMap<String, String>();
         Map<String, String[]> requestParams = request.getParameterMap();
         for (Iterator<String> iter = requestParams.keySet().iterator(); iter.hasNext(); ) {
@@ -182,6 +179,14 @@ public class PayController {
             } else if (trade_status.equals("TRADE_SUCCESS")){
             }
              */
+            ////////////    设置用户订单状态
+            new Thread(() -> {
+                System.out.println(params.get("out_trade_no"));
+
+                actionOrderService.updateOrderToSuccessPay(Long.parseLong(params.get("out_trade_no")));
+            }).start();
+
+            ////////////
             return "success";
         } else {
             System.out.println("notify sign  failed");
@@ -201,8 +206,8 @@ public class PayController {
 //        stringBuilder.append("&seller_id=").append("2088621959359744");
 //        stringBuilder.append("&product_code=").append(PRODUCT_CODE);
 //        stringBuilder.append("&timeout_express=").append("2m");
-////        stringBuilder.append("&sign=").append(AliPayConfig.ALIPAY_PUBLIC_KEY);
-////        stringBuilder.append("&sign_type=").append(AliPayConfig.sign_type);
+//        stringBuilder.append("&sign=").append(AliPayConfig.ALIPAY_PUBLIC_KEY);
+//        stringBuilder.append("&sign_type=").append(AliPayConfig.sign_type);
 //        if(order.getBody()!=null) {
 //            stringBuilder.append("&body=").append(order.getBody());
 //        }
@@ -226,9 +231,50 @@ public class PayController {
 //        System.out.println(alipay_request);
 //        System.out.println(stringBuilder);
 //        return SverResponse.createRespBySuccess(stringBuilder.toString());
-        SverResponse<String> sverResponse= SverResponse.createRespBySuccess(OrderInfoUtil.buildOrderParam(OrderInfoUtil.buildOrderParamMap(AliPayConfig.APP_ID,order.getOut_trade_no(),true)));
-        System.out.println(sverResponse.getData());
-        SverResponse<String> result=SverResponse.createRespBySuccess("alipay_sdk=alipay-sdk-java-dynamicVersionNo&"+sverResponse.getData());
-        return result;
+
+
+//        SverResponse<String> sverResponse= SverResponse.createRespBySuccess(OrderInfoUtil.buildOrderParam(OrderInfoUtil.buildOrderParamMap(AliPayConfig.APP_ID,order.getOut_trade_no(),true)));
+//        System.out.println(sverResponse.getData());
+//        SverResponse<String> result=SverResponse.createRespBySuccess("alipay_sdk=alipay-sdk-java-dynamicVersionNo&"+sverResponse.getData());
+//        return result;
+        Map<String, String> params = OrderInfoUtil.buildOrderParamMap(AliPayConfig.APP_ID, order,true);
+        String orderParam = OrderInfoUtil.buildOrderParam(params);
+
+        String sign = OrderInfoUtil.getSign(params, AliPayConfig.APP_PRIVATE_KEY, true);
+        final String orderInfo = orderParam + "&" + sign;
+        System.out.println(orderInfo);
+        return SverResponse.createRespBySuccess(AliPayConfig.mobile_url,orderInfo);
+    }
+
+    @RequestMapping("/mobileresult.do")
+    @ResponseBody
+    public SverResponse<String> mobileResult(HttpServletRequest request, HttpSession session, Model model) throws Exception {
+        // 获取支付宝GET过来反馈信息
+        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String[]> requestParams = request.getParameterMap();
+        for (Iterator<String> iter = requestParams.keySet().iterator(); iter.hasNext(); ) {
+            String name = (String) iter.next();
+            String[] values = (String[]) requestParams.get(name);
+            String valueStr = "";
+            for (int i = 0; i < values.length; i++) {
+                valueStr = (i == values.length - 1) ? valueStr + values[i]
+                        : valueStr + values[i] + ",";
+            }
+            System.out.println(name+"   "+valueStr);
+            params.put(name, valueStr);
+        }
+        System.out.println("params");
+        System.out.println(params);
+        Pattern pattern=Pattern.compile("out_trade_no\":\"[0-9]*\"");
+        Matcher matcher = pattern.matcher(params.get("out_trade_no"));
+        if(matcher.find()){
+            String s1=matcher.group(0);
+            String[] res=s1.split(":");
+            String orderNo=res[1].substring(1,res[1].length()-1);
+            System.out.println(orderNo);
+            actionOrderService.updateOrderToSuccessPay(Long.parseLong(orderNo));
+            return SverResponse.createRespBySuccessMessage("success");
+        }
+        return SverResponse.createByErrorMessage("fail");
     }
 }
