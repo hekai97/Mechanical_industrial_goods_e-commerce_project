@@ -8,9 +8,10 @@ define(['common','handlebars-v4.0.11','simditor_product'],function(common,Handle
 		var pid = common.getParam("productId");
 		//获取产品类型参数和产品信息
 		$.ajax({
-			"xhrFields":{withCredentials:true},
-			"crossDomain":true,
-			"url":baseUrl+"mgr/param/findptype.do",
+			xhrFields:{withCredentials:true},
+			crossDomain:true,
+			url:baseUrl+"mgr/param/findptype.do",
+			post:"get",
 			success:function(rs){
 				//插入数据 
 				if(rs.status==0){
@@ -60,9 +61,9 @@ define(['common','handlebars-v4.0.11','simditor_product'],function(common,Handle
 			}
 			var detail = editor.getValue();
 			$.ajax({
-				"xhrFields":{withCredentials:true},
-				"crossDomain":true,
-				"url":baseUrl+"mgr/product/saveproduct.do",
+				xhrFields:{withCredentials:true},
+				crossDomain:true,
+				url:baseUrl+"mgr/product/saveproduct.do",
 				type:"post",
 				data:{"id":goodsId,"name":goodsName,"productId":productType,
 					"partsId":partsType,"detail":detail,"price":goodsPrice,"stock":goodsStock,"subImages":images},
@@ -84,9 +85,9 @@ define(['common','handlebars-v4.0.11','simditor_product'],function(common,Handle
 	//加载商品详情
 	function loadProductDetail(pid){
 		$.ajax({
-			"xhrFields":{withCredentials:true},
-			"crossDomain":true,
-			"url":baseUrl+"mgr/product/getdetail.do",
+			xhrFields:{withCredentials:true},
+			crossDomain:true,
+			url:baseUrl+"mgr/product/getdetail.do",
 			data:{"productId":pid},
 			type:"post",
 			success:function(rs){
@@ -100,8 +101,10 @@ define(['common','handlebars-v4.0.11','simditor_product'],function(common,Handle
 					$("#goodsPrice").val(rs.data.price);
 					$("#goodsStock").val(rs.data.stock);
 					$("#images").val(rs.data.iconUrl+","+rs.data.subImages);//主图地址和子图地址链接在一起
+					//$("#images").prop('type','text'); 
+					$("#img").css("display","block");
+					$("#img").attr("src",baseUrl+rs.data.iconUrl);
 					initImages= $("#images").val();//保存初始地址
-					alert(initImages);
 					editor.setValue(rs.data.detail);
 					//加载配件类型
 					loadPartsType(rs.data.productId,true);
@@ -120,7 +123,6 @@ define(['common','handlebars-v4.0.11','simditor_product'],function(common,Handle
 			crossDomain:true,
 			url:baseUrl+"mgr/param/findpartstype.do",
 			data:{"productTypeId":productTypeId},
-			type:"get",
 			success:function(rs){
 				if(rs.status==0){
 					//原位置清空
@@ -165,17 +167,19 @@ function initEditor(){
       pasteImage: true,
       defaultImage: 'resources/simditor/assets/images/image.png',
       upload:{
-        url: baseUrl+'mgr/product/pic_upload.do',
+        url: baseUrl+'mgr/product/pic_upload',
         xhrFields: {withCredentials: true},
         crossDomain: true,
         params: null, //键值对,指定文件上传接口的额外参数,上传的时候随文件一起提交  
         fileKey: 'files', //服务器端获取文件数据的参数名  
         connectionCount: 3,  
         leaveConfirm: '正在上传文件',  
+		type:"post",
       },
       success:function(data){
         alert(data);
       }
     });
 }
+
 
