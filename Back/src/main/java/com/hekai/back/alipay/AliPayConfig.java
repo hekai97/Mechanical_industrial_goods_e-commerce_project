@@ -9,7 +9,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class AliPayConfig {
 
-    // 应用ID,APPID,开发时是沙箱提供的APPID，生产环境是公司的APPID
+    // 应用ID,APPID,开发时是沙箱提供的APPID
+    private static final String baseUrl="http://192.168.43.74:8080/mall/";
     public static String APP_ID = "2021000120614325";
 
     // 商户私钥，之前所生成的密钥中的私钥
@@ -19,10 +20,11 @@ public class AliPayConfig {
     public static String ALIPAY_PUBLIC_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkhKbcbyTGkYXYlh92TUrrkvnLcEjIsTAWsz8qv3CxSbIazpANwtvzisnlOFfD/ThOflqETBQF8yRbsryaxzgFiNG9TwUbDpRkLkQuMlsbhYYVewQE2fMtP62mBxsneUlNaTu40iqzj33r1valBhwb4JEfjjwz7LhoiNVioc/eid7en11JViqFCrKEACpMZGSx6EomF8Nu0hzaa6BxM+j/kFoR5aGvhswra+QliVF09utLTAxXux6WnLPz0g9uDZa7Km0bu6Ybm+qO968N9TxRxbV9autLjXWj3yX/wzHwwenBxZIdUNVHf+P3Gln4DyY54jNclRQxv17mKbGHIFf8QIDAQAB";
 
     // 服务器异步通知页面路径,需要用http://格式的完整路径，不要加自定义参数，需要外网可以正常访问
-    public static String notify_url = "http://www.baidu.com";
+    public static String notify_url = baseUrl+"alipay/notify.do";
 
     // 同步通知页面跳转路径 需要用http://格式的完整路径，不要加自定义参数，用来显示支付成功后返回的页面
-    public static String return_url = "http://www.baidu.com";
+    public static String return_url = baseUrl+"alipay/return.do";
+    public static String mobile_url = baseUrl+"alipay/mobileresult.do";
 
     // 签名方式
     public static String sign_type = "RSA2";
@@ -30,7 +32,6 @@ public class AliPayConfig {
     // 字符编码格式
     public static String CHARSET = "utf-8";
 
-    // 支付宝网关，我们这里用沙箱的网关，生产环境中要替换成正式环境的网关
     public static String gatewayUrl = "https://openapi.alipaydev.com/gateway.do";
 
     // 返回格式

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -101,15 +102,18 @@ public class ActionProductBackController {
 		return SverResponse.createByErrorMessage("您无操作权限!");
 	}
 	//图片上传接口
-	@RequestMapping(value = "pic_upload.do")
+	@RequestMapping(value = "/pic_upload.do",method = RequestMethod.POST)
 	@ResponseBody
-	public void pictureUpLoad(@RequestBody MultipartFile image){
-		String filePath="upload";
+	public SverResponse<String> pictureUpLoad(@RequestBody MultipartFile image){
+
+		String filePath="E:\\Codes\\JAVA_IDEA\\Mechanical_industrial_goods_e-commerce_project\\Back\\src\\main\\webapp\\upload";
 		System.out.println(image.getName()+" "+image.getContentType());
 		try {
 			image.transferTo(new File(filePath, Objects.requireNonNull(image.getOriginalFilename())));
+			return SverResponse.createRespBySuccessMessage(image.getName());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		return null;
 	}
 }

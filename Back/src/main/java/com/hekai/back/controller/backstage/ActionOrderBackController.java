@@ -93,5 +93,21 @@ public class ActionOrderBackController {
 		}
 		return SverResponse.createByErrorMessage("您无操作权限!");
 	}
+	@RequestMapping(value = "/updatetoship.do",method = RequestMethod.POST)
+	@ResponseBody
+	public SverResponse<String> updateToShip(HttpSession session,Long orderId){
 
+		User user = (User) session.getAttribute(ConstUtil.CUR_USER);
+		if(user == null) {
+			return SverResponse.createByErrorMessage("请登录后再操作!");
+		}
+		//2.用户是不是管理员
+		SverResponse<String> response=userService.isAdmin(user);
+		if(response.isSuccess()) {
+			//3.调用Service中的方法:查询订单列表
+			System.out.println("orderId="+orderId);
+			return actionOrderService.updateOrderToShip(orderId);
+		}
+		return SverResponse.createByErrorMessage("您无操作权限!");
+	}
 }
