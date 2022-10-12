@@ -21,7 +21,7 @@ public class SendMail {
     // 发件人的邮箱账号
     public static String sendEmailAccount = "1731673423@qq.com";
     // 发件人的邮箱的授权码
-    public static String sendEmailPassword = "umfcimmrxffycfhf";
+    public static String sendEmailPassword = "";
     // 发件人邮箱的SMTP服务器地址
     public static String sendEmailSMTPHost = "smtp.qq.com";
     // 收件人的邮箱账号
